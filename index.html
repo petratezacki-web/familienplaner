@@ -62,7 +62,9 @@ function speichereTermin() {
   let liste = document.getElementById("listaTermina");
 
   let termin = document.createElement("p");
-  termin.textContent = datum + " - " + zeit + " - " + name;
+ let lijepiDatum = datum.split("-").reverse().join(".");
+
+termin.textContent = lijepiDatum + " - " + zeit + " - " + name;
 
   liste.appendChild(termin);
 }
