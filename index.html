@@ -43,6 +43,27 @@
   text-align: right;
   margin-bottom: 12px;
 }     
+ grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  max-width: 650px;
+  margin: 25px auto;
+}
+
+.meni p {
+  margin: 0;
+}
+
+.meni button {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 28px 12px;
+  background-color: white;
+  border: 1px solid #DFE8DC;
+  border-radius: 20px;
+  color: #34553E;
+  font-size: 17px;
+}      
       </style>
   </head>
   <body>
@@ -67,10 +88,12 @@
     <div id="listaTermina"></div>
     <h2>✅ Verlauf</h2>
 <div id="povijestTermina"></div>
-    <p><button>Kalender</button></p>
-    <p><button>Familie</button></p>
-    <p><button>Erinnerungen</button></p>
-    <p><button>Einkaufsliste</button></p>
+<div class="meni">    
+  <p><button>📅 Kalender</button></p>
+<p><button>♡ Familie</button></p>
+<p><button>🔔 Erinnerungen</button></p>
+<p><button>🛒 Einkaufsliste</button></p>
+ </div> 
   </body>
 </html>
 <script>
