@@ -67,8 +67,32 @@ function speichereTermin() {
 termin.textContent = lijepiDatum + " - " + zeit + " - " + name;
 
   liste.appendChild(termin);
+  let termini = JSON.parse(localStorage.getItem("termini")) || [];
+
+termini.push({
+  name: name,
+  datum: datum,
+  zeit: zeit
+});
+
+localStorage.setItem("termini", JSON.stringify(termini));
 document.getElementById("terminName").value = "";
 document.getElementById("terminDatum").value = "";
 document.getElementById("terminZeit").value = "";
 }
+</script>
+<script>
+window.addEventListener("DOMContentLoaded", function() {
+  let termini = JSON.parse(localStorage.getItem("termini")) || [];
+  let liste = document.getElementById("listaTermina");
+
+  termini.forEach(function(t) {
+    let termin = document.createElement("p");
+    let datum = t.datum.split("-").reverse().join(".");
+
+    termin.textContent = datum + " - " + t.zeit + " - " + t.name;
+    liste.appendChild(termin);
+  });
+});
+  </script>
 </script>
