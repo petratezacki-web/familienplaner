@@ -106,7 +106,9 @@ document.getElementById("terminZeit").value = "";
 window.addEventListener("DOMContentLoaded", function() {
   let termini = JSON.parse(localStorage.getItem("termini")) || [];
   let liste = document.getElementById("listaTermina");
-
+termini.sort(function(a, b) {
+  return (a.datum + a.zeit).localeCompare(b.datum + b.zeit);
+});
   termini.forEach(function(t) {
     let termin = document.createElement("p");
     let datum = t.datum.split("-").reverse().join(".");
