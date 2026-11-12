@@ -66,6 +66,15 @@ background-color: #E8F1E6;
   color: #34553E;
   font-size: 17px;
 }      
+ #naechsterTermin {
+  background-color: #F1F7EF;
+  border: 1px solid #DFE8DC;
+  border-radius: 20px;
+  padding: 25px;
+  margin: 25px auto;
+  max-width: 1150px;
+  color: #34553E;
+}     
       </style>
   </head>
   <body>
@@ -81,6 +90,10 @@ background-color: #E8F1E6;
 <p><button>🔔 Erinnerungen</button></p>
 <p><button>🛒 Einkaufsliste</button></p>
  </div> 
+ <div id="naechsterTermin">
+  <h2>🌸 Unser nächster Termin</h2>
+  <p>Keine bevorstehenden Termine.</p>
+</div>   
     <h2>Unsere Termine</h2>
       <button onclick="document.getElementById('terminForm').hidden = false">
   Termin hinzufügen
@@ -204,6 +217,22 @@ window.addEventListener("DOMContentLoaded", function() {
 termini.sort(function(a, b) {
   return (a.datum + a.zeit).localeCompare(b.datum + b.zeit);
 });
+  let sada = new Date();
+
+let sljedeci = termini.find(function(t) {
+  let datumTermina = new Date(t.datum + "T" + t.zeit);
+  return t.status !== "erledigt" && datumTermina >= sada;
+});
+
+let kartica = document.getElementById("naechsterTermin");
+
+if (sljedeci) {
+  let datum = sljedeci.datum.split("-").reverse().join(".");
+  kartica.innerHTML =
+    "<h2>🌸 Unser nächster Termin</h2>" +
+    "<p>" + datum + " um " + sljedeci.zeit + " Uhr</p>" +
+    "<p>" + sljedeci.name + "</p>";
+}
   termini.forEach(function(t) {
     let termin = document.createElement("p");
     termin.dataset.datum = t.datum + t.zeit;
