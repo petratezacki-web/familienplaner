@@ -36,14 +36,34 @@
 
 <div id="terminForm" hidden>
   <h3>Neuer Termin</h3>
-  <input type="text" placeholder="Was steht an?">
-  <input type="date">
-  <input type="time">
-  <button>Speichern</button>
+  <input type="text" id="terminName" placeholder="Was steht an?">
+  <input type="date" id="terminDatum">
+  <input type="time" id="terminZeit">
+  <button onclick="speichereTermin()">Speichern</button>
 </div>
+    <div id="listaTermina"></div>
     <p><button>Kalender</button></p>
     <p><button>Familie</button></p>
     <p><button>Erinnerungen</button></p>
     <p><button>Einkaufsliste</button></p>
   </body>
 </html>
+<script>
+function speichereTermin() {
+  let name = document.getElementById("terminName").value;
+  let datum = document.getElementById("terminDatum").value;
+  let zeit = document.getElementById("terminZeit").value;
+
+  if (!name || !datum || !zeit) {
+    alert("Bitte alle Felder ausfüllen!");
+    return;
+  }
+
+  let liste = document.getElementById("listaTermina");
+
+  let termin = document.createElement("p");
+  termin.textContent = datum + " - " + zeit + " - " + name;
+
+  liste.appendChild(termin);
+}
+</script>
