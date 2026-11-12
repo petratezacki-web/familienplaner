@@ -86,7 +86,16 @@ if (index !== -1) {
   gumb.disabled = true;
 }; 
 termin.appendChild(gumb);
-  liste.appendChild(termin);
+let postojeciTermini = Array.from(liste.children);
+
+let noviDatum = datum + zeit;
+
+let sljedeciTermin = postojeciTermini.find(function(element) {
+  return element.dataset.datum > noviDatum;
+});
+
+liste.insertBefore(termin, sljedeciTermin || null);
+termin.dataset.datum = noviDatum;
 
 
 termini.push({
@@ -111,6 +120,7 @@ termini.sort(function(a, b) {
 });
   termini.forEach(function(t) {
     let termin = document.createElement("p");
+    termin.dataset.datum = t.datum + t.zeit;
     let datum = t.datum.split("-").reverse().join(".");
 
     termin.textContent = datum + " - " + t.zeit + " - " + t.name;
