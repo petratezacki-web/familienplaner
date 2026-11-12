@@ -42,6 +42,8 @@
   <button onclick="speichereTermin()">Speichern</button>
 </div>
     <div id="listaTermina"></div>
+    <h2>✅ Verlauf</h2>
+<div id="povijestTermina"></div>
     <p><button>Kalender</button></p>
     <p><button>Familie</button></p>
     <p><button>Erinnerungen</button></p>
@@ -84,6 +86,7 @@ if (index !== -1) {
   termin.style.textDecoration = "line-through";
   gumb.textContent = "✓ Erledigt!";
   gumb.disabled = true;
+  document.getElementById("povijestTermina").appendChild(termin); 
 }; 
 termin.appendChild(gumb);
 let postojeciTermini = Array.from(liste.children);
@@ -136,11 +139,16 @@ termini.sort(function(a, b) {
     termin.style.textDecoration = "line-through";
     gumb.textContent = "✓ Erledigt!";
     gumb.disabled = true;
+    document.getElementById("povijestTermina").appendChild(termin);
   };
 
   termin.appendChild(gumb);
 }
-    liste.appendChild(termin);
+if (t.status === "erledigt") {
+  document.getElementById("povijestTermina").appendChild(termin);
+} else {
+  liste.appendChild(termin);
+} 
   });
 });
   </script>
