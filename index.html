@@ -89,6 +89,24 @@ if (index !== -1) {
   document.getElementById("povijestTermina").appendChild(termin); 
 }; 
 termin.appendChild(gumb);
+let gumbUredi = document.createElement("button");
+gumbUredi.textContent = "✏️ Bearbeiten";
+gumbUredi.onclick = function() {
+  let noviNaziv = prompt("Neuer Terminname:", name);
+  if (noviNaziv === null || noviNaziv.trim() === "") return;
+ let termini = JSON.parse(localStorage.getItem("termini")) || [];
+let index = termini.findIndex(t =>
+  t.name === name && t.datum === datum && t.zeit === zeit
+);
+if (index !== -1) {
+  termini[index].name = noviNaziv;
+  localStorage.setItem("termini", JSON.stringify(termini));
+  location.reload();
+}  
+};
+termin.appendChild(gumbUredi);  
+};  
+termin.appendChild(gumbUredi);  
 let gumbBrisanje = document.createElement("button");
 gumbBrisanje.textContent = "🗑️ Löschen";
 gumbBrisanje.onclick = function() {
