@@ -89,6 +89,22 @@ if (index !== -1) {
   document.getElementById("povijestTermina").appendChild(termin); 
 }; 
 termin.appendChild(gumb);
+let gumbBrisanje = document.createElement("button");
+gumbBrisanje.textContent = "🗑️ Löschen";
+gumbBrisanje.onclick = function() {
+  if (confirm("Möchtest du diesen Termin wirklich löschen?")) {
+    let termini = JSON.parse(localStorage.getItem("termini")) || [];
+    let index = termini.findIndex(t =>
+      t.name === name && t.datum === datum && t.zeit === zeit
+    );
+    if (index !== -1) {
+      termini.splice(index, 1);
+      localStorage.setItem("termini", JSON.stringify(termini));
+      termin.remove();
+    }
+  }
+};  
+termin.appendChild(gumbBrisanje);  
 let postojeciTermini = Array.from(liste.children);
 
 let noviDatum = datum + zeit;
@@ -143,6 +159,19 @@ termini.sort(function(a, b) {
   };
 
   termin.appendChild(gumb);
+ let gumbBrisanje = document.createElement("button");
+gumbBrisanje.textContent = "🗑️ Löschen";
+gumbBrisanje.onclick = function() {
+  if (confirm("Möchtest du diesen Termin wirklich löschen?")) {
+    let index = termini.indexOf(t);
+    if (index !== -1) {
+      termini.splice(index, 1);
+      localStorage.setItem("termini", JSON.stringify(termini));
+      termin.remove();
+    }
+  };
+};      
+termin.appendChild(gumbBrisanje);     
 }
 if (t.status === "erledigt") {
   document.getElementById("povijestTermina").appendChild(termin);
