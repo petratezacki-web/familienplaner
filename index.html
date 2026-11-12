@@ -62,17 +62,38 @@ function speichereTermin() {
   let liste = document.getElementById("listaTermina");
 
   let termin = document.createElement("p");
+  termin.dataset.status = "offen";
  let lijepiDatum = datum.split("-").reverse().join(".");
 
 termin.textContent = lijepiDatum + " - " + zeit + " - " + name;
+let termini = JSON.parse(localStorage.getItem("termini")) || [];
+let gumb = document.createElement("button");
+gumb.textContent = "✓ Erledigt";
+ gumb.onclick = function() {
+let index = termini.findIndex(t =>
+  t.name === name &&
+  t.datum === datum &&
+  t.zeit === zeit &&
+  t.status !== "erledigt"
+);
 
+if (index !== -1) {
+  termini[index].status = "erledigt";
+}  
+   localStorage.setItem("termini", JSON.stringify(termini));
+  termin.style.textDecoration = "line-through";
+  gumb.textContent = "✓ Erledigt!";
+  gumb.disabled = true;
+}; 
+termin.appendChild(gumb);
   liste.appendChild(termin);
-  let termini = JSON.parse(localStorage.getItem("termini")) || [];
+
 
 termini.push({
   name: name,
   datum: datum,
-  zeit: zeit
+  zeit: zeit,
+  status: "offen"
 });
 
 localStorage.setItem("termini", JSON.stringify(termini));
@@ -91,8 +112,24 @@ window.addEventListener("DOMContentLoaded", function() {
     let datum = t.datum.split("-").reverse().join(".");
 
     termin.textContent = datum + " - " + t.zeit + " - " + t.name;
+    if (t.status === "erledigt") {
+  termin.style.textDecoration = "line-through";
+} else {
+  let gumb = document.createElement("button");
+  gumb.textContent = "✓ Erledigt";
+
+  gumb.onclick = function() {
+    t.status = "erledigt";
+    localStorage.setItem("termini", JSON.stringify(termini));
+    termin.style.textDecoration = "line-through";
+    gumb.textContent = "✓ Erledigt!";
+    gumb.disabled = true;
+  };
+
+  termin.appendChild(gumb);
+}
     liste.appendChild(termin);
   });
 });
   </script>
-</script>
+
