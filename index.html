@@ -5,8 +5,14 @@
   <head>
     <title>Familienplaner</title>
     <style>
+   :root {
+  --sage: #DFE8DC;
+  --cream: #F8F7F2;
+  --pink: #EBCBD3;
+  --darkgreen: #34553E;
+}   
       body {
-        background-color: #F5F3E9;
+ background-color: var(--cream); 
           font-family: Arial;
         color: #455F4D;
       }
@@ -24,11 +30,28 @@
         font-size: 18px;
         cursor: pointer;
       }
+   .zaglavlje {
+  background-color: var(--sage);
+  padding: 30px;
+  border-radius: 24px;
+  margin-bottom: 25px;
+}   
+ .herzen {
+  color: #C58FA0;
+  font-size: 26px;
+  letter-spacing: 10px;
+  text-align: right;
+  margin-bottom: 12px;
+}     
       </style>
   </head>
   <body>
-    <h1>Unser Familienplaner</h1>
-      <p>Gemeinsam den Alltag planen.</p>
+  <div class="zaglavlje"> 
+ <div class="herzen">♡ ♥ ♡</div>   
+ <h1>Hallo, Familie! ♡</h1>
+<p>Schön, dass ihr da seid. 🩷</p>
+<p>Gemeinsam planen. Gemeinsam leben.</p>
+ </div>   
       <h2>Unsere Termine</h2>
       <button onclick="document.getElementById('terminForm').hidden = false">
   Termin hinzufügen
