@@ -30,7 +30,17 @@
     <h1>Unser Familienplaner</h1>
       <p>Gemeinsam den Alltag planen.</p>
       <h2>Unsere Termine</h2>
-      <button>Termin hinzufügen</button>
+      <button onclick="document.getElementById('terminForm').hidden = false">
+  Termin hinzufügen
+</button>
+
+<div id="terminForm" hidden>
+  <h3>Neuer Termin</h3>
+  <input type="text" placeholder="Was steht an?">
+  <input type="date">
+  <input type="time">
+  <button>Speichern</button>
+</div>
     <p><button>Kalender</button></p>
     <p><button>Familie</button></p>
     <p><button>Erinnerungen</button></p>
