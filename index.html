@@ -99,7 +99,9 @@ background-color: #DDEBDD;
    #naechsterTermin h2 { color:
      #B77F93; margin-bottom: 25px; }
  h2 { color: #34553E; font-size: 26px; }   
-  #listaTermina > div { margin-bottom: 15px; }    
+  #listaTermina > div { margin-bottom: 15px; }  
+  #terminHinzufuegen:hover { background-color: #D7E8D3;
+  }
       </style>
   </head>
   <body>
@@ -122,7 +124,7 @@ background-color: #DDEBDD;
 </div>   
     <h2>Unsere Termine</h2>
    
-      <button onclick="document.getElementById('terminForm').hidden = false" style="padding: 15px 25px; font-size: 17px;">
+      <button id="terminHinzufuegen" onclick="document.getElementById('terminForm').hidden = false" style="padding: 15px 25px; font-size: 17px;">
   Termin hinzufügen
       </button>
 
