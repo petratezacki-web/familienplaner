@@ -767,4 +767,88 @@ if (t.status === "erledigt") {
   });
 });
   </script>
+<script>
+(function () {
+  const ansicht = document.getElementById("familieAnsicht");
+  const liste = document.getElementById("familieListe");
+  const nameInput = document.getElementById("familieName");
+  const farbeInput = document.getElementById("familieFarbe");
 
+  function ladeMitglieder() {
+    try {
+      const daten = JSON.parse(
+        localStorage.getItem("familieMitglieder") || "[]"
+      );
+      return Array.isArray(daten) ? daten : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function zeigeMitglieder() {
+    liste.replaceChildren();
+
+    const mitglieder = ladeMitglieder();
+
+    if (mitglieder.length === 0) {
+      const hinweis = document.createElement("p");
+      hinweis.textContent = "Noch keine Familienmitglieder.";
+      liste.appendChild(hinweis);
+      return;
+    }
+
+    mitglieder.forEach(function (mitglied) {
+      const karte = document.createElement("div");
+      karte.className = "familieMitglied";
+
+      const farbpunkt = document.createElement("span");
+      farbpunkt.className = "familieFarbpunkt";
+      farbpunkt.style.backgroundColor = mitglied.farbe;
+
+      const name = document.createElement("strong");
+      name.textContent = mitglied.name;
+
+      karte.append(farbpunkt, name);
+      liste.appendChild(karte);
+    });
+  }
+
+  document.getElementById("familieButton")
+    .addEventListener("click", function () {
+      zeigeMitglieder();
+      ansicht.hidden = false;
+      ansicht.scrollIntoView({ behavior: "smooth" });
+    });
+
+  document.getElementById("familieSpeichern")
+    .addEventListener("click", function () {
+      const name = nameInput.value.trim();
+
+      if (!name) {
+        alert("Bitte einen Namen eingeben!");
+        return;
+      }
+
+      const mitglieder = ladeMitglieder();
+      mitglieder.push({
+        name: name,
+        farbe: farbeInput.value
+      });
+
+      localStorage.setItem(
+        "familieMitglieder",
+        JSON.stringify(mitglieder)
+      );
+
+      nameInput.value = "";
+      zeigeMitglieder();
+    });
+
+  document.getElementById("familieZurueck")
+    .addEventListener("click", function () {
+      ansicht.hidden = true;
+      document.querySelector(".meni")
+        .scrollIntoView({ behavior: "smooth" });
+    });
+})();
+</script>
