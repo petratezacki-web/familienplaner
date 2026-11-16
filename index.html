@@ -386,6 +386,140 @@ h2 {
 #familieName {
   color: #355B43;
 } 
+ /* NOVI IZGLED - UNSERE FAMILIE */
+
+#familieAnsicht {
+  box-sizing: border-box;
+  width: min(100%, 950px);
+  max-width: 950px;
+  margin: 24px auto;
+  padding: 28px;
+  background: #F3F7F0;
+  border-radius: 22px;
+}
+
+#familieAnsicht *,
+#familieAnsicht *::before,
+#familieAnsicht *::after {
+  box-sizing: border-box;
+}
+
+#familieListe {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 22px 0 30px;
+}
+
+#familieListe .familieMitglied {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  width: 100%;
+  padding: 20px;
+  background: #FFFFFF;
+  border-radius: 18px;
+  box-shadow: 0 3px 12px rgba(53,91,67,0.06);
+}
+
+.familieMitglied strong {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 17px;
+}
+
+.familieMitglied .familieFarbpunkt {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  border-radius: 50%;
+}
+
+#familieListe .familieMitglied button {
+  flex: 1 1 130px;
+  min-width: 0;
+  width: auto;
+  max-width: 100%;
+  margin: 0;
+  padding: 11px 10px;
+  font-size: 14px;
+  border-radius: 12px;
+  background: #DCEADC;
+  box-shadow: none;
+}
+
+#familieListe .familieMitglied button:hover {
+  background: #D7E8D3;
+}
+
+#familieAnsicht h3 {
+  margin-top: 20px;
+}
+
+#familieName,
+#familieRolle {
+  max-width: 100%;
+  padding: 12px;
+  border: 1px solid #D5E2D2;
+  border-radius: 12px;
+  background: white;
+  color: #355B43;
+  font-size: 15px;
+}
+
+#familieAnsicht > div:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+#familieAnsicht > div:last-child button {
+  flex: 1 1 150px;
+  width: auto;
+  margin: 0;
+}
+
+@media (max-width: 650px) {
+  #familieAnsicht {
+    width: 100%;
+    padding: 18px;
+    margin: 16px auto;
+  }
+
+  #familieListe {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  #familieListe .familieMitglied {
+    padding: 16px;
+  }
+
+  #familieListe .familieMitglied button {
+    flex: 1 1 110px;
+    font-size: 13px;
+    padding: 10px 6px;
+  }
+
+  #familieName {
+    display: block;
+    width: 100%;
+    margin: 12px 0;
+  }
+
+  #familieRolle {
+    margin: 8px 0;
+  }
+
+  #familieAnsicht h2 {
+    font-size: 25px;
+  }
+} 
 </style>
   </head>
   <body>
