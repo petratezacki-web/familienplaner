@@ -427,8 +427,23 @@ terminPolja.forEach((polje, index) => {
       const feld = document.createElement("div");
       feld.className = "kalenderWochentag";
       feld.textContent = tag;
+     feld.style.cursor = "pointer";
+
+      feld.addEventListener("click", function() {
+        document.getElementById("terminForm").hidden = false;
+        document.getElementById("terminDatum").value = datum;
+
+        document.getElementById("terminForm").scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+        document.getElementById("terminName").focus();
+      });
+
       raster.appendChild(feld);
-    });
+    }
+  }
 
     const jahr = monat.getFullYear();
     const monatszahl = monat.getMonth();
