@@ -423,7 +423,12 @@ h2 {
 
   <input type="text" id="familieName"
     placeholder="Name" maxlength="40">
-
+<label for="familieRolle">Familienrolle:</label>
+<select id="familieRolle">
+  <option value="Mama">Mama</option>
+  <option value="Papa">Papa</option>
+  <option value="Kind">Kind</option>
+</select>
   <label for="familieFarbe">Meine Farbe:</label>
   <input type="color" id="familieFarbe" value="#A8C6B1">
 
@@ -837,7 +842,8 @@ if (t.status === "erledigt") {
       farbpunkt.style.backgroundColor = mitglied.farbe;
 
       const name = document.createElement("strong");
-      name.textContent = mitglied.name;
+   name.textContent = mitglied.name +
+  (mitglied.rolle ? " · " + mitglied.rolle : "");
 
       karte.append(farbpunkt, name);
       liste.appendChild(karte);
@@ -861,10 +867,11 @@ if (t.status === "erledigt") {
       }
 
       const mitglieder = ladeMitglieder();
-      mitglieder.push({
-        name: name,
-        farbe: farbeInput.value
-      });
+    mitglieder.push({
+  name: name,
+  rolle: document.getElementById("familieRolle").value,
+  farbe: farbeInput.value
+});
 
       localStorage.setItem(
         "familieMitglieder",
