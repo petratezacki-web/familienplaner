@@ -142,6 +142,7 @@ background-color: #DDEBDD;
   <div class="zaglavlje"> 
  <div class="herzen">♡ ♥ ♡ ♥</div>   
  <h1>Hallo, Familie! ♡</h1>
+    <p id="heute"></p>
 <p>Schön, dass ihr da seid. 🩷</p>
 <p>Gemeinsam planen. Gemeinsam leben.</p>
  </div>   
@@ -178,7 +179,13 @@ background-color: #DDEBDD;
     <h2 style="color: #8A9B8A; margin-top: 35px;">✅ 
     Verlauf</h2>
 <div id="povijestTermina"></div>
-
+<script>
+  document.getElementById("heute").textContent = 
+    new
+    Date().toLocaleDateString("de-DE" , {
+      weekday: "long", day: "numeric"
+    });
+</script>
   </body>
 </html>
 <script>
