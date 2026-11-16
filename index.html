@@ -717,10 +717,17 @@ let kartica = document.getElementById("naechsterTermin");
 
 if (sljedeci) {
   let datum = sljedeci.datum.split("-").reverse().join(".");
-  kartica.innerHTML =
-"<h2><span style='color:#E7A4BA;'>♥</span> Unser nächster Termin</h2>" +
-    "<p>" + datum + " um " + sljedeci.zeit + " Uhr</p>" +
-    "<p>" + sljedeci.name + "</p>";
+ const naslov = kartica.querySelector("h2");
+kartica.replaceChildren();
+kartica.appendChild(naslov);
+
+const datumTekst = document.createElement("p");
+datumTekst.textContent = datum + " um " + sljedeci.zeit + " Uhr";
+
+const nazivTekst = document.createElement("p");
+nazivTekst.textContent = sljedeci.name;
+
+kartica.append(datumTekst, nazivTekst);
 }
   termini.forEach(function(t) {
     let termin = document.createElement("p");
