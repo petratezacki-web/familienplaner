@@ -386,21 +386,23 @@ h2 {
 #familieName {
   color: #355B43;
 } 
- /* NOVI IZGLED - UNSERE FAMILIE */
+/* FAMILIE - UREDAN IZGLED ZA PC I MOBITEL */
 
 #familieAnsicht {
-  box-sizing: border-box;
-  width: min(100%, 950px);
-  max-width: 950px;
+  width: 100%;
+  max-width: 1000px;
   margin: 24px auto;
-  padding: 28px;
-  background: #F3F7F0;
+  padding: 25px;
+  background: #F1F7EF;
   border-radius: 22px;
+  color: #355B43;
 }
 
-#familieAnsicht *,
-#familieAnsicht *::before,
-#familieAnsicht *::after {
+#familieAnsicht[hidden] {
+  display: none;
+}
+
+#familieAnsicht * {
   box-sizing: border-box;
 }
 
@@ -408,56 +410,49 @@ h2 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
-  margin: 22px 0 30px;
+  margin: 20px 0 28px;
 }
 
 #familieListe .familieMitglied {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
   gap: 12px;
-  min-width: 0;
+  align-items: center;
   width: 100%;
-  padding: 20px;
-  background: #FFFFFF;
+  min-width: 0;
+  padding: 18px;
+  background: white;
   border-radius: 18px;
-  box-shadow: 0 3px 12px rgba(53,91,67,0.06);
+}
+
+.familieFarbpunkt {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 
 .familieMitglied strong {
-  flex: 1;
   min-width: 0;
   overflow-wrap: anywhere;
   font-size: 17px;
 }
 
-.familieMitglied .familieFarbpunkt {
-  width: 30px;
-  height: 30px;
-  flex: 0 0 30px;
-  border-radius: 50%;
-}
-
 #familieListe .familieMitglied button {
-  flex: 1 1 130px;
   min-width: 0;
   width: auto;
   max-width: 100%;
   margin: 0;
-  padding: 11px 10px;
-  font-size: 14px;
+  padding: 10px;
+  font-size: 13px;
   border-radius: 12px;
-  background: #DCEADC;
-  box-shadow: none;
 }
 
-#familieListe .familieMitglied button:hover {
-  background: #D7E8D3;
+#familieListe .familieMitglied button:nth-of-type(1) {
+  grid-column: 1 / -1;
 }
 
-#familieAnsicht h3 {
-  margin-top: 20px;
+#familieListe .familieMitglied button:nth-of-type(2) {
+  grid-column: 1 / -1;
 }
 
 #familieName,
@@ -468,56 +463,112 @@ h2 {
   border-radius: 12px;
   background: white;
   color: #355B43;
-  font-size: 15px;
-}
-
-#familieAnsicht > div:last-child {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 18px;
-}
-
-#familieAnsicht > div:last-child button {
-  flex: 1 1 150px;
-  width: auto;
-  margin: 0;
 }
 
 @media (max-width: 650px) {
   #familieAnsicht {
-    width: 100%;
-    padding: 18px;
+    padding: 16px;
     margin: 16px auto;
   }
 
   #familieListe {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: 1fr;
     gap: 12px;
   }
 
   #familieListe .familieMitglied {
-    padding: 16px;
+    padding: 15px;
   }
 
   #familieListe .familieMitglied button {
-    flex: 1 1 110px;
-    font-size: 13px;
+    font-size: 12px;
     padding: 10px 6px;
   }
 
   #familieName {
     display: block;
     width: 100%;
-    margin: 12px 0;
+    margin: 10px 0;
   }
 
   #familieRolle {
     margin: 8px 0;
   }
+}
+ /* ZAVRSNI RASPORED - FAMILIE */
 
-  #familieAnsicht h2 {
-    font-size: 25px;
+#familieListe .familieMitglied {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+#familieListe .familieAktionen {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+}
+
+#familieListe .familieAktionen button {
+  grid-column: auto;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  padding: 11px 6px;
+  font-size: 14px;
+}
+
+.familieFormular {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.familieFeld {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+#familieName,
+#familieRolle {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+
+.familieFormAktionen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+#familieAnsicht .familieFormAktionen button {
+  flex: 1 1 150px;
+  min-width: 0;
+  width: auto;
+  margin: 0;
+  font-size: 16px;
+}
+
+@media (max-width: 650px) {
+  #familieListe {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .familieFormular {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #familieListe .familieAktionen button {
+    font-size: 13px;
   }
 } 
 </style>
@@ -555,25 +606,32 @@ h2 {
 
   <h3>Familienmitglied hinzufügen</h3>
 
-  <input type="text" id="familieName"
-    placeholder="Name" maxlength="40">
-<label for="familieRolle">Familienrolle:</label>
-<select id="familieRolle">
-  <option value="Mama">Mama</option>
-  <option value="Papa">Papa</option>
-  <option value="Kind">Kind</option>
-</select>
-  <label for="familieFarbe">Meine Farbe:</label>
-  <input type="color" id="familieFarbe" value="#A8C6B1">
-
-  <div>
-    <button type="button" id="familieSpeichern">
-      Hinzufügen
-    </button>
-    <button type="button" id="familieZurueck">
-      Zurück
-    </button>
+<div class="familieFormular">
+  <div class="familieFeld">
+    <label for="familieName">Name</label>
+    <input type="text" id="familieName"
+      placeholder="Name" maxlength="40">
   </div>
+
+  <div class="familieFeld">
+    <label for="familieRolle">Familienrolle</label>
+    <select id="familieRolle">
+      <option value="Mama">Mama</option>
+      <option value="Papa">Papa</option>
+      <option value="Kind">Kind</option>
+    </select>
+  </div>
+
+  <div class="familieFeld">
+    <label for="familieFarbe">Meine Farbe</label>
+    <input type="color" id="familieFarbe" value="#A8C6B1">
+  </div>
+</div>
+
+<div class="familieFormAktionen">
+  <button type="button" id="familieSpeichern">Hinzufügen</button>
+  <button type="button" id="familieZurueck">Zurück</button>
+</div>
 </section>
 <section id="kalenderAnsicht" hidden>
   <div class="kalenderKopf">
@@ -1064,7 +1122,10 @@ if (t.status === "erledigt") {
       zeigeMitglieder();
     };
 
-    karte.append(farbpunkt, name, bearbeiten, loeschen);
+const akcije = document.createElement("div");
+akcije.className = "familieAktionen";
+akcije.append(bearbeiten, loeschen);
+karte.append(farbpunkt, name, akcije);
     liste.appendChild(karte);
   });
 }
