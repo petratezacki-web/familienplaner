@@ -718,7 +718,7 @@ let kartica = document.getElementById("naechsterTermin");
 if (sljedeci) {
   let datum = sljedeci.datum.split("-").reverse().join(".");
   kartica.innerHTML =
-    "<h2>🌸 Unser nächster Termin</h2>" +
+"<h2><span style='color:#E7A4BA;'>♥</span> Unser nächster Termin</h2>" +
     "<p>" + datum + " um " + sljedeci.zeit + " Uhr</p>" +
     "<p>" + sljedeci.name + "</p>";
 }
