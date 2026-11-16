@@ -423,28 +423,12 @@ terminPolja.forEach((polje, index) => {
       year: "numeric"
     });
 
-    ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"].forEach(tag => {
-      const feld = document.createElement("div");
-      feld.className = "kalenderWochentag";
-      feld.textContent = tag;
-     feld.style.cursor = "pointer";
-
-      feld.addEventListener("click", function() {
-        document.getElementById("terminForm").hidden = false;
-        document.getElementById("terminDatum").value = datum;
-
-        document.getElementById("terminForm").scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
-
-        document.getElementById("terminName").focus();
-      });
-
-      raster.appendChild(feld);
-    }
-  }
-
+  ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"].forEach(tag => {
+  const feld = document.createElement("div");
+  feld.className = "kalenderWochentag";
+  feld.textContent = tag;
+  raster.appendChild(feld);
+}); 
     const jahr = monat.getFullYear();
     const monatszahl = monat.getMonth();
     const ersterTag = new Date(jahr, monatszahl, 1);
@@ -495,6 +479,20 @@ terminPolja.forEach((polje, index) => {
           eintrag.textContent = t.zeit + " " + t.name;
           feld.appendChild(eintrag);
         });
+
+         feld.style.cursor = "pointer";
+
+      feld.addEventListener("click", function() {
+        document.getElementById("terminForm").hidden = false;
+        document.getElementById("terminDatum").value = datum;
+
+        document.getElementById("terminForm").scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+        document.getElementById("terminName").focus();
+      });
 
       raster.appendChild(feld);
     }
