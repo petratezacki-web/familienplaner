@@ -230,6 +230,83 @@ h2 {
   border-radius: 12px;
   font-weight: 600;
 }
+  #kalenderAnsicht {
+  max-width: 1150px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #F1F7EF;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(52,85,62,.10);
+}
+
+#kalenderAnsicht[hidden] {
+  display: none;
+}
+
+.kalenderKopf {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.kalenderKopf h2 {
+  text-align: center;
+  font-size: 22px;
+}
+
+.kalenderKopf button {
+  min-width: 45px;
+  margin: 0;
+  padding: 10px;
+}
+
+.kalenderRaster {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0,1fr));
+  gap: 6px;
+}
+
+.kalenderTag,
+.kalenderWochentag {
+  min-width: 0;
+  padding: 8px 3px;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.kalenderWochentag {
+  font-weight: bold;
+}
+
+.kalenderTag {
+  background: white;
+  border-radius: 10px;
+  min-height: 75px;
+  font-size: 14px;
+}
+
+.kalenderHeute {
+  background: #EBCBD3;
+}
+
+.kalenderEintrag {
+  margin-top: 5px;
+  padding: 4px;
+  background: #DFE8DC;
+  border-radius: 6px;
+  font-size: 11px;
+}
+
+@media (max-width: 600px) {
+  #kalenderAnsicht { padding: 10px; }
+  .kalenderRaster { gap: 3px; }
+  .kalenderTag {
+    min-height: 55px;
+    font-size: 12px;
+  }
+  .kalenderEintrag { font-size: 9px; }
+}
 </style>
   </head>
   <body>
@@ -258,6 +335,19 @@ h2 {
  </div> 
    
 
+<section id="kalenderAnsicht" hidden>
+  <div class="kalenderKopf">
+    <button id="monatZurueck" type="button">❮</button>
+    <h2 id="kalenderMonat"></h2>
+    <button id="monatWeiter" type="button">❯</button>
+  </div>
+
+  <div id="kalenderRaster" class="kalenderRaster"></div>
+
+  <button id="kalenderSchliessen" type="button">
+    Zurück
+  </button>
+</section>
     <h2>Unsere Termine</h2>
    
       <button id="terminHinzufuegen" onclick="document.getElementById('terminForm').hidden = false" style="padding: 12px 20px; font-size: 16px: font-weight: bold;">
@@ -317,6 +407,107 @@ terminPolja.forEach((polje, index) => {
   </body>
 </html>
 <script>
+ <script>
+(function () {
+  const ansicht = document.getElementById("kalenderAnsicht");
+  const raster = document.getElementById("kalenderRaster");
+  const titel = document.getElementById("kalenderMonat");
+
+  let monat = new Date();
+  monat.setDate(1);
+
+  function zeichneKalender() {
+    raster.replaceChildren();
+
+    titel.textContent = monat.toLocaleDateString("de-DE", {
+      month: "long",
+      year: "numeric"
+    });
+
+    ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"].forEach(tag => {
+      const feld = document.createElement("div");
+      feld.className = "kalenderWochentag";
+      feld.textContent = tag;
+      raster.appendChild(feld);
+    });
+
+    const jahr = monat.getFullYear();
+    const monatszahl = monat.getMonth();
+    const ersterTag = new Date(jahr, monatszahl, 1);
+    const anzahlTage = new Date(jahr, monatszahl + 1, 0).getDate();
+    const start = (ersterTag.getDay() + 6) % 7;
+
+    for (let i = 0; i < start; i++) {
+      raster.appendChild(document.createElement("div"));
+    }
+
+    let termine = [];
+    try {
+      termine = JSON.parse(localStorage.getItem("termini")) || [];
+      if (!Array.isArray(termine)) termine = [];
+    } catch (e) {
+      termine = [];
+    }
+
+    const heute = new Date();
+
+    for (let tag = 1; tag <= anzahlTage; tag++) {
+      const feld = document.createElement("div");
+      feld.className = "kalenderTag";
+
+      if (
+        tag === heute.getDate() &&
+        monatszahl === heute.getMonth() &&
+        jahr === heute.getFullYear()
+      ) {
+        feld.classList.add("kalenderHeute");
+      }
+
+      const nummer = document.createElement("strong");
+      nummer.textContent = tag;
+      feld.appendChild(nummer);
+
+      const datum =
+        jahr + "-" +
+        String(monatszahl + 1).padStart(2, "0") + "-" +
+        String(tag).padStart(2, "0");
+
+      termine
+        .filter(t => t.datum === datum && t.status !== "erledigt")
+        .sort((a, b) => a.zeit.localeCompare(b.zeit))
+        .forEach(t => {
+          const eintrag = document.createElement("div");
+          eintrag.className = "kalenderEintrag";
+          eintrag.textContent = t.zeit + " " + t.name;
+          feld.appendChild(eintrag);
+        });
+
+      raster.appendChild(feld);
+    }
+  }
+
+  document.getElementById("kalenderButton").addEventListener("click", () => {
+    zeichneKalender();
+    ansicht.hidden = false;
+    ansicht.scrollIntoView({ behavior: "smooth" });
+  });
+
+  document.getElementById("monatZurueck").addEventListener("click", () => {
+    monat.setMonth(monat.getMonth() - 1);
+    zeichneKalender();
+  });
+
+  document.getElementById("monatWeiter").addEventListener("click", () => {
+    monat.setMonth(monat.getMonth() + 1);
+    zeichneKalender();
+  });
+
+  document.getElementById("kalenderSchliessen").addEventListener("click", () => {
+    ansicht.hidden = true;
+    document.querySelector(".meni").scrollIntoView({ behavior: "smooth" });
+  });
+})();
+</script> 
 function speichereTermin() {
   let name = document.getElementById("terminName").value;
   let datum = document.getElementById("terminDatum").value;
