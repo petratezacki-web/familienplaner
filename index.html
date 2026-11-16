@@ -307,6 +307,61 @@ h2 {
   }
   .kalenderEintrag { font-size: 9px; }
 }
+#familieAnsicht {
+  max-width: 1150px;
+  margin: 20px auto;
+  padding: 25px;
+  background: #F1F7EF;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(52,85,62,0.10);
+}
+
+#familieAnsicht[hidden] {
+  display: none;
+}
+
+#familieListe {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.familieMitglied {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
+  overflow-wrap: anywhere;
+}
+
+.familieFarbpunkt {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+#familieName {
+  padding: 12px;
+  border: 1px solid #D5E2D2;
+  border-radius: 10px;
+  max-width: 100%;
+}
+
+#familieFarbe {
+  width: 55px;
+  height: 42px;
+  vertical-align: middle;
+}
+
+@media (max-width: 600px) {
+  #familieAnsicht { padding: 15px; }
+  #familieListe { gap: 8px; }
+  .familieMitglied { padding: 10px; }
+} 
 </style>
   </head>
   <body>
@@ -329,12 +384,34 @@ h2 {
 </div>   
     <div class="meni">    
   <p><button id="kalenderButton">📅 Kalender</button></p>
-<p><button>♡ Familie</button></p>
+<p><button id="familieButton">♡ Familie</button></p>
 <p><button>🔔 Erinnerungen</button></p>
 <p><button>🛒 Einkaufsliste</button></p>
  </div> 
    
+<section id="familieAnsicht" hidden>
+  <h2>♡ Unsere Familie</h2>
+  <p>Jedes Familienmitglied hat seine eigene Farbe.</p>
 
+  <div id="familieListe"></div>
+
+  <h3>Familienmitglied hinzufügen</h3>
+
+  <input type="text" id="familieName"
+    placeholder="Name" maxlength="40">
+
+  <label for="familieFarbe">Meine Farbe:</label>
+  <input type="color" id="familieFarbe" value="#A8C6B1">
+
+  <div>
+    <button type="button" id="familieSpeichern">
+      Hinzufügen
+    </button>
+    <button type="button" id="familieZurueck">
+      Zurück
+    </button>
+  </div>
+</section>
 <section id="kalenderAnsicht" hidden>
   <div class="kalenderKopf">
     <button id="monatZurueck" type="button">❮</button>
