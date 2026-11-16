@@ -407,7 +407,6 @@ terminPolja.forEach((polje, index) => {
   </body>
 </html>
 <script>
- <script>
 (function () {
   const ansicht = document.getElementById("kalenderAnsicht");
   const raster = document.getElementById("kalenderRaster");
@@ -507,7 +506,8 @@ terminPolja.forEach((polje, index) => {
     document.querySelector(".meni").scrollIntoView({ behavior: "smooth" });
   });
 })();
-</script> 
+</script>
+<script>
 function speichereTermin() {
   let name = document.getElementById("terminName").value;
   let datum = document.getElementById("terminDatum").value;
