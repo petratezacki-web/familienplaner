@@ -833,23 +833,26 @@ if (t.status === "erledigt") {
       return;
     }
 
-    mitglieder.forEach(function (mitglied) {
-      const karte = document.createElement("div");
-      karte.className = "familieMitglied";
+    loeschen.onclick = function () {
+    if (!confirm(
+      "Möchtest du " + mitglied.name +
+      " wirklich löschen?"
+    )) return;
 
-      const farbpunkt = document.createElement("span");
-      farbpunkt.className = "familieFarbpunkt";
-      farbpunkt.style.backgroundColor = mitglied.farbe;
+    const daten = ladeMitglieder();
+    daten.splice(index, 1);
 
-      const name = document.createElement("strong");
-   name.textContent = mitglied.name +
-  (mitglied.rolle ? " · " + mitglied.rolle : "");
+    localStorage.setItem(
+      "familieMitglieder",
+      JSON.stringify(daten)
+    );
+    zeigeMitglieder();
+  };
 
-      karte.append(farbpunkt, name);
-      liste.appendChild(karte);
-    });
+  karte.append(farbpunkt, name, bearbeiten, loeschen);
+  liste.appendChild(karte);
+});
   }
-
   document.getElementById("familieButton")
     .addEventListener("click", function () {
       zeigeMitglieder();
