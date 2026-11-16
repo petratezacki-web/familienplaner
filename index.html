@@ -821,38 +821,119 @@ if (t.status === "erledigt") {
     }
   }
 
-  function zeigeMitglieder() {
-    liste.replaceChildren();
+ function zeigeMitglieder() {
+  liste.replaceChildren();
+  const mitglieder = ladeMitglieder();
 
-    const mitglieder = ladeMitglieder();
+  if (mitglieder.length === 0) {
+    const hinweis = document.createElement("p");
+    hinweis.textContent = "Noch keine Familienmitglieder.";
+    liste.appendChild(hinweis);
+    return;
+  }
 
-    if (mitglieder.length === 0) {
-      const hinweis = document.createElement("p");
-      hinweis.textContent = "Noch keine Familienmitglieder.";
-      liste.appendChild(hinweis);
-      return;
-    }
+  mitglieder.forEach(function (mitglied, index) {
+    const karte = document.createElement("div");
+    karte.className = "familieMitglied";
+    karte.style.flexWrap = "wrap";
+
+    const farbpunkt = document.createElement("span");
+    farbpunkt.className = "familieFarbpunkt";
+    farbpunkt.style.backgroundColor = mitglied.farbe;
+
+    const name = document.createElement("strong");
+    name.textContent = mitglied.name +
+      (mitglied.rolle ? " · " + mitglied.rolle : "");
+
+    const bearbeiten = document.createElement("button");
+    bearbeiten.type = "button";
+    bearbeiten.textContent = "✏️ Bearbeiten";
+
+    bearbeiten.onclick = function () {
+      const neuerName = prompt("Name:", mitglied.name);
+      if (neuerName === null) return;
+      if (!neuerName.trim()) {
+        alert("Bitte einen Namen eingeben!");
+        return;
+      }
+
+      const neueRolle = prompt(
+        "Rolle (Mama, Papa, Kind):",
+        mitglied.rolle || "Kind"
+      );
+      if (neueRolle === null) return;
+
+      const rolle = neueRolle.trim();
+      if (!["Mama", "Papa", "Kind"].includes(rolle)) {
+        alert("Bitte Mama, Papa oder Kind eingeben!");
+        return;
+      }
+
+      nameInput.value = neuerName.trim();
+      document.getElementById("familieRolle").value = rolle;
+      farbeInput.value = mitglied.farbe || "#A8C6B1";
+
+      const farbBereich = document.createElement("div");
+      farbBereich.style.width = "100%";
+
+      const farbe = document.createElement("input");
+      farbe.type = "color";
+      farbe.value = mitglied.farbe || "#A8C6B1";
+
+      const speichern = document.createElement("button");
+      speichern.type = "button";
+      speichern.textContent = "✓ Speichern";
+
+      speichern.onclick = function () {
+        const daten = ladeMitglieder();
+        daten[index] = {
+          name: neuerName.trim(),
+          rolle: rolle,
+          farbe: farbe.value
+        };
+        localStorage.setItem(
+          "familieMitglieder",
+          JSON.stringify(daten)
+        );
+        nameInput.value = "";
+        zeigeMitglieder();
+      };
+
+      const abbrechen = document.createElement("button");
+      abbrechen.type = "button";
+      abbrechen.textContent = "Abbrechen";
+      abbrechen.onclick = function () {
+        nameInput.value = "";
+        farbBereich.remove();
+      };
+
+      farbBereich.append(farbe, speichern, abbrechen);
+      karte.appendChild(farbBereich);
+    };
+
+    const loeschen = document.createElement("button");
+    loeschen.type = "button";
+    loeschen.textContent = "🗑️ Löschen";
 
     loeschen.onclick = function () {
-    if (!confirm(
-      "Möchtest du " + mitglied.name +
-      " wirklich löschen?"
-    )) return;
+      if (!confirm(
+        "Möchtest du " + mitglied.name +
+        " wirklich löschen?"
+      )) return;
 
-    const daten = ladeMitglieder();
-    daten.splice(index, 1);
+      const daten = ladeMitglieder();
+      daten.splice(index, 1);
+      localStorage.setItem(
+        "familieMitglieder",
+        JSON.stringify(daten)
+      );
+      zeigeMitglieder();
+    };
 
-    localStorage.setItem(
-      "familieMitglieder",
-      JSON.stringify(daten)
-    );
-    zeigeMitglieder();
-  };
-
-  karte.append(farbpunkt, name, bearbeiten, loeschen);
-  liste.appendChild(karte);
-});
-  }
+    karte.append(farbpunkt, name, bearbeiten, loeschen);
+    liste.appendChild(karte);
+  });
+}
   document.getElementById("familieButton")
     .addEventListener("click", function () {
       zeigeMitglieder();
