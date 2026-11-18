@@ -658,13 +658,23 @@ h2 {
 </style>
   </head>
   <body>
-   <div style="text-align:center; margin:15px;">
- <label for="familienFoto" style="cursor:pointer; color:red; font-size:24px;">
-    📷 Familienfoto auswählen
+ <div style="text-align:center; margin:15px;">
+  <select id="hintergrundModus"
+    style="padding:10px; border-radius:12px;
+    background:#DDEBDD; color:#34553E;">
+    <option value="familie">Gemeinsamer Hintergrund</option>
+    <option value="privat">Mein Hintergrund</option>
+  </select>
+
+  <label for="familienFoto"
+    style="display:inline-block; cursor:pointer;
+    color:#34553E; padding:10px;">
+    📷 Bild aus Galerie wählen
   </label>
+
   <input type="file" id="familienFoto"
     accept="image/*" style="display:none;">
-</div> 
+</div>
   <div class="zaglavlje"> 
 
  <h1>Hallo, Familie! ♡</h1>
