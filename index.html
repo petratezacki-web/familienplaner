@@ -1301,15 +1301,29 @@ fotoInput.addEventListener("change", function(event) {
   const reader = new FileReader();
 
   reader.onload = function(e) {
-    const bild = e.target.result;
+    const bild = new Image();
 
-    zeigeFamilienFoto(bild);
+    bild.onload = function() {
+      const canvas = document.createElement("canvas");
+      const faktor = Math.min(1, 1200 / Math.max(bild.width, bild.height));
 
-    try {
-      localStorage.setItem("familienFoto", bild);
-    } catch (fehler) {
-      alert("Das Foto ist zu groß zum Speichern. Bitte wähle ein kleineres Bild.");
-    }
+      canvas.width = Math.round(bild.width * faktor);
+      canvas.height = Math.round(bild.height * faktor);
+
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(bild, 0, 0, canvas.width, canvas.height);
+
+      const klein = canvas.toDataURL("image/jpeg", 0.7);
+
+      try {
+        localStorage.setItem("familienFoto", klein);
+        zeigeFamilienFoto(klein);
+      } catch (fehler) {
+        alert("Nicht genug Speicherplatz für das Foto.");
+      }
+    };
+
+    bild.src = e.target.result;
   };
 
   reader.readAsDataURL(datei);
