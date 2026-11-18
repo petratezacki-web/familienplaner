@@ -1213,7 +1213,8 @@ karte.append(farbpunkt, name, akcije);
     .addEventListener("click", function () {
       zeigeMitglieder();
       ansicht.hidden = !ansicht.hidden;
-      ansicht.scrollIntoView({ behavior: "smooth" });
+     if (!ansicht.hidden) { ansicht.scrollIntoView({ behavior: "smooth" });
+      }
     });
 
   document.getElementById("familieSpeichern")
