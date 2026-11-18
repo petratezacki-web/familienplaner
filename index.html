@@ -1212,7 +1212,7 @@ karte.append(farbpunkt, name, akcije);
   document.getElementById("familieButton")
     .addEventListener("click", function () {
       zeigeMitglieder();
-      ansicht.hidden = false;
+      ansicht.hidden = !ansicht.hidden;
       ansicht.scrollIntoView({ behavior: "smooth" });
     });
 
