@@ -1268,3 +1268,22 @@ karte.append(farbpunkt, name, akcije);
     });
 })();
 </script>
+<script>
+document.getElementById("familienFoto")
+  .addEventListener("change", function(event) {
+    const datei = event.target.files[0];
+    if (!datei) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+      document.body.style.backgroundImage =
+        `url("${e.target.result}")`;
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundPosition = "center";
+      document.body.style.backgroundAttachment = "fixed";
+    };
+
+    reader.readAsDataURL(datei);
+  });
+</script>
