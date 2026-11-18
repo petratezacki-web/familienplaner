@@ -1269,21 +1269,39 @@ karte.append(farbpunkt, name, akcije);
 })();
 </script>
 <script>
-document.getElementById("familienFoto")
-  .addEventListener("change", function(event) {
-    const datei = event.target.files[0];
-    if (!datei) return;
+const fotoInput = document.getElementById("familienFoto");
 
-    const reader = new FileReader();
+function zeigeFamilienFoto(bild) {
+  document.body.style.backgroundImage = `url("${bild}")`;
+  document.body.style.backgroundSize = "cover";
+  document.body.style.backgroundPosition = "center";
+  document.body.style.backgroundAttachment = "fixed";
+}
 
-    reader.onload = function(e) {
-      document.body.style.backgroundImage =
-        `url("${e.target.result}")`;
-      document.body.style.backgroundSize = "cover";
-      document.body.style.backgroundPosition = "center";
-      document.body.style.backgroundAttachment = "fixed";
-    };
+const gespeichertesFoto = localStorage.getItem("familienFoto");
 
-    reader.readAsDataURL(datei);
-  });
+if (gespeichertesFoto) {
+  zeigeFamilienFoto(gespeichertesFoto);
+}
+
+fotoInput.addEventListener("change", function(event) {
+  const datei = event.target.files[0];
+  if (!datei) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+    const bild = e.target.result;
+
+    zeigeFamilienFoto(bild);
+
+    try {
+      localStorage.setItem("familienFoto", bild);
+    } catch (fehler) {
+      alert("Das Foto ist zu groß zum Speichern. Bitte wähle ein kleineres Bild.");
+    }
+  };
+
+  reader.readAsDataURL(datei);
+});
 </script>
