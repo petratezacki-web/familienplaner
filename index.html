@@ -679,7 +679,7 @@ h2 {
  </div> 
    
 <section id="familieAnsicht" hidden>
-<h2><span style="color:#E7A4BA;">♥</span> Unsere Familie</h2>
+♥ Unsere Familie
   <p>Jedes Familienmitglied hat seine eigene Farbe.</p>
 
   <div id="familieListe"></div>
@@ -1096,6 +1096,8 @@ if (t.status === "erledigt") {
  function zeigeMitglieder() {
   liste.replaceChildren();
   const mitglieder = ladeMitglieder();
+   document.getElementById("familieAnzahl").textContent = "( +
+     mitglieder.length + !);
 
   if (mitglieder.length === 0) {
     const hinweis = document.createElement("p");
