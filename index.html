@@ -878,7 +878,7 @@ terminPolja.forEach((polje, index) => {
 
   document.getElementById("kalenderButton").addEventListener("click", () => {
     zeichneKalender();
-    ansicht.hidden = false;
+    ansicht.hidden = !ansicht.hidden;
     ansicht.scrollIntoView({ behavior: "smooth" });
   });
 
