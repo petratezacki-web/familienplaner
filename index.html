@@ -1279,53 +1279,149 @@ karte.append(farbpunkt, name, akcije);
 })();
 </script>
 <script>
-const fotoInput = document.getElementById("familienFoto");
+(function () {
+  const fotoInput = document.getElementById("familienFoto");
+  if (!fotoInput) return;
 
-function zeigeFamilienFoto(bild) {
-  document.body.style.backgroundImage = `url("${bild}")`;
-  document.body.style.backgroundSize = "cover";
-  document.body.style.backgroundPosition = "center";
-  document.body.style.backgroundAttachment = "fixed";
-}
+  let positionX = Number(localStorage.getItem("fotoX") ?? 50);
+  let positionY = Number(localStorage.getItem("fotoY") ?? 50);
 
-const gespeichertesFoto = localStorage.getItem("familienFoto");
+  function zeigeFamilienFoto(bild) {
+    document.body.style.backgroundImage = `url("${bild}")`;
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition =
+      `${positionX}% ${positionY}%`;
+    document.body.style.backgroundAttachment = "fixed";
+  }
 
-if (gespeichertesFoto) {
-  zeigeFamilienFoto(gespeichertesFoto);
-}
+  const gespeichertesFoto = localStorage.getItem("familienFoto");
+  if (gespeichertesFoto) zeigeFamilienFoto(gespeichertesFoto);
 
-fotoInput.addEventListener("change", function(event) {
-  const datei = event.target.files[0];
-  if (!datei) return;
+  const bereich = document.createElement("div");
+  bereich.style.cssText =
+    "text-align:center;margin:10px auto;";
 
-  const reader = new FileReader();
+  bereich.innerHTML = `
+    <button type="button" id="bildAnpassen"
+      style="background:#DDEBDD;color:#34553E;
+      border:1px solid #DFE8DC;border-radius:12px;
+      padding:10px 18px;cursor:pointer;">
+      📷 Bild anpassen
+    </button>
+    <div id="bildEditor" hidden
+      style="max-width:650px;margin:15px auto;
+      padding:15px;background:#F8F7F2;
+      border-radius:18px;">
+      <p>Bild mit Maus oder Finger verschieben</p>
+      <div id="bildVorschau"
+        style="height:280px;border-radius:12px;
+        background-size:cover;
+        background-repeat:no-repeat;
+        background-position:center;
+        touch-action:none;cursor:grab;">
+      </div>
+      <button type="button" id="bildSpeichern"
+        style="margin-top:12px;padding:10px 20px;
+        border:0;border-radius:12px;
+        background:#DDEBDD;color:#34553E;">
+        Speichern
+      </button>
+    </div>
+  `;
 
-  reader.onload = function(e) {
-    const bild = new Image();
+  fotoInput.parentElement.after(bereich);
 
-    bild.onload = function() {
-      const canvas = document.createElement("canvas");
-      const faktor = Math.min(1, 1200 / Math.max(bild.width, bild.height));
+  const editor = document.getElementById("bildEditor");
+  const vorschau = document.getElementById("bildVorschau");
 
-      canvas.width = Math.round(bild.width * faktor);
-      canvas.height = Math.round(bild.height * faktor);
+  function aktualisieren() {
+    const bild = localStorage.getItem("familienFoto");
+    if (!bild) return;
+    vorschau.style.backgroundImage = `url("${bild}")`;
+    vorschau.style.backgroundPosition =
+      `${positionX}% ${positionY}%`;
+    zeigeFamilienFoto(bild);
+  }
 
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(bild, 0, 0, canvas.width, canvas.height);
-
-      const klein = canvas.toDataURL("image/jpeg", 0.7);
-
-      try {
-        localStorage.setItem("familienFoto", klein);
-        zeigeFamilienFoto(klein);
-      } catch (fehler) {
-        alert("Nicht genug Speicherplatz für das Foto.");
-      }
-    };
-
-    bild.src = e.target.result;
+  document.getElementById("bildAnpassen").onclick = function () {
+    if (!localStorage.getItem("familienFoto")) {
+      alert("Bitte zuerst ein Foto auswählen.");
+      return;
+    }
+    editor.hidden = !editor.hidden;
+    aktualisieren();
   };
 
-  reader.readAsDataURL(datei);
-});
+  let startX, startY, altX, altY;
+
+  vorschau.addEventListener("pointerdown", function (e) {
+    startX = e.clientX;
+    startY = e.clientY;
+    altX = positionX;
+    altY = positionY;
+    vorschau.setPointerCapture(e.pointerId);
+  });
+
+  vorschau.addEventListener("pointermove", function (e) {
+    if (!vorschau.hasPointerCapture(e.pointerId)) return;
+
+    const breite = vorschau.clientWidth;
+    const hoehe = vorschau.clientHeight;
+
+    positionX = Math.max(0, Math.min(100,
+      altX - (e.clientX - startX) / breite * 100));
+
+    positionY = Math.max(0, Math.min(100,
+      altY - (e.clientY - startY) / hoehe * 100));
+
+    aktualisieren();
+  });
+
+  document.getElementById("bildSpeichern").onclick = function () {
+    localStorage.setItem("fotoX", positionX);
+    localStorage.setItem("fotoY", positionY);
+    editor.hidden = true;
+  };
+
+  fotoInput.addEventListener("change", function (event) {
+    const datei = event.target.files[0];
+    if (!datei) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      const bild = new Image();
+
+      bild.onload = function () {
+        const canvas = document.createElement("canvas");
+        const faktor = Math.min(
+          1, 1200 / Math.max(bild.width, bild.height)
+        );
+
+        canvas.width = Math.round(bild.width * faktor);
+        canvas.height = Math.round(bild.height * faktor);
+
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(bild, 0, 0, canvas.width, canvas.height);
+
+        const klein = canvas.toDataURL("image/jpeg", 0.7);
+
+        try {
+          localStorage.setItem("familienFoto", klein);
+          positionX = 50;
+          positionY = 50;
+          localStorage.setItem("fotoX", positionX);
+          localStorage.setItem("fotoY", positionY);
+          aktualisieren();
+        } catch (fehler) {
+          alert("Nicht genug Speicherplatz für das Foto.");
+        }
+      };
+
+      bild.src = e.target.result;
+    };
+
+    reader.readAsDataURL(datei);
+  });
+})();
 </script>
