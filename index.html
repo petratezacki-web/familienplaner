@@ -1433,15 +1433,89 @@ body {
   }
 
   .meni {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 10px;
-    padding: 12px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-areas:
+      "shopping school notes"
+      "birthdays calendar family";
+    gap: 8px;
+    margin: 12px auto 8px;
+    padding: 10px;
   }
 
   .meni .hauptkarte {
-    height: 70px;
-    min-height: 70px;
-    padding: 12px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+    height: 72px;
+    min-height: 72px;
+    padding: 4px;
+    text-align: center;
+  }
+
+  #einkaufslisteButton {
+    grid-area: shopping;
+  }
+
+  #stundenplanButton {
+    grid-area: school;
+  }
+
+  #familienNotizenButton {
+    grid-area: notes;
+  }
+
+  #geburtstageButton {
+    grid-area: birthdays;
+  }
+
+  #kalenderButton {
+    grid-area: calendar;
+  }
+
+  #familieButton {
+    grid-area: family;
+  }
+
+  .hauptkarteIcon {
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+    border-radius: 11px;
+    font-size: 19px;
+  }
+
+  .meni .hauptkarte strong {
+    max-width: 100%;
+    font-size: clamp(11px, 3vw, 13px);
+    line-height: 1.1;
+    text-align: center;
+  }
+
+  body {
+    position: relative;
+    isolation: isolate;
+    background-color: var(--cream);
+    background-image: none !important;
+  }
+
+  body::before {
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+    background-color: var(--cream);
+    background-image:
+      linear-gradient(
+        rgba(248, 247, 242, 0.28),
+        rgba(223, 232, 220, 0.26)
+      ),
+      var(--familienplanerFoto, url("assets/familienplaner-hintergrund.jpg"));
+    background-position:
+      center,
+      var(--familienplanerFotoPosition, 50% 50%);
+    background-repeat: no-repeat, no-repeat;
+    background-size: 100% 100%, contain;
+    content: "";
+    pointer-events: none;
   }
 
   .fotoSteuerung {
@@ -1531,6 +1605,12 @@ body {
     display: grid;
   }
 }
+
+@media (max-width: 380px) {
+  .zaglavlje h1 {
+    font-size: 36px;
+  }
+}
 </style>
   </head>
   <body>
@@ -1574,15 +1654,15 @@ body {
       <span class="hauptkarteIcon" aria-hidden="true">🎂</span>
       <strong>Geburtstage</strong>
     </button>
-    <article class="hauptkarte">
+    <article id="familienNotizenButton" class="hauptkarte">
       <span class="hauptkarteIcon" aria-hidden="true">📝</span>
       <strong>Familien-Notizen</strong>
     </article>
-    <article class="hauptkarte">
+    <article id="einkaufslisteButton" class="hauptkarte">
       <span class="hauptkarteIcon" aria-hidden="true">🛒</span>
       <strong>Einkaufsliste</strong>
     </article>
-    <article class="hauptkarte">
+    <article id="stundenplanButton" class="hauptkarte">
       <span class="hauptkarteIcon" aria-hidden="true">📚</span>
       <strong>Stundenplan</strong>
     </article>
@@ -3515,6 +3595,14 @@ karte.append(farbpunkt, name, akcije);
   let positionY = Number(localStorage.getItem("fotoY") ?? 50);
 
   function zeigeFamilienFoto(bild) {
+    document.body.style.setProperty(
+      "--familienplanerFoto",
+      `url("${bild}")`
+    );
+    document.body.style.setProperty(
+      "--familienplanerFotoPosition",
+      `${positionX}% ${positionY}%`
+    );
     document.body.style.backgroundImage =
       `linear-gradient(rgba(248, 247, 242, 0.28), rgba(223, 232, 220, 0.26)), url("${bild}")`;
     document.body.style.backgroundSize = "cover";
@@ -3580,6 +3668,8 @@ karte.append(farbpunkt, name, akcije);
     localStorage.removeItem("familienFoto");
     localStorage.removeItem("fotoX");
     localStorage.removeItem("fotoY");
+    document.body.style.removeProperty("--familienplanerFoto");
+    document.body.style.removeProperty("--familienplanerFotoPosition");
     document.body.style.backgroundImage = "";
     positionX = 50;
     positionY = 50;
