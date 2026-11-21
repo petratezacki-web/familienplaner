@@ -2413,6 +2413,18 @@ body {
       type="button">Zurück</button>
   </div>
 
+  <label class="einstellungenMitglied" for="spracheAuswahl">
+    App-Sprache
+    <select id="spracheAuswahl">
+      <option value="de">🇩🇪 Deutsch</option>
+      <option value="hr">🇭🇷 Hrvatski</option>
+      <option value="en">🇬🇧 English</option>
+    </select>
+  </label>
+  <p id="spracheHinweis" class="einstellungenHinweis">
+    Die Sprache wird auf diesem Gerät je Familienmitglied gespeichert.
+  </p>
+
   <label class="einstellungenMitglied" for="einstellungenMitgliedAuswahl">
     Einstellungen für
     <select id="einstellungenMitgliedAuswahl"></select>
@@ -2751,12 +2763,36 @@ body {
     Verlauf</h2>
 <div id="povijestTermina"></div>
 <script>
-  document.getElementById("heute").textContent = 
-    new
-    Date().toLocaleDateString("de-DE" , {
+function familienplanerLocale() {
+  return window.familienplanerI18n
+    ? window.familienplanerI18n.locale()
+    : "de-DE";
+}
+
+function familienplanerFormatiereISOdatum(isoDatum) {
+  const teile = isoDatum.split("-").map(Number);
+  return new Date(teile[0], teile[1] - 1, teile[2])
+    .toLocaleDateString(familienplanerLocale(), {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric"
+    });
+}
+
+  function aktualisiereHeutigesDatum() {
+    document.getElementById("heute").textContent =
+    new Date().toLocaleDateString(familienplanerLocale(), {
       weekday: "long", day: "numeric",
       month: "long", year: "numeric"
     });
+  }
+  window.familienplanerAktualisiereHeutigesDatum =
+    aktualisiereHeutigesDatum;
+  document.addEventListener(
+    "familienplaner:languagechange",
+    aktualisiereHeutigesDatum
+  );
+  aktualisiereHeutigesDatum();
 </script>
    <script>
 const terminPolja = [
@@ -2791,7 +2827,7 @@ terminPolja.forEach((polje, index) => {
   function zeichneKalender() {
     raster.replaceChildren();
 
-    titel.textContent = monat.toLocaleDateString("de-DE", {
+    titel.textContent = monat.toLocaleDateString(familienplanerLocale(), {
       month: "long",
       year: "numeric"
     });
@@ -2849,6 +2885,7 @@ terminPolja.forEach((polje, index) => {
         .forEach(t => {
           const eintrag = document.createElement("div");
           eintrag.className = "kalenderEintrag";
+          eintrag.dataset.i18nIgnore = "";
           eintrag.textContent = t.zeit + " " + t.name;
           feld.appendChild(eintrag);
         });
@@ -2881,6 +2918,10 @@ terminPolja.forEach((polje, index) => {
   }
 
   window.familienplanerZeichneKalender = zeichneKalender;
+  document.addEventListener(
+    "familienplaner:languagechange",
+    zeichneKalender
+  );
 
   document.getElementById("kalenderButton").addEventListener("click", () => {
     zeichneKalender();
@@ -2928,6 +2969,7 @@ function aktualisiereTerminMitglieder() {
     if (!mitglied || typeof mitglied.name !== "string") return;
 
     const option = new Option(mitglied.name, String(index));
+    option.dataset.i18nIgnore = "";
     option.dataset.name = mitglied.name;
     option.dataset.farbe = mitglied.farbe || "";
     auswahl.add(option);
@@ -3014,9 +3056,9 @@ function zeigeWochenTermine() {
     ].join("-");
   };
   zeitraum.textContent =
-    montag.toLocaleDateString("de-DE", { day: "numeric", month: "long" }) +
+    montag.toLocaleDateString(familienplanerLocale(), { day: "numeric", month: "long" }) +
     " – " +
-    sonntag.toLocaleDateString("de-DE", {
+    sonntag.toLocaleDateString(familienplanerLocale(), {
       day: "numeric",
       month: "long",
       year: "numeric"
@@ -3065,7 +3107,7 @@ function zeigeWochenTermine() {
       const datumText = document.createElement("span");
       datumText.className = "wochenTerminDatum";
       datumText.textContent =
-        datum.toLocaleDateString("de-DE", {
+        datum.toLocaleDateString(familienplanerLocale(), {
           weekday: "short",
           day: "2-digit",
           month: "2-digit",
@@ -3074,6 +3116,7 @@ function zeigeWochenTermine() {
 
       const titel = document.createElement("span");
       titel.className = "wochenTerminTitel";
+      titel.dataset.i18nIgnore = "";
       titel.textContent = termin.name;
 
       inhalt.append(datumText, titel);
@@ -3082,6 +3125,11 @@ function zeigeWochenTermine() {
     });
   }
 }
+window.familienplanerAktualisiereWochenTermine = zeigeWochenTermine;
+document.addEventListener(
+  "familienplaner:languagechange",
+  zeigeWochenTermine
+);
 
 function speichereTermin() {
   let name = document.getElementById("terminName").value;
@@ -3106,9 +3154,12 @@ function speichereTermin() {
   termin.style.cssText =
   "background:#EAF2E8; padding:15px; border-radius:15px; margin:12px 0;";
   termin.dataset.status = "offen";
- let lijepiDatum = datum.split("-").reverse().join(".");
+ let lijepiDatum = familienplanerFormatiereISOdatum(datum);
 
-termin.textContent = lijepiDatum + " - " + zeit + " - " + name;
+  const terminText = document.createElement("span");
+  terminText.dataset.i18nIgnore = "";
+  terminText.textContent = lijepiDatum + " - " + zeit + " - " + name;
+  termin.appendChild(terminText);
 const terminDaten = {
   name: name,
   datum: datum,
@@ -3214,9 +3265,12 @@ termini.sort(function(a, b) {
   termini.forEach(function(t) {
     let termin = document.createElement("p");
     termin.dataset.datum = t.datum + t.zeit;
-    let datum = t.datum.split("-").reverse().join(".");
+    let datum = familienplanerFormatiereISOdatum(t.datum);
 
-    termin.textContent = datum + " - " + t.zeit + " - " + t.name;
+    const terminText = document.createElement("span");
+    terminText.dataset.i18nIgnore = "";
+    terminText.textContent = datum + " - " + t.zeit + " - " + t.name;
+    termin.appendChild(terminText);
     termin.appendChild(erstelleTerminFarbmarkierung(t));
     if (t.status === "erledigt") {
   termin.style.textDecoration = "line-through";
@@ -3315,8 +3369,17 @@ document.getElementById("familieAnzahl").textContent = "(" + mitglieder.length +
     farbpunkt.style.backgroundColor = mitglied.farbe;
 
     const name = document.createElement("strong");
-    name.textContent = mitglied.name +
-      (mitglied.rolle ? " · " + mitglied.rolle : "");
+    const personenName = document.createElement("span");
+    personenName.dataset.i18nIgnore = "";
+    personenName.textContent = mitglied.name;
+    name.appendChild(personenName);
+    if (mitglied.rolle) {
+      const rolle = document.createElement("span");
+      rolle.textContent = window.familienplanerI18n
+        ? window.familienplanerI18n.normalizeRole(mitglied.rolle)
+        : mitglied.rolle;
+      name.append(" · ", rolle);
+    }
 
     const bearbeiten = document.createElement("button");
     bearbeiten.type = "button";
@@ -3330,13 +3393,18 @@ document.getElementById("familieAnzahl").textContent = "(" + mitglieder.length +
         return;
       }
 
+      const standardRolle = window.familienplanerI18n
+        ? window.familienplanerI18n.t(mitglied.rolle || "Kind")
+        : mitglied.rolle || "Kind";
       const neueRolle = prompt(
         "Rolle (Mama, Papa, Kind):",
-        mitglied.rolle || "Kind"
+        standardRolle
       );
       if (neueRolle === null) return;
 
-      const rolle = neueRolle.trim();
+      const rolle = window.familienplanerI18n
+        ? window.familienplanerI18n.normalizeRole(neueRolle.trim())
+        : neueRolle.trim();
       if (!["Mama", "Papa", "Kind"].includes(rolle)) {
         alert("Bitte Mama, Papa oder Kind eingeben!");
         return;
@@ -3558,7 +3626,10 @@ karte.append(farbpunkt, name, akcije);
       .sort(function (a, b) {
         return a.datum - b.datum ||
           geburtstagsName(a.geburtstag)
-            .localeCompare(geburtstagsName(b.geburtstag), "de");
+            .localeCompare(
+              geburtstagsName(b.geburtstag),
+              familienplanerLocale()
+            );
       });
   }
 
@@ -3569,10 +3640,13 @@ karte.append(farbpunkt, name, akcije);
       return;
     }
 
-    const datum = naechster.datum.toLocaleDateString("de-DE", {
+    const datum = naechster.datum.toLocaleDateString(
+      familienplanerLocale(),
+      {
       day: "numeric",
       month: "long"
-    });
+      }
+    );
     const alterText = naechster.alter === null
       ? ""
       : " und wird " + naechster.alter + " Jahre alt";
@@ -3589,10 +3663,13 @@ karte.append(farbpunkt, name, akcije);
 
   function zeichneKalender() {
     raster.replaceChildren();
-    monatTitel.textContent = angezeigterMonat.toLocaleDateString("de-DE", {
+    monatTitel.textContent = angezeigterMonat.toLocaleDateString(
+      familienplanerLocale(),
+      {
       month: "long",
       year: "numeric"
-    });
+      }
+    );
 
     ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"].forEach(function (tag) {
       const feld = document.createElement("div");
@@ -3671,6 +3748,7 @@ karte.append(farbpunkt, name, akcije);
         geburtstageAmTag.forEach(function (geburtstag) {
           const eintrag = document.createElement("span");
           eintrag.className = "kalenderEintrag geburtstagKalenderEintrag";
+          eintrag.dataset.i18nIgnore = "";
           eintrag.classList.add(
             geburtstag.geschlecht === "maennlich"
               ? "geburtstagBlau"
@@ -3728,14 +3806,18 @@ karte.append(farbpunkt, name, akcije);
       text.className = "geburtstagsEintragText";
 
       const name = document.createElement("strong");
+      name.dataset.i18nIgnore = "";
       name.textContent = "🎂 " + geburtstagsName(eintrag.geburtstag);
 
       const datum = document.createElement("span");
-      datum.textContent = eintrag.datum.toLocaleDateString("de-DE", {
+      datum.textContent = eintrag.datum.toLocaleDateString(
+        familienplanerLocale(),
+        {
         weekday: "long",
         day: "numeric",
         month: "long"
-      });
+        }
+      );
       if (eintrag.alter !== null) {
         datum.textContent += " · wird " + eintrag.alter + " Jahre alt";
       }
@@ -3791,6 +3873,11 @@ karte.append(farbpunkt, name, akcije);
     zeigeKommendeGeburtstage();
     zeigeNaechstenGeburtstag();
   }
+  window.familienplanerAktualisiereGeburtstage = aktualisiereAnsicht;
+  document.addEventListener(
+    "familienplaner:languagechange",
+    aktualisiereAnsicht
+  );
 
   function oeffneFormular(datum) {
     bearbeiteteId = null;
@@ -4163,8 +4250,16 @@ karte.append(farbpunkt, name, akcije);
     mitglieder.forEach(function (mitglied) {
       const option = document.createElement("option");
       option.value = mitglied.id;
+      option.dataset.i18nIgnore = "";
+      const rolle = mitglied.rolle && window.familienplanerI18n
+        ? window.familienplanerI18n.normalizeRole(mitglied.rolle)
+        : mitglied.rolle;
       option.textContent = mitglied.name +
-        (mitglied.rolle ? " · " + mitglied.rolle : "");
+        (rolle
+          ? " · " + (window.familienplanerI18n
+            ? window.familienplanerI18n.t(rolle)
+            : rolle)
+          : "");
       mitgliedAuswahl.appendChild(option);
     });
 
@@ -4183,6 +4278,10 @@ karte.append(farbpunkt, name, akcije);
       : "Die Auswahl ordnet Einstellungen einem Mitglied zu, ist aber keine Anmeldung.";
     if (!keineMitglieder) zeigeMitgliedsEinstellungen();
   }
+  document.addEventListener(
+    "familienplaner:languagechange",
+    aktualisiereMitgliederAuswahl
+  );
 
   function speichereMitgliedsEinstellungen() {
     if (!mitgliedAuswahl.value || optionen.disabled) return;
@@ -4850,5 +4949,6 @@ karte.append(farbpunkt, name, akcije);
 })();
 </script>
 <script src="ferien-feiertage.js"></script>
+<script src="i18n.js"></script>
 </body>
 </html>

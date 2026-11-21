@@ -108,7 +108,7 @@
   let aktualisierungErneut = false;
   const gespeicherteErinnerungen = leseGesendeteErinnerungen();
   const sitzungsErinnerungen = new Set();
-  const displayLanguage = (document.documentElement.lang || "de")
+  let displayLanguage = (document.documentElement.lang || "de")
     .slice(0, 2)
     .toUpperCase();
 
@@ -252,10 +252,19 @@
 
   function formatiereDatum(isoDatum, optionen) {
     if (!gueltigesDatum(isoDatum)) return isoDatum;
+    const sprache = window.familienplanerI18n
+      ? window.familienplanerI18n.locale()
+      : "de-DE";
     return new Date(isoDatum + "T00:00:00").toLocaleDateString(
-      "de-DE",
+      sprache,
       optionen || { day: "numeric", month: "long", year: "numeric" }
     );
+  }
+
+  function uebersetze(text) {
+    return window.familienplanerI18n
+      ? window.familienplanerI18n.t(text)
+      : text;
   }
 
   function nameInSprache(texte, sprache) {
@@ -274,21 +283,21 @@
   }
 
   function landName(code) {
-    return laender[code] ? laender[code].name : code;
+    return laender[code] ? uebersetze(laender[code].name) : code;
   }
 
   function bundeslandName(code) {
     const land = deutscheBundeslaender.find(function (eintrag) {
       return eintrag.code === code;
     });
-    return land ? land.name : code || "Landesweit";
+    return land ? uebersetze(land.name) : code || uebersetze("Landesweit");
   }
 
   function regionName(landCode, subdivisions) {
     if (landCode === "DE") {
       return bundeslandName(subdivisions || einstellungen.countries.DE.subdivisionCode);
     }
-    return "Landesweit";
+    return uebersetze("Landesweit");
   }
 
   function cacheKey(landCode, subdivision, typ) {
@@ -300,6 +309,22 @@
       gueltigBis,
       displayLanguage
     ].join(":");
+  }
+
+  function cacheEintrag(landCode, subdivision, typ) {
+    const direkt = cache[cacheKey(landCode, subdivision, typ)];
+    if (direkt) return direkt;
+    const prefix = [
+      landCode,
+      subdivision || "national",
+      typ,
+      gueltigVon,
+      gueltigBis
+    ].join(":") + ":";
+    const alternative = Object.keys(cache).find(function (schluessel) {
+      return schluessel.indexOf(prefix) === 0;
+    });
+    return alternative ? cache[alternative] : null;
   }
 
   function laenderAuswahl() {
@@ -359,7 +384,7 @@
 
   async function ladeDatensatz(land, typ, erzwingen) {
     const schluessel = cacheKey(land.code, land.subdivisionCode, typ);
-    const vorhandener = cache[schluessel];
+    const vorhandener = cacheEintrag(land.code, land.subdivisionCode, typ);
     const zeit = vorhandener && Date.parse(vorhandener.fetchedAt);
     if (!erzwingen && vorhandener && Array.isArray(vorhandener.data) &&
         Number.isFinite(zeit) && Date.now() - zeit < cacheDauer) {
@@ -482,7 +507,11 @@
   function pruefeVerfuegbarkeit() {
     const meldungen = statusMeldungen.slice();
     laenderAuswahl().forEach(function (land) {
-      const ferien = cache[cacheKey(land.code, land.subdivisionCode, "school")];
+      const ferien = cacheEintrag(
+        land.code,
+        land.subdivisionCode,
+        "school"
+      );
       if (!ferien || !Array.isArray(ferien.data)) return;
       const fehlendeJahre = [];
       for (let jahr = jahreszeit + 1; jahr <= jahreszeit + 2; jahr++) {
@@ -584,9 +613,11 @@
     const ergebnis = [];
     laenderAuswahl().forEach(function (land) {
       ["school", "public"].forEach(function (typ) {
-        const eintrag = cache[
-          cacheKey(land.code, land.subdivisionCode, typ)
-        ];
+        const eintrag = cacheEintrag(
+          land.code,
+          land.subdivisionCode,
+          typ
+        );
         if (!eintrag || !Array.isArray(eintrag.data)) return;
         eintrag.data.forEach(function (daten) {
           if (!gueltigesDatum(daten.startDate) ||
@@ -769,6 +800,7 @@
       const knopf = document.createElement("button");
       knopf.type = "button";
       knopf.className = "ferienKalenderEintrag";
+      knopf.dataset.i18nIgnore = "";
       if (ereignis.kind === "bruecke") {
         knopf.classList.add("ferienBrueckeEintrag");
       }
@@ -824,6 +856,7 @@
         farbeFuerArt(ereignis.kind)
       );
       const name = document.createElement("h4");
+      name.dataset.i18nIgnore = "";
       name.textContent = ereignis.name;
       const zeitraum = document.createElement("p");
       zeitraum.textContent = "Zeitraum: " +
@@ -904,6 +937,7 @@
         month: "2-digit"
       });
       const name = document.createElement("span");
+      name.dataset.i18nIgnore = "";
       name.textContent = ereignis.name + " · " + ortText(ereignis);
       name.style.borderBottom =
         "2px solid " + farbeFuerArt(ereignis.kind);
@@ -935,6 +969,7 @@
         const zeile = document.createElement("div");
         zeile.className = "ferienManuellEintrag";
         const beschreibung = document.createElement("span");
+        beschreibung.dataset.i18nIgnore = "";
         beschreibung.textContent =
           formatiereDatum(tag.date) + " · " + tag.name;
         const loeschen = document.createElement("button");
@@ -1080,6 +1115,7 @@
       }).forEach(function (region) {
         const option = document.createElement("option");
         option.value = region.code;
+        option.dataset.i18nIgnore = "";
         option.textContent = nameInSprache(region.name, displayLanguage);
         elemente.bundesland.appendChild(option);
       });
@@ -1250,6 +1286,19 @@
     },
     zeigeTerminFormular: zeigeTerminFormular,
     aktualisiere: function () {
+      return aktualisiereDaten(true);
+    },
+    setLanguage: function (language) {
+      const code = String(language || "").slice(0, 2).toUpperCase();
+      if (!["DE", "HR", "EN"].includes(code)) {
+        throw new Error("Unsupported application language: " + language);
+      }
+      if (displayLanguage === code) {
+        zeichneAlles();
+        return Promise.resolve();
+      }
+      displayLanguage = code;
+      zeichneAlles();
       return aktualisiereDaten(true);
     },
     ereignisse: alleEreignisse

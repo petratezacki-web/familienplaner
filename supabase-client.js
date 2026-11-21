@@ -72,6 +72,7 @@
     antwort.data.forEach(function (familie) {
       const option = document.createElement("option");
       option.value = familie.id;
+      option.dataset.i18nIgnore = "";
       option.textContent = familie.name;
       familienAuswahl.appendChild(option);
     });
