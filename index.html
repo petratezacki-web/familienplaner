@@ -1500,9 +1500,28 @@ body {
 
   body::before {
     position: fixed;
+    z-index: -2;
+    inset: -24px;
+    background-image:
+      linear-gradient(
+        rgba(248, 247, 242, 0.28),
+        rgba(223, 232, 220, 0.26)
+      ),
+      var(--familienplanerFoto, url("assets/familienplaner-hintergrund.jpg"));
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    content: "";
+    filter: blur(18px);
+    opacity: 0.82;
+    pointer-events: none;
+    transform: scale(1.04);
+  }
+
+  body::after {
+    position: fixed;
     z-index: -1;
     inset: 0;
-    background-color: var(--cream);
     background-image:
       linear-gradient(
         rgba(248, 247, 242, 0.28),
@@ -1541,6 +1560,7 @@ body {
 
   #naechsterTermin {
     padding: 18px 14px;
+    background-color: rgba(241, 247, 239, 0.66);
   }
 
   .wochenTermin {
