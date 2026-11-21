@@ -32,7 +32,15 @@
   font-family: "Dancing Script", cursive;
   font-size: clamp(34px, 5vw, 44px);
   line-height: 1.15;
-  text-shadow: 0 1px 4px rgba(248, 247, 242, 0.88);
+  text-shadow:
+    -1px -1px 0 rgba(248, 247, 242, 0.88),
+    0 -1px 0 rgba(248, 247, 242, 0.88),
+    1px -1px 0 rgba(248, 247, 242, 0.88),
+    -1px 0 0 rgba(248, 247, 242, 0.88),
+    1px 0 0 rgba(248, 247, 242, 0.88),
+    -1px 1px 0 rgba(248, 247, 242, 0.88),
+    0 1px 0 rgba(248, 247, 242, 0.88),
+    1px 1px 0 rgba(248, 247, 242, 0.88);
 }
 
 .einkaufKopf h2 span {
@@ -45,7 +53,15 @@
   margin: 4px 0 0;
   color: #526E57;
   font-size: 14px;
-  text-shadow: 0 1px 3px rgba(248, 247, 242, 0.9);
+  text-shadow:
+    -1px -1px 0 rgba(248, 247, 242, 0.9),
+    0 -1px 0 rgba(248, 247, 242, 0.9),
+    1px -1px 0 rgba(248, 247, 242, 0.9),
+    -1px 0 0 rgba(248, 247, 242, 0.9),
+    1px 0 0 rgba(248, 247, 242, 0.9),
+    -1px 1px 0 rgba(248, 247, 242, 0.9),
+    0 1px 0 rgba(248, 247, 242, 0.9),
+    1px 1px 0 rgba(248, 247, 242, 0.9);
 }
 
 .einkaufMeldung {
