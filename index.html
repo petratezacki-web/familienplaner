@@ -1787,6 +1787,366 @@ body {
     font-size: 36px;
   }
 }
+
+#ferienOptionen {
+  max-width: 1100px;
+  margin: 22px 0;
+  padding: 18px;
+  border: 1px solid rgba(52, 85, 62, 0.16);
+  border-radius: 18px;
+  background: rgba(223, 232, 220, 0.56);
+}
+
+#ferienOptionen legend {
+  padding: 0 8px;
+  color: #34553E;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.ferienLaender,
+.ferienSchaltergruppe,
+.ferienErinnerungsAbstaende {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin: 12px 0;
+}
+
+.ferienLand,
+.ferienSchaltergruppe label,
+.ferienErinnerungsAbstaende label,
+.ferienErinnerungsHauptschalter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ferienLand {
+  min-width: 160px;
+  padding: 10px 12px;
+  border: 1px solid rgba(52, 85, 62, 0.12);
+  border-radius: 12px;
+  background: rgba(248, 247, 242, 0.68);
+  font-weight: 700;
+}
+
+.ferienLand input,
+.ferienSchaltergruppe input,
+.ferienErinnerungsEinstellungen input[type="checkbox"] {
+  accent-color: #66836B;
+}
+
+.ferienEinstellungsFeld,
+.ferienFarben label,
+.ferienManuell {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.ferienEinstellungsFeld {
+  max-width: 420px;
+}
+
+.ferienEinstellungsFeld select,
+.ferienManuell input {
+  width: 100%;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid #D5E2D2;
+  border-radius: 10px;
+  background: #fff;
+  color: #34553E;
+}
+
+.ferienFarben {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.ferienFarben label {
+  align-items: flex-start;
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(248, 247, 242, 0.65);
+  font-size: 13px;
+}
+
+.ferienFarben input[type="color"] {
+  width: 48px;
+  height: 34px;
+  padding: 2px;
+  border: 1px solid rgba(52, 85, 62, 0.18);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.ferienErinnerungsEinstellungen {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(248, 247, 242, 0.62);
+}
+
+.ferienManuell {
+  max-width: 550px;
+  margin: 18px 0;
+  padding: 14px;
+  border: 1px solid rgba(52, 85, 62, 0.12);
+  border-radius: 14px;
+  background: rgba(248, 247, 242, 0.6);
+}
+
+.ferienManuell button {
+  min-width: 0;
+  align-self: flex-start;
+  margin: 4px 0;
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+.ferienManuellEintrag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(241, 247, 239, 0.8);
+  font-size: 13px;
+}
+
+.ferienManuellEintrag button {
+  margin: 0;
+  padding: 7px 10px;
+}
+
+.ferienQuelle a {
+  color: #34553E;
+}
+
+.ferienWoche {
+  display: grid;
+  gap: 5px;
+  margin: 8px 0 12px;
+  padding: 9px 12px;
+  border-left: 3px solid #9AB49C;
+  border-radius: 0 11px 11px 0;
+  background: rgba(248, 247, 242, 0.38);
+  font-size: 14px;
+}
+
+.ferienWocheEintrag {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+
+.ferienWocheEintrag strong {
+  color: #34553E;
+}
+
+.ferienErinnerungen {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 10px;
+  margin: 12px 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(52, 85, 62, 0.14);
+  border-radius: 14px;
+  background: rgba(235, 203, 211, 0.84);
+  box-shadow: 0 5px 16px rgba(52, 85, 62, 0.1);
+}
+
+.ferienErinnerungenNachricht + .ferienErinnerungenNachricht {
+  margin-top: 6px;
+}
+
+#ferienErinnerungenSchliessen,
+#ferienDetailSchliessen {
+  min-width: 34px;
+  width: 34px;
+  height: 34px;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(248, 247, 242, 0.72);
+  font-size: 16px;
+}
+
+.ferienLegende {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 14px;
+  margin: 14px 0;
+  color: #4F6654;
+  font-size: 12px;
+}
+
+.ferienLegende span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ferienLegendeFarbe {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1px solid rgba(52, 85, 62, 0.18);
+  border-radius: 4px;
+}
+
+.ferienLegendeSchulferien { background: #DFE8DC; }
+.ferienLegendeFeiertag { background: #EBCBD3; }
+.ferienLegendeSchulfrei { background: #F1E4B7; }
+.ferienLegendeWeitere { background: #D8E3F0; }
+.ferienLegendeBruecke { background: #E9DFC0; }
+
+.kalenderTag.ferienKalenderTag {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.ferienKalenderEintrag {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin: 4px 0 0;
+  padding: 3px 4px;
+  overflow: hidden;
+  border: 1px solid rgba(52, 85, 62, 0.14);
+  border-radius: 6px;
+  background: var(--ferienEintragFarbe, rgba(223, 232, 220, 0.8));
+  box-shadow: none;
+  color: #34553E;
+  font-size: 10px;
+  line-height: 1.15;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ferienKalenderEintrag:hover {
+  transform: none;
+}
+
+.ferienKalenderEintrag.ferienBrueckeEintrag {
+  border-style: dashed;
+}
+
+.ferienKalenderStatus {
+  margin: 12px 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(248, 247, 242, 0.75);
+  color: #526B57;
+  font-size: 14px;
+}
+
+.ferienTagDetails {
+  margin: 14px 0;
+  padding: 16px;
+  border: 1px solid rgba(52, 85, 62, 0.14);
+  border-radius: 16px;
+  background: rgba(248, 247, 242, 0.9);
+}
+
+.ferienTagDetails[hidden],
+#ferienWoche[hidden],
+#ferienErinnerungen[hidden],
+#ferienKalenderStatus[hidden] {
+  display: none;
+}
+
+.ferienDetailKopf {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.ferienDetailKopf h3 {
+  margin: 0;
+  color: #34553E;
+}
+
+.ferienDetailEintrag {
+  margin: 10px 0;
+  padding: 11px 12px;
+  border-left: 4px solid var(--ferienEintragFarbe, #DFE8DC);
+  border-radius: 10px;
+  background: rgba(223, 232, 220, 0.3);
+}
+
+.ferienDetailEintrag h4 {
+  margin: 0 0 6px;
+  color: #34553E;
+}
+
+.ferienDetailEintrag p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+#ferienTerminHinzufuegen {
+  min-width: 0;
+  margin: 8px 0 0;
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+#ferienStatus {
+  margin: 12px 0;
+}
+
+@media (max-width: 600px) {
+  #ferienOptionen {
+    padding: 13px;
+  }
+
+  .ferienLaender {
+    gap: 7px;
+  }
+
+  .ferienLand {
+    flex: 1 1 130px;
+  }
+
+  .ferienFarben {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ferienFarben label {
+    font-size: 12px;
+  }
+
+  .ferienLegende {
+    gap: 6px 10px;
+  }
+
+  .ferienErinnerungsAbstaende {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ferienKalenderEintrag {
+    padding: 2px;
+    font-size: 8px;
+  }
+
+  .ferienWoche {
+    font-size: 13px;
+  }
+}
 </style>
   </head>
   <body>
@@ -1891,6 +2251,13 @@ body {
     <h2>Diese Woche ♡</h2>
     <p id="wochenZeitraum" class="wochenZeitraum"></p>
     <div id="wochenTermine" class="wochenTermine"></div>
+    <div id="ferienWoche" class="ferienWoche" hidden></div>
+    <div id="ferienErinnerungen" class="ferienErinnerungen" hidden
+      role="status" aria-live="polite">
+      <div id="ferienErinnerungenListe"></div>
+      <button id="ferienErinnerungenSchliessen" type="button"
+        aria-label="Erinnerungen schließen">✕</button>
+    </div>
     <p id="wochenLeer" class="wochenLeermeldung" hidden></p>
     <p id="heuteFrei" class="heuteFrei" hidden>
       Heute ist alles frei – genießt die gemeinsame Zeit!
@@ -1941,6 +2308,27 @@ body {
   </div>
 
   <div id="kalenderRaster" class="kalenderRaster"></div>
+  <div id="ferienLegende" class="ferienLegende" aria-label="Kalenderlegende">
+    <span><i class="ferienLegendeFarbe ferienLegendeSchulferien"></i> Schulferien</span>
+    <span><i class="ferienLegendeFarbe ferienLegendeFeiertag"></i> Gesetzlicher Feiertag</span>
+    <span><i class="ferienLegendeFarbe ferienLegendeSchulfrei"></i> Schulfreier Tag</span>
+    <span><i class="ferienLegendeFarbe ferienLegendeWeitere"></i> Weitere Feiertage</span>
+    <span><i class="ferienLegendeFarbe ferienLegendeBruecke"></i> Brückentag-Vorschlag</span>
+  </div>
+  <p id="ferienKalenderStatus" class="ferienKalenderStatus"
+    aria-live="polite" hidden></p>
+  <section id="ferienTagDetails" class="ferienTagDetails"
+    aria-live="polite" hidden>
+    <div class="ferienDetailKopf">
+      <h3 id="ferienDetailDatum"></h3>
+      <button id="ferienDetailSchliessen" type="button"
+        aria-label="Details schließen">✕</button>
+    </div>
+    <div id="ferienDetailEintraege"></div>
+    <button id="ferienTerminHinzufuegen" type="button">
+      Termin an diesem Tag hinzufügen
+    </button>
+  </section>
 
   <button id="kalenderSchliessen" type="button">
     Zurück
@@ -2137,8 +2525,9 @@ body {
     <legend>Benachrichtigungen &amp; Töne</legend>
     <p class="einstellungenHinweis">
       Einstellungen werden auf diesem Gerät gespeichert. Die Klangvorschau
-      funktioniert bei geöffneter Seite; automatische Benachrichtigungen,
-      Vibration und Ruhezeiten sind noch nicht mit Terminen verbunden.
+      funktioniert bei geöffneter Seite. Erinnerungen für Ferien und Feiertage
+      verwenden den ausgewählten Ton und berücksichtigen Vibration sowie
+      Ruhezeiten. Erinnerungen für normale Termine sind noch nicht angebunden.
     </p>
 
     <div class="einstellungenSchalter">
@@ -2208,6 +2597,124 @@ body {
     </div>
   </fieldset>
 
+  <fieldset id="ferienOptionen">
+    <legend>Ferien &amp; Feiertage</legend>
+    <p class="einstellungenHinweis">
+      Feiertage und Schulferien werden ohne personenbezogene Daten direkt von
+      OpenHolidays geladen. Die zuletzt geladenen Daten bleiben offline verfügbar.
+    </p>
+    <div class="ferienLaender">
+      <label class="ferienLand">
+        <input id="ferienLandDE" type="checkbox" checked>
+        <span>Deutschland</span>
+      </label>
+      <label class="ferienLand">
+        <input id="ferienLandHR" type="checkbox">
+        <span>Kroatien</span>
+      </label>
+    </div>
+    <div id="ferienBundeslandFeld" class="ferienEinstellungsFeld">
+      <label for="ferienBundesland">Bundesland in Deutschland</label>
+      <select id="ferienBundesland">
+        <option value="DE-BW">Baden-Württemberg</option>
+        <option value="DE-BY" selected>Bayern</option>
+        <option value="DE-BE">Berlin</option>
+        <option value="DE-BB">Brandenburg</option>
+        <option value="DE-HB">Bremen</option>
+        <option value="DE-HH">Hamburg</option>
+        <option value="DE-HE">Hessen</option>
+        <option value="DE-MV">Mecklenburg-Vorpommern</option>
+        <option value="DE-NI">Niedersachsen</option>
+        <option value="DE-NW">Nordrhein-Westfalen</option>
+        <option value="DE-RP">Rheinland-Pfalz</option>
+        <option value="DE-SL">Saarland</option>
+        <option value="DE-SN">Sachsen</option>
+        <option value="DE-ST">Sachsen-Anhalt</option>
+        <option value="DE-SH">Schleswig-Holstein</option>
+        <option value="DE-TH">Thüringen</option>
+      </select>
+    </div>
+    <p id="ferienKroatienHinweis" class="einstellungenHinweis">
+      Kroatien wird landesweit unterstützt. OpenHolidays meldet derzeit keine
+      kroatischen Unterregionen.
+    </p>
+
+    <div class="ferienSchaltergruppe">
+      <label><input id="ferienKategorieSchulferien" type="checkbox" checked>
+        Schulferien</label>
+      <label><input id="ferienKategorieFeiertage" type="checkbox" checked>
+        Gesetzliche Feiertage</label>
+      <label><input id="ferienKategorieSchulfrei" type="checkbox" checked>
+        Schulfreie Tage</label>
+      <label><input id="ferienKategorieWeitere" type="checkbox">
+        Weitere Feiertage</label>
+      <label><input id="ferienBrueckentage" type="checkbox" checked>
+        Lange Wochenenden &amp; Brückentage vorschlagen</label>
+    </div>
+
+    <div class="ferienFarben">
+      <label for="ferienFarbeSchulferien">Schulferien
+        <input id="ferienFarbeSchulferien" type="color" value="#DFE8DC">
+      </label>
+      <label for="ferienFarbeFeiertage">Gesetzliche Feiertage
+        <input id="ferienFarbeFeiertage" type="color" value="#EBCBD3">
+      </label>
+      <label for="ferienFarbeSchulfrei">Schulfreie Tage
+        <input id="ferienFarbeSchulfrei" type="color" value="#F1E4B7">
+      </label>
+      <label for="ferienFarbeWeitere">Weitere Feiertage
+        <input id="ferienFarbeWeitere" type="color" value="#D8E3F0">
+      </label>
+      <label for="ferienFarbeBruecke">Brückentag-Vorschläge
+        <input id="ferienFarbeBruecke" type="color" value="#E9DFC0">
+      </label>
+    </div>
+
+    <div class="ferienErinnerungsEinstellungen">
+      <label class="ferienErinnerungsHauptschalter">
+        <input id="ferienErinnerungenAktiv" type="checkbox" checked>
+        Erinnerungen für Ferien und Feiertage aktivieren
+      </label>
+      <span>Erinnern:</span>
+      <div class="ferienErinnerungsAbstaende">
+        <label><input type="checkbox" value="14" data-ferien-erinnerung checked> 14 Tage vorher</label>
+        <label><input type="checkbox" value="7" data-ferien-erinnerung checked> 7 Tage vorher</label>
+        <label><input type="checkbox" value="3" data-ferien-erinnerung checked> 3 Tage vorher</label>
+        <label><input type="checkbox" value="2" data-ferien-erinnerung checked> 2 Tage vorher</label>
+        <label><input type="checkbox" value="1" data-ferien-erinnerung checked> 1 Tag vorher</label>
+        <label><input type="checkbox" value="0" data-ferien-erinnerung checked> Am selben Tag</label>
+      </div>
+      <label class="ferienErinnerungsHauptschalter">
+        <input id="ferienSchulbeginnErinnerung" type="checkbox" checked>
+        2 Tage vor Schulbeginn an das Ferienende erinnern
+      </label>
+      <p class="einstellungenHinweis">
+        Erinnerungen erscheinen, solange die App geöffnet ist. Push-Mitteilungen
+        bei geschlossener App benötigen später einen Serverdienst.
+      </p>
+    </div>
+
+    <div class="ferienManuell">
+      <strong>Schulfreien Tag hinzufügen</strong>
+      <label for="ferienManuellName">Bezeichnung</label>
+      <input id="ferienManuellName" type="text" maxlength="80"
+        placeholder="z. B. Pädagogischer Tag">
+      <label for="ferienManuellDatum">Datum</label>
+      <input id="ferienManuellDatum" type="date">
+      <button id="ferienManuellHinzufuegen" type="button">Freien Tag speichern</button>
+      <div id="ferienManuellListe"></div>
+    </div>
+    <p id="ferienStatus" class="einstellungenStatus"
+      aria-live="polite">Ferieninformationen werden geladen …</p>
+    <button id="ferienAktualisieren" type="button">Daten jetzt aktualisieren</button>
+    <p class="einstellungenHinweis ferienQuelle">
+      Datenquelle: <a href="https://www.openholidaysapi.org/" target="_blank"
+        rel="noopener noreferrer">OpenHolidays API</a> ·
+      <a href="https://github.com/openpotato/openholidaysapi.data/blob/main/LICENSE"
+        target="_blank" rel="noopener noreferrer">Open Database License (ODbL)</a>.
+    </p>
+  </fieldset>
+
   <p id="einstellungenMitgliederHinweis" class="einstellungenHinweis"></p>
   <p id="einstellungenSpeicherStatus" class="einstellungenStatus"
     aria-live="polite"></p>
@@ -2272,8 +2779,6 @@ terminPolja.forEach((polje, index) => {
   });
 });
 </script> 
-  </body>
-</html>
 <script>
 (function () {
   const ansicht = document.getElementById("kalenderAnsicht");
@@ -2348,9 +2853,18 @@ terminPolja.forEach((polje, index) => {
           feld.appendChild(eintrag);
         });
 
-         feld.style.cursor = "pointer";
+      if (window.familienplanerFeiertage) {
+        window.familienplanerFeiertage.renderKalenderTag(feld, datum);
+      }
+
+      feld.style.cursor = "pointer";
 
       feld.addEventListener("click", function() {
+        const ferien = window.familienplanerFeiertage;
+        if (ferien && ferien.hatEreignisse(datum)) {
+          ferien.zeigeDetails(datum);
+          return;
+        }
         document.getElementById("terminForm").hidden = false;
         document.getElementById("terminDatum").value = datum;
 
@@ -2365,6 +2879,8 @@ terminPolja.forEach((polje, index) => {
       raster.appendChild(feld);
     }
   }
+
+  window.familienplanerZeichneKalender = zeichneKalender;
 
   document.getElementById("kalenderButton").addEventListener("click", () => {
     zeichneKalender();
@@ -3698,10 +4214,12 @@ karte.append(farbpunkt, name, akcije);
     }
   }
 
-  function spieleKlang(klangName) {
+  function spieleKlang(klangName, automatisch) {
     const AudioKontext = window.AudioContext || window.webkitAudioContext;
     if (!AudioKontext) {
-      alert("Die Klangvorschau wird von diesem Browser nicht unterstützt.");
+      if (!automatisch) {
+        alert("Die Klangvorschau wird von diesem Browser nicht unterstützt.");
+      }
       return;
     }
 
@@ -3710,11 +4228,16 @@ karte.append(farbpunkt, name, akcije);
       audio = new AudioKontext();
     } catch (fehler) {
       console.error("Die Klangvorschau konnte nicht gestartet werden.", fehler);
-      alert("Die Klangvorschau konnte nicht gestartet werden.");
+      if (!automatisch) alert("Die Klangvorschau konnte nicht gestartet werden.");
       return;
     }
 
     const muster = klangMuster[klangName];
+    if (!muster) {
+      audio.close();
+      console.error("Unbekannter Benachrichtigungston:", klangName);
+      return;
+    }
     audio.resume().then(function () {
       const start = audio.currentTime;
       muster.noten.forEach(function (frequenz, index) {
@@ -3738,10 +4261,41 @@ karte.append(farbpunkt, name, akcije);
       });
     }, function (fehler) {
       console.error("Die Klangvorschau konnte nicht gestartet werden.", fehler);
-      alert("Die Klangvorschau konnte nicht gestartet werden.");
+      if (!automatisch) alert("Die Klangvorschau konnte nicht gestartet werden.");
       audio.close();
     });
   }
+
+  function istRuhezeit(einstellung) {
+    const teile = function (uhrzeit) {
+      const werte = uhrzeit.split(":").map(Number);
+      return werte[0] * 60 + werte[1];
+    };
+    const start = teile(einstellung.ruhezeitStart);
+    const ende = teile(einstellung.ruhezeitEnde);
+    const jetzt = new Date();
+    const minuten = jetzt.getHours() * 60 + jetzt.getMinutes();
+    if (start === ende) return false;
+    return start < ende
+      ? minuten >= start && minuten < ende
+      : minuten >= start || minuten < ende;
+  }
+
+  window.familienplanerSpieleHinweis = function (typ) {
+    const alleEinstellungen = ladeEinstellungen();
+    if (!alleEinstellungen) return;
+    const einstellung = normalisiereEinstellungen(
+      alleEinstellungen[mitgliedAuswahl.value]
+    );
+    if (istRuhezeit(einstellung)) return;
+    if (einstellung.klaengeAktiv) {
+      spieleKlang(einstellung.toene[typ] || standardToene.termin, true);
+    }
+    if (einstellung.vibrationAktiv &&
+        typeof navigator.vibrate === "function") {
+      navigator.vibrate([100, 60, 100]);
+    }
+  };
 
   document.getElementById("einstellungenButton")
     .addEventListener("click", function () {
@@ -4295,3 +4849,6 @@ karte.append(farbpunkt, name, akcije);
   });
 })();
 </script>
+<script src="ferien-feiertage.js"></script>
+</body>
+</html>
