@@ -1,0 +1,503 @@
+#stundenplanAnsicht {
+  box-sizing: border-box;
+  width: min(1120px, calc(100% - 32px));
+  margin: 28px auto 36px;
+  color: #405642;
+}
+
+#stundenplanAnsicht[hidden] {
+  display: none;
+}
+
+.stundenplanKopf {
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.stundenplanKopf h2 {
+  margin: 0;
+  color: #526e57;
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(30px, 5vw, 42px);
+  font-weight: 700;
+}
+
+.stundenplanKopf p {
+  margin: 4px 0 0;
+  color: #536655;
+  font-size: 14px;
+}
+
+.stundenplanPanel {
+  margin: 12px 0;
+  padding: clamp(12px, 2.2vw, 20px);
+  border: 1px solid rgba(82, 110, 87, 0.18);
+  border-radius: 20px;
+  background: rgba(228, 236, 221, 0.76);
+  box-shadow: 0 7px 20px rgba(47, 69, 49, 0.1);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+.stundenplanProfilLeiste,
+.stundenplanKindAuswahl,
+.stundenplanBereiche,
+.stundenplanAktionen,
+.stundenplanFilter,
+.stundenplanFormAktionen {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.stundenplanProfilLeiste {
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.stundenplanKindAuswahl {
+  flex: 1 1 260px;
+}
+
+.stundenplanKindKnopf,
+.stundenplanTab,
+.stundenplanTagKnopf,
+.stundenplanSekundaerKnopf,
+.stundenplanIconKnopf {
+  min-height: 38px;
+  padding: 8px 12px;
+  border: 1px solid rgba(82, 110, 87, 0.25);
+  border-radius: 12px;
+  background: rgba(248, 247, 242, 0.82);
+  color: #405642;
+  cursor: pointer;
+  font: inherit;
+}
+
+.stundenplanKindKnopf[aria-pressed="true"],
+.stundenplanTab[aria-selected="true"],
+.stundenplanTagKnopf[aria-pressed="true"] {
+  border-color: #819d7e;
+  background: #819d7e;
+  color: #fff;
+  font-weight: 700;
+}
+
+.stundenplanProfilHinweis,
+.stundenplanHilfetext {
+  color: #536655;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.stundenplanProfilHinweis {
+  flex: 1 1 100%;
+  margin: 0;
+}
+
+.stundenplanBereiche {
+  gap: 6px;
+  margin: 16px 0 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(82, 110, 87, 0.16);
+}
+
+.stundenplanTab {
+  min-height: 36px;
+  padding: 7px 11px;
+  font-size: 13px;
+}
+
+.stundenplanAnsichtBereich[hidden],
+.stundenplanForm[hidden],
+.stundenplanMitteilung[hidden],
+.stundenplanTagesbereich[hidden] {
+  display: none;
+}
+
+.stundenplanAktionen {
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.stundenplanHauptknopf,
+.stundenplanSpeichern {
+  min-height: 42px;
+  padding: 10px 15px;
+  border: 1px solid #718c70;
+  border-radius: 13px;
+  background: #819d7e;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.stundenplanSekundaerKnopf,
+.stundenplanIconKnopf {
+  min-height: 36px;
+  padding: 7px 10px;
+  font-size: 13px;
+}
+
+.stundenplanIconKnopf {
+  min-width: 36px;
+  padding: 5px 9px;
+}
+
+.stundenplanLadehinweis,
+.stundenplanLeer,
+.stundenplanMitteilung {
+  margin: 10px 0;
+  padding: 11px 13px;
+  border: 1px solid rgba(82, 110, 87, 0.15);
+  border-radius: 13px;
+  background: rgba(248, 247, 242, 0.72);
+  color: #405642;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.stundenplanMitteilung {
+  border-color: rgba(173, 129, 83, 0.25);
+  background: rgba(248, 236, 211, 0.82);
+}
+
+.stundenplanOrtsfelder {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.stundenplanOrtsfelder label,
+.stundenplanForm label {
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+  color: #526e57;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.stundenplanForm {
+  display: grid;
+  gap: 12px;
+  margin: 12px 0;
+  padding: 14px;
+  border: 1px solid rgba(82, 110, 87, 0.18);
+  border-radius: 16px;
+  background: rgba(248, 247, 242, 0.72);
+}
+
+.stundenplanForm h3 {
+  margin: 0;
+  color: #526e57;
+  font-size: 17px;
+}
+
+.stundenplanFelder {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.stundenplanFelder .stundenplanVoll {
+  grid-column: 1 / -1;
+}
+
+.stundenplanForm input:not([type="checkbox"]):not([type="color"]),
+.stundenplanForm select,
+.stundenplanForm textarea,
+.stundenplanOrtsfelder select,
+.stundenplanFilter select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 10px;
+  border: 1px solid rgba(82, 110, 87, 0.23);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.82);
+  color: #354938;
+  font: inherit;
+  font-size: 14px;
+}
+
+.stundenplanForm textarea {
+  min-height: 74px;
+  resize: vertical;
+}
+
+.stundenplanFarbfeld {
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.stundenplanForm input[type="color"] {
+  box-sizing: border-box;
+  width: 50px;
+  height: 40px;
+  padding: 3px;
+  border: 1px solid rgba(82, 110, 87, 0.23);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.stundenplanFormAktionen {
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.stundenplanFormAktionen button {
+  flex: 1 1 120px;
+}
+
+.stundenplanWochenRaster {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.stundenplanTagKarte {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid rgba(82, 110, 87, 0.16);
+  border-radius: 15px;
+  background: rgba(248, 247, 242, 0.65);
+}
+
+.stundenplanTagKarte h3,
+.stundenplanTagesbereich h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 0 9px;
+  color: #526e57;
+  font-size: 15px;
+}
+
+.stundenplanTagKarte h3 small {
+  color: #657766;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.stundenplanTagInhalt,
+.stundenplanEintragsListe {
+  display: grid;
+  gap: 8px;
+}
+
+.stundenplanUnterricht,
+.stundenplanAufgabe,
+.stundenplanTest,
+.stundenplanPflicht,
+.stundenplanAenderung {
+  min-width: 0;
+  padding: 10px 11px;
+  border: 1px solid rgba(82, 110, 87, 0.15);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.7);
+  overflow-wrap: anywhere;
+}
+
+.stundenplanUnterricht {
+  border-left: 5px solid var(--stundenplan-farbe, #a9c5a5);
+}
+
+.stundenplanEintragKopf {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.stundenplanEintragKopf strong {
+  min-width: 0;
+  color: #344a37;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.stundenplanEintragAktionen {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 4px;
+}
+
+.stundenplanMeta {
+  margin-top: 4px;
+  color: #58695a;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.stundenplanNotiz {
+  margin: 6px 0 0;
+  color: #485c4a;
+  font-size: 12px;
+  white-space: pre-wrap;
+}
+
+.stundenplanAbgehakt {
+  opacity: 0.68;
+}
+
+.stundenplanAbgehakt .stundenplanEintragKopf strong {
+  text-decoration: line-through;
+}
+
+.stundenplanCheckbox {
+  width: 18px;
+  height: 18px;
+  accent-color: #819d7e;
+}
+
+.stundenplanSchultagAuswahl {
+  display: none;
+  gap: 6px;
+  margin: 8px 0;
+  overflow-x: auto;
+  padding: 2px 0 6px;
+}
+
+.stundenplanTagKnopf {
+  flex: 0 0 auto;
+  min-width: 42px;
+  min-height: 36px;
+  padding: 6px 9px;
+  font-size: 12px;
+}
+
+.stundenplanTagesbereich {
+  display: none;
+  padding: 12px;
+  border: 1px solid rgba(82, 110, 87, 0.16);
+  border-radius: 15px;
+  background: rgba(248, 247, 242, 0.65);
+}
+
+.stundenplanFilter {
+  justify-content: space-between;
+  margin: 8px 0 12px;
+}
+
+.stundenplanFilter select {
+  width: auto;
+  min-width: 150px;
+}
+
+.stundenplanAufgabe .stundenplanEintragKopf,
+.stundenplanPflicht .stundenplanEintragKopf {
+  align-items: center;
+}
+
+.stundenplanTest {
+  background: rgba(235, 203, 211, 0.48);
+}
+
+.stundenplanTestIkona {
+  margin-right: 5px;
+}
+
+.stundenplanUeberschriftKlein {
+  margin: 16px 0 8px;
+  color: #526e57;
+  font-size: 15px;
+}
+
+.stundenplanLeereAuswahl {
+  padding: 15px;
+  border-radius: 14px;
+  background: rgba(248, 247, 242, 0.76);
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .stundenplanWochenRaster {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  #stundenplanAnsicht {
+    width: calc(100% - 20px);
+    margin: 18px auto 28px;
+  }
+
+  .stundenplanPanel {
+    padding: 11px;
+    border-radius: 16px;
+  }
+
+  .stundenplanProfilLeiste {
+    display: block;
+  }
+
+  .stundenplanKindAuswahl {
+    margin-bottom: 8px;
+  }
+
+  .stundenplanKindKnopf {
+    flex: 1 1 auto;
+    min-width: 100px;
+    min-height: 36px;
+    padding: 7px 9px;
+    font-size: 13px;
+  }
+
+  .stundenplanBereiche {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .stundenplanTab {
+    flex: 0 0 auto;
+  }
+
+  .stundenplanFelder,
+  .stundenplanOrtsfelder {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .stundenplanWochenRaster {
+    display: none;
+  }
+
+  .stundenplanSchultagAuswahl {
+    display: flex;
+  }
+
+  .stundenplanTagesbereich {
+    display: block;
+  }
+
+  .stundenplanFilter {
+    align-items: stretch;
+  }
+
+  .stundenplanFilter select {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .stundenplanPanel,
+  .stundenplanKindKnopf,
+  .stundenplanTab,
+  .stundenplanHauptknopf,
+  .stundenplanSekundaerKnopf {
+    transition: box-shadow 160ms ease, transform 160ms ease,
+      background-color 160ms ease;
+  }
+
+  .stundenplanHauptknopf:hover,
+  .stundenplanSekundaerKnopf:hover,
+  .stundenplanKindKnopf:hover,
+  .stundenplanTab:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(47, 69, 49, 0.12);
+  }
+}

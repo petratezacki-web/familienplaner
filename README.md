@@ -20,3 +20,13 @@ verwendet werden, die dasselbe Browserprofil auf diesem Gerät nutzen; eine
 Synchronisierung zwischen Geräten oder über Supabase ist noch nicht aktiv.
 Artikel, eigene Geschäfte und Favoriten bleiben erhalten, bis sie manuell
 geändert oder entfernt werden.
+
+## Stundenplan
+
+Der Stundenplan, Hausaufgaben, Klassenarbeiten, Schulpflichten und einmalige
+Planänderungen werden je Kinderprofil im lokalen Browser gespeichert. Eltern-
+und Kinderansichten richten sich nach dem ausgewählten Profil; diese lokale
+Auswahl ist keine Anmeldung und keine sichere Zugriffskontrolle. Eine
+Supabase-Synchronisierung, geräteübergreifende Freigabe und Push-Mitteilungen
+sind nicht aktiv. Für Schulferien und gesetzliche Feiertage wird ausschließlich
+die pro Kind eingestellte Schulregion bei OpenHolidays abgefragt.

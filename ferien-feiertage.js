@@ -282,6 +282,22 @@
     return (treffer || deutsch || englisch || texte[0] || {}).text || "";
   }
 
+  function nameSprachcode(texte, sprache) {
+    if (!Array.isArray(texte)) return "";
+    const gesucht = sprache || displayLanguage;
+    const treffer = texte.find(function (eintrag) {
+      return eintrag && (eintrag.language || "").toUpperCase() === gesucht;
+    });
+    const deutsch = texte.find(function (eintrag) {
+      return eintrag && (eintrag.language || "").toUpperCase() === "DE";
+    });
+    const englisch = texte.find(function (eintrag) {
+      return eintrag && (eintrag.language || "").toUpperCase() === "EN";
+    });
+    const auswahl = treffer || deutsch || englisch || texte[0] || {};
+    return (auswahl.language || "").toUpperCase();
+  }
+
   function landName(code) {
     return laender[code] ? uebersetze(laender[code].name) : code;
   }
@@ -1275,6 +1291,84 @@
     speichereEinstellungen(true);
   }
 
+  async function schulEreignisseFuerRegion(landCode, subdivisionCode) {
+    const land = String(landCode || "").toUpperCase();
+    const subdivision = String(subdivisionCode || "");
+    if (!laender[land] ||
+        (land === "DE" && !deutscheBundeslaender.some(function (eintrag) {
+          return eintrag.code === subdivision;
+        })) ||
+        (land === "HR" && subdivision)) {
+      throw new Error("Unsupported school region: " + landCode + " " + subdivisionCode);
+    }
+
+    const region = {
+      code: land,
+      subdivisionCode: subdivision
+    };
+    const schoolCacheKey = cacheKey(land, subdivision, "school");
+    const publicCacheKey = cacheKey(land, subdivision, "public");
+    const ergebnisse = await Promise.all([
+      ladeDatensatz(region, "school", !cache[schoolCacheKey]),
+      ladeDatensatz(region, "public", !cache[publicCacheKey])
+    ]);
+    const ereignisse = [];
+
+    (ergebnisse[0].data || []).forEach(function (eintrag) {
+      if (!gueltigesDatum(eintrag.startDate) ||
+          !gueltigesDatum(eintrag.endDate) ||
+          eintrag.startDate > eintrag.endDate) return;
+      ereignisse.push({
+        id: "school:" + land + ":" + subdivision + ":" + eintrag.id,
+        name: ereignisName(eintrag),
+        nameLanguage: nameSprachcode(eintrag.name),
+        startDate: eintrag.startDate,
+        endDate: eintrag.endDate,
+        kind: eintrag.startDate === eintrag.endDate ? "schoolFree" : "schoolHoliday",
+        source: "api"
+      });
+    });
+
+    (ergebnisse[1].data || []).forEach(function (eintrag) {
+      if (eintrag.type !== "Public" ||
+          !istInAuswahl(land, eintrag, subdivision) ||
+          !gueltigesDatum(eintrag.startDate) ||
+          !gueltigesDatum(eintrag.endDate) ||
+          eintrag.startDate > eintrag.endDate) return;
+      ereignisse.push({
+        id: "public:" + land + ":" + subdivision + ":" + eintrag.id,
+        name: ereignisName(eintrag),
+        nameLanguage: nameSprachcode(eintrag.name),
+        startDate: eintrag.startDate,
+        endDate: eintrag.endDate,
+        kind: "publicHoliday",
+        source: "api"
+      });
+    });
+
+    einstellungen.manualDays.forEach(function (tag) {
+      if (!tag || !gueltigesDatum(tag.date) || !tag.name) return;
+      ereignisse.push({
+        id: "manual:" + tag.id,
+        name: tag.name,
+        startDate: tag.date,
+        endDate: tag.date,
+        kind: "schoolFree",
+        source: "manual"
+      });
+    });
+
+    return {
+      events: ereignisse,
+      unavailable: ergebnisse.some(function (result) {
+        return result.error && !Array.isArray(result.data);
+      }),
+      errors: ergebnisse.map(function (result) {
+        return result.error;
+      }).filter(Boolean)
+    };
+  }
+
   window.familienplanerFeiertage = {
     renderKalenderTag: renderKalenderTag,
     hatEreignisse: function (datum) {
@@ -1301,7 +1395,13 @@
       zeichneAlles();
       return aktualisiereDaten(true);
     },
-    ereignisse: alleEreignisse
+    ereignisse: alleEreignisse,
+    schoolRegions: function () {
+      return deutscheBundeslaender.map(function (eintrag) {
+        return { countryCode: "DE", code: eintrag.code, name: eintrag.name };
+      }).concat([{ countryCode: "HR", code: "", name: "Kroatien" }]);
+    },
+    schoolEventsForRegion: schulEreignisseFuerRegion
   };
 
   [

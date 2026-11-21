@@ -721,6 +721,237 @@
     "Die Verbindung konnte nicht gespeichert werden.": [
       "Povezivanje nije moguće spremiti.",
       "The connection could not be saved."
+    ],
+    "Unser Stundenplan ♡": ["Naš raspored sati ♡", "Our Timetable ♡"],
+    "Schule, Aufgaben und Termine gut organisiert.": [
+      "Raspored, zadaće i obveze na jednom mjestu.",
+      "School, homework, and events in one place."
+    ],
+    "Kind auswählen": ["Odaberi dijete", "Choose a child"],
+    "Die Profil-Auswahl auf diesem Gerät ist keine Anmeldung.": [
+      "Odabir profila na ovom uređaju nije prijava.",
+      "Choosing a profile on this device is not authentication."
+    ],
+    "Land der Schule": ["Država škole", "School country"],
+    "Bitte auswählen": ["Odaberi", "Please select"],
+    "Bundesland / Region": ["Savezna pokrajina / regija", "State / region"],
+    "Schulplaner-Bereiche": ["Dijelovi školskog planera", "School planner sections"],
+    "Samstag anzeigen": ["Prikaži subotu", "Show Saturday"],
+    "+ Unterricht hinzufügen": ["+ Dodaj školski sat", "+ Add lesson"],
+    "Unterricht hinzufügen": ["Dodaj školski sat", "Add lesson"],
+    "Fach *": ["Predmet *", "Subject *"],
+    "Wochentag *": ["Dan u tjednu *", "Weekday *"],
+    "Stunde / Reihenfolge": ["Školski sat / redoslijed", "Lesson / order"],
+    "Beginn": ["Početak", "Start"],
+    "Ende": ["Završetak", "End"],
+    "Raum": ["Učionica", "Room"],
+    "Lehrkraft": ["Učitelj/ica", "Teacher"],
+    "Fachfarbe": ["Boja predmeta", "Subject color"],
+    "Notizen": ["Bilješke", "Notes"],
+    "Wochentag auswählen": ["Odaberi dan u tjednu", "Choose a weekday"],
+    "Einmalige Planänderung hinzufügen": [
+      "Dodaj jednokratnu izmjenu rasporeda",
+      "Add a one-time schedule change"
+    ],
+    "Änderung": ["Izmjena", "Change"],
+    "Stunde fällt aus": ["Sat je otkazan", "Lesson cancelled"],
+    "Fach ersetzen": ["Zamijeni predmet", "Replace subject"],
+    "Zusätzliche Stunde": ["Dodatni sat", "Additional lesson"],
+    "Regelmäßige Stunde": ["Redovni školski sat", "Regular lesson"],
+    "Neues Fach (bei Ersatz / Zusatz)": [
+      "Novi predmet (za zamjenu / dodatak)",
+      "New subject (for replacement / addition)"
+    ],
+    "Änderung speichern": ["Spremi izmjenu", "Save change"],
+    "Einmalige Planänderungen": [
+      "Jednokratne izmjene rasporeda",
+      "One-time schedule changes"
+    ],
+    "Anzeige": ["Prikaz", "View"],
+    "Erledigt": ["Završeno", "Completed"],
+    "Alle Aufgaben": ["Sve zadaće", "All homework"],
+    "+ Hausaufgabe hinzufügen": ["+ Dodaj domaću zadaću", "+ Add homework"],
+    "Hausaufgabe hinzufügen": ["Dodaj domaću zadaću", "Add homework"],
+    "Fällig am": ["Rok", "Due date"],
+    "Erinnerung": ["Podsjetnik", "Reminder"],
+    "Beschreibung *": ["Opis *", "Description *"],
+    "Keine Erinnerung": ["Bez podsjetnika", "No reminder"],
+    "Tests erscheinen auch einmalig im Familienkalender.": [
+      "Testovi se kao jednokratni termini prikazuju i u obiteljskom kalendaru.",
+      "Tests also appear as one-time events in the family calendar."
+    ],
+    "+ Klassenarbeit / Test hinzufügen": [
+      "+ Dodaj ispit / test",
+      "+ Add exam / test"
+    ],
+    "Klassenarbeit / Test hinzufügen": [
+      "Dodaj ispit / test",
+      "Add exam / test"
+    ],
+    "Lernerinnerung": ["Podsjetnik za učenje", "Study reminder"],
+    "Lernstoff": ["Gradivo", "Study material"],
+    "+ Schulpflicht hinzufügen": [
+      "+ Dodaj školsku obvezu",
+      "+ Add school obligation"
+    ],
+    "Erinnerung am Vorabend oder am Tag der Aufgabe.": [
+      "Podsjetnik večer prije ili na dan obveze.",
+      "Reminder the evening before or on the due date."
+    ],
+    "Schulpflicht hinzufügen": ["Dodaj školsku obvezu", "Add school obligation"],
+    "Aufgabe *": ["Obveza *", "Task *"],
+    "z. B. Sportsachen mitbringen": [
+      "npr. ponijeti sportsku opremu",
+      "e.g. bring sports kit"
+    ],
+    "Am Vorabend": ["Večer prije", "The evening before"],
+    "Lege zuerst ein Kinderprofil in „Unsere Familie“ an.": [
+      "Najprije dodaj profil djeteta u odjeljku „Naša obitelj“.",
+      "First add a child profile in “Our Family”."
+    ],
+    "Wähle ein Eltern- oder Kinderprofil über die Spracheinstellungen aus.": [
+      "Odaberi roditeljski ili dječji profil u postavkama jezika.",
+      "Choose a parent or child profile in language settings."
+    ],
+    "Dieses Kinderprofil wurde in der Familienliste nicht gefunden.": [
+      "Ovaj dječji profil nije pronađen na popisu članova obitelji.",
+      "This child profile was not found in the family list."
+    ],
+    "Kinderprofile können nur den eigenen Stundenplan öffnen.": [
+      "Dječji profili mogu otvoriti samo vlastiti raspored.",
+      "Child profiles can only open their own timetable."
+    ],
+    "Die lokalen Stundenplandaten konnten nicht gelesen werden.": [
+      "Lokalne podatke rasporeda nije moguće pročitati.",
+      "Local timetable data could not be read."
+    ],
+    "Die Änderungen konnten nicht gespeichert werden. Prüfe den freien Speicherplatz.": [
+      "Izmjene nije moguće spremiti. Provjeri slobodan prostor za pohranu.",
+      "Changes could not be saved. Check available storage space."
+    ],
+    "Wähle das Land und die Region, in der dieses Kind zur Schule geht.": [
+      "Odaberi državu i regiju u kojoj ovo dijete pohađa školu.",
+      "Choose the country and region where this child attends school."
+    ],
+    "Kein Unterricht:": ["Nema nastave:", "No classes:"],
+    "Keine Stunden für diesen Tag eingetragen.": [
+      "Za ovaj dan nema unesenih školskih sati.",
+      "No lessons are entered for this day."
+    ],
+    "Keine einmaligen Planänderungen.": [
+      "Nema jednokratnih izmjena rasporeda.",
+      "No one-time schedule changes."
+    ],
+    "Keine Hausaufgaben eingetragen.": [
+      "Nema unesenih domaćih zadaća.",
+      "No homework has been entered."
+    ],
+    "Keine Klassenarbeiten oder Tests eingetragen.": [
+      "Nema unesenih ispita ni testova.",
+      "No exams or tests have been entered."
+    ],
+    "Keine Schulpflichten eingetragen.": [
+      "Nema unesenih školskih obveza.",
+      "No school obligations have been entered."
+    ],
+    "Unterricht gespeichert.": ["Školski sat je spremljen.", "Lesson saved."],
+    "Möchtest du diese Unterrichtsstunde löschen?": [
+      "Želiš li izbrisati ovaj školski sat?",
+      "Do you want to delete this lesson?"
+    ],
+    "Unterricht gelöscht.": ["Školski sat je izbrisan.", "Lesson deleted."],
+    "Hausaufgabe gespeichert.": ["Domaća zadaća je spremljena.", "Homework saved."],
+    "Hausaufgabe gelöscht.": ["Domaća zadaća je izbrisana.", "Homework deleted."],
+    "Möchtest du diese Hausaufgabe wirklich löschen?": [
+      "Želiš li izbrisati ovu domaću zadaću?",
+      "Do you really want to delete this homework?"
+    ],
+    "Test gespeichert.": ["Test je spremljen.", "Test saved."],
+    "Test gelöscht.": ["Test je izbrisan.", "Test deleted."],
+    "Möchtest du diesen Test wirklich löschen?": [
+      "Želiš li izbrisati ovaj test?",
+      "Do you really want to delete this test?"
+    ],
+    "Schulpflicht gespeichert.": [
+      "Školska obveza je spremljena.",
+      "School obligation saved."
+    ],
+    "Schulpflicht gelöscht.": [
+      "Školska obveza je izbrisana.",
+      "School obligation deleted."
+    ],
+    "Möchtest du diese Schulpflicht wirklich löschen?": [
+      "Želiš li izbrisati ovu školsku obvezu?",
+      "Do you really want to delete this school obligation?"
+    ],
+    "Änderung gespeichert.": ["Izmjena je spremljena.", "Change saved."],
+    "Änderung gelöscht.": ["Izmjena je izbrisana.", "Change deleted."],
+    "Möchtest du diese Änderung wirklich löschen?": [
+      "Želiš li izbrisati ovu izmjenu?",
+      "Do you really want to delete this change?"
+    ],
+    "Fach und Beschreibung sind erforderlich.": [
+      "Predmet i opis su obavezni.",
+      "Subject and description are required."
+    ],
+    "Bitte wähle ein gültiges Datum.": [
+      "Odaberi valjan datum.",
+      "Please choose a valid date."
+    ],
+    "Bitte wähle zuerst ein Fach aus dem Wochenplan.": [
+      "Najprije odaberi predmet iz tjednog rasporeda.",
+      "Choose a subject from the weekly timetable first."
+    ],
+    "Keine Ferien- oder Feiertagsdaten für diese Schulregion verfügbar.": [
+      "Podaci o praznicima i blagdanima nisu dostupni za ovu školsku regiju.",
+      "Holiday data is not available for this school region."
+    ],
+    "Ferien- und Feiertagsdaten konnten nicht geladen werden; verfügbare gespeicherte Daten werden verwendet.": [
+      "Podatke o praznicima i blagdanima nije moguće učitati; koriste se dostupni spremljeni podaci.",
+      "Holiday data could not be loaded; available cached data is being used."
+    ],
+    "Hausaufgabe fällig:": ["Rok domaće zadaće:", "Homework due:"],
+    "Lernzeit:": ["Vrijeme za učenje:", "Study time:"],
+    "Schulaufgabe:": ["Školska obveza:", "School task:"],
+    "Klassenarbeit": ["Ispit", "Exam"],
+    "Woche": ["Tjedan", "Week"],
+    "Offene Hausaufgaben": ["Nedovršene domaće zadaće", "Outstanding homework"],
+    "Schule": ["Škola", "School"],
+    "Fälligkeit": ["Rok", "Due"],
+    "Nur auf diesem Gerät gespeichert. Supabase-Synchronisierung und Push-Mitteilungen sind nicht eingerichtet.": [
+      "Sprema se samo na ovom uređaju. Supabase sinkronizacija i push obavijesti nisu postavljene.",
+      "Saved only on this device. Supabase sync and push notifications are not configured."
+    ],
+    "Bearbeiten": ["Uredi", "Edit"],
+    "Hausaufgaben": ["Domaće zadaće", "Homework"],
+    "Klassenarbeiten & Tests": ["Ispiti i testovi", "Exams & tests"],
+    "Schulpflichten": ["Školske obveze", "School obligations"],
+    "Datum *": ["Datum *", "Date *"],
+    "Notiz": ["Bilješka", "Note"],
+    "Einstellungen öffnen": ["Otvori postavke", "Open settings"],
+    "Bitte wähle eine Stunde dieses Wochentags.": [
+      "Odaberi školski sat za ovaj dan u tjednu.",
+      "Choose a lesson for this weekday."
+    ],
+    "Schulregion wurde gespeichert.": [
+      "Školska regija je spremljena.",
+      "School region saved."
+    ],
+    "Unterricht bearbeiten": ["Uredi školski sat", "Edit lesson"],
+    "Hausaufgabe bearbeiten": ["Uredi domaću zadaću", "Edit homework"],
+    "Test bearbeiten": ["Uredi test", "Edit test"],
+    "Schulpflicht bearbeiten": ["Uredi školsku obvezu", "Edit school obligation"],
+    "Fach und Wochentag sind erforderlich.": [
+      "Predmet i dan u tjednu su obavezni.",
+      "Subject and weekday are required."
+    ],
+    "Fach und Datum sind erforderlich.": [
+      "Predmet i datum su obavezni.",
+      "Subject and date are required."
+    ],
+    "Aufgabe und Datum sind erforderlich.": [
+      "Obveza i datum su obavezni.",
+      "Task and date are required."
     ]
   };
 

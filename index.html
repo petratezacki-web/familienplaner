@@ -7,6 +7,7 @@
     <title>Familienplaner</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">  
     <link rel="stylesheet" href="einkaufsliste.css">
+  <link rel="stylesheet" href="stundenplan.css">
   <style>  
 
    </style>
@@ -2793,7 +2794,8 @@ body {
       <span class="hauptkarteIcon" aria-hidden="true">🛒</span>
       <strong>Einkaufsliste</strong>
     </article>
-    <article id="stundenplanButton" class="hauptkarte">
+    <article id="stundenplanButton" class="hauptkarte" role="button"
+      tabindex="0" aria-expanded="false" aria-controls="stundenplanAnsicht">
       <span class="hauptkarteIcon" aria-hidden="true">📚</span>
       <strong>Stundenplan</strong>
     </article>
@@ -2935,6 +2937,300 @@ body {
       type="button">Zurück</button>
   </section>
    
+  <section id="stundenplanAnsicht" hidden aria-labelledby="stundenplanTitel">
+    <header class="stundenplanKopf">
+      <h2 id="stundenplanTitel">Unser Stundenplan ♡</h2>
+      <p>Schule, Aufgaben und Termine gut organisiert.</p>
+    </header>
+
+    <div class="stundenplanPanel">
+      <div class="stundenplanProfilLeiste">
+        <div id="stundenplanKindAuswahl" class="stundenplanKindAuswahl"
+          role="group" aria-label="Kind auswählen"></div>
+        <p id="stundenplanProfilHinweis" class="stundenplanProfilHinweis">
+          Die Profil-Auswahl auf diesem Gerät ist keine Anmeldung.
+        </p>
+        <p class="stundenplanHilfetext">
+          Nur auf diesem Gerät gespeichert. Supabase-Synchronisierung und Push-Mitteilungen sind nicht eingerichtet.
+        </p>
+      </div>
+
+      <div class="stundenplanOrtsfelder">
+        <label for="stundenplanSchulland">Land der Schule
+          <select id="stundenplanSchulland">
+            <option value="">Bitte auswählen</option>
+            <option value="DE">Deutschland</option>
+            <option value="HR">Kroatien</option>
+          </select>
+        </label>
+        <label id="stundenplanBundeslandFeld" for="stundenplanBundesland">
+          Bundesland / Region
+          <select id="stundenplanBundesland">
+            <option value="">Bitte auswählen</option>
+          </select>
+        </label>
+      </div>
+      <p id="stundenplanFerienHinweis" class="stundenplanMitteilung"
+        data-i18n-ignore
+        role="status" aria-live="polite" hidden></p>
+
+      <nav class="stundenplanBereiche" role="tablist"
+        aria-label="Schulplaner-Bereiche">
+        <button class="stundenplanTab" type="button" role="tab"
+          aria-selected="true" data-stundenplan-tab="schedule">Stundenplan</button>
+        <button class="stundenplanTab" type="button" role="tab"
+          aria-selected="false" data-stundenplan-tab="homework">Hausaufgaben</button>
+        <button class="stundenplanTab" type="button" role="tab"
+          aria-selected="false" data-stundenplan-tab="tests">Klassenarbeiten &amp; Tests</button>
+        <button class="stundenplanTab" type="button" role="tab"
+          aria-selected="false" data-stundenplan-tab="duties">Schulpflichten</button>
+      </nav>
+
+      <section id="stundenplanBereichSchedule"
+        class="stundenplanAnsichtBereich" data-stundenplan-panel="schedule"
+        role="tabpanel">
+        <div class="stundenplanAktionen">
+          <label class="stundenplanHilfetext">
+            <input id="stundenplanSamstag" class="stundenplanCheckbox"
+              type="checkbox">
+            Samstag anzeigen
+          </label>
+          <button id="stundenplanUnterrichtHinzufuegen"
+            class="stundenplanHauptknopf" type="button">
+            + Unterricht hinzufügen
+          </button>
+        </div>
+        <form id="stundenplanForm" class="stundenplanForm" hidden>
+          <h3 id="stundenplanFormTitel">Unterricht hinzufügen</h3>
+          <div class="stundenplanFelder">
+            <label class="stundenplanVoll" for="stundenplanFach">
+              Fach *
+              <input id="stundenplanFach" name="subject" type="text"
+                maxlength="100" required>
+            </label>
+            <label for="stundenplanWochentag">Wochentag *
+              <select id="stundenplanWochentag" name="day" required></select>
+            </label>
+            <label for="stundenplanStunde">Stunde / Reihenfolge
+              <input id="stundenplanStunde" name="order" type="number"
+                min="1" step="1">
+            </label>
+            <label for="stundenplanBeginn">Beginn
+              <input id="stundenplanBeginn" name="start" type="time">
+            </label>
+            <label for="stundenplanEnde">Ende
+              <input id="stundenplanEnde" name="end" type="time">
+            </label>
+            <label for="stundenplanRaum">Raum
+              <input id="stundenplanRaum" name="room" type="text"
+                maxlength="80">
+            </label>
+            <label for="stundenplanLehrkraft">Lehrkraft
+              <input id="stundenplanLehrkraft" name="teacher" type="text"
+                maxlength="100">
+            </label>
+            <label class="stundenplanFarbfeld" for="stundenplanFachfarbe">
+              Fachfarbe
+              <input id="stundenplanFachfarbe" name="color" type="color"
+                value="#A8C6B1">
+            </label>
+            <label class="stundenplanVoll" for="stundenplanUnterrichtNotiz">
+              Notizen
+              <textarea id="stundenplanUnterrichtNotiz" name="notes"
+                maxlength="1000"></textarea>
+            </label>
+          </div>
+          <div class="stundenplanFormAktionen">
+            <button class="stundenplanSekundaerKnopf"
+              id="stundenplanUnterrichtAbbrechen" type="button">Abbrechen</button>
+            <button class="stundenplanSpeichern" type="submit">Speichern</button>
+          </div>
+        </form>
+
+        <div id="stundenplanSchultagAuswahl" class="stundenplanSchultagAuswahl"
+          role="group" aria-label="Wochentag auswählen"></div>
+        <div id="stundenplanWochenRaster" class="stundenplanWochenRaster"></div>
+        <section id="stundenplanTagesbereich" class="stundenplanTagesbereich"
+          aria-live="polite"></section>
+
+        <details class="stundenplanForm">
+          <summary>Einmalige Planänderung hinzufügen</summary>
+          <form id="stundenplanAenderungForm" class="stundenplanFelder">
+            <label for="stundenplanAenderungDatum">Datum *
+              <input id="stundenplanAenderungDatum" type="date" required>
+            </label>
+            <label for="stundenplanAenderungArt">Änderung
+              <select id="stundenplanAenderungArt">
+                <option value="cancel">Stunde fällt aus</option>
+                <option value="replace">Fach ersetzen</option>
+                <option value="add">Zusätzliche Stunde</option>
+              </select>
+            </label>
+            <label for="stundenplanAenderungUnterricht">Regelmäßige Stunde
+              <select id="stundenplanAenderungUnterricht"></select>
+            </label>
+            <label for="stundenplanAenderungFach">Neues Fach (bei Ersatz / Zusatz)
+              <input id="stundenplanAenderungFach" type="text" maxlength="100">
+            </label>
+            <label class="stundenplanVoll" for="stundenplanAenderungNotiz">
+              Notiz
+              <input id="stundenplanAenderungNotiz" type="text" maxlength="300">
+            </label>
+            <div class="stundenplanFormAktionen stundenplanVoll">
+              <button class="stundenplanSpeichern" type="submit">Änderung speichern</button>
+            </div>
+          </form>
+        </details>
+        <h3 class="stundenplanUeberschriftKlein">Einmalige Planänderungen</h3>
+        <div id="stundenplanAenderungen" class="stundenplanEintragsListe"></div>
+      </section>
+
+      <section id="stundenplanBereichHomework"
+        class="stundenplanAnsichtBereich" data-stundenplan-panel="homework"
+        role="tabpanel" hidden>
+        <div class="stundenplanAktionen">
+          <div class="stundenplanFilter">
+            <label for="stundenplanHausaufgabenFilter">Anzeige</label>
+            <select id="stundenplanHausaufgabenFilter">
+              <option value="open">Offene Hausaufgaben</option>
+              <option value="done">Erledigt</option>
+              <option value="all">Alle Aufgaben</option>
+            </select>
+          </div>
+          <button id="stundenplanHausaufgabeHinzufuegen"
+            class="stundenplanHauptknopf" type="button">+ Hausaufgabe hinzufügen</button>
+        </div>
+        <form id="stundenplanHausaufgabeForm" class="stundenplanForm" hidden>
+          <h3 id="stundenplanHausaufgabeFormTitel">Hausaufgabe hinzufügen</h3>
+          <div class="stundenplanFelder">
+            <label for="stundenplanHausaufgabeFach">Fach *
+              <input id="stundenplanHausaufgabeFach" type="text"
+                maxlength="100" required>
+            </label>
+            <label for="stundenplanHausaufgabeFaellig">Fällig am
+              <input id="stundenplanHausaufgabeFaellig" type="date">
+            </label>
+            <label class="stundenplanVoll" for="stundenplanHausaufgabeText">
+              Beschreibung *
+              <textarea id="stundenplanHausaufgabeText" maxlength="1500"
+                required></textarea>
+            </label>
+            <label for="stundenplanHausaufgabeErinnerung">Erinnerung
+              <select id="stundenplanHausaufgabeErinnerung">
+                <option value="1">1 Tag vorher</option>
+                <option value="0">Am selben Tag</option>
+                <option value="3">3 Tage vorher</option>
+                <option value="none">Keine Erinnerung</option>
+              </select>
+            </label>
+            <label class="stundenplanVoll" for="stundenplanHausaufgabeNotiz">
+              Notiz
+              <textarea id="stundenplanHausaufgabeNotiz" maxlength="1000"></textarea>
+            </label>
+          </div>
+          <div class="stundenplanFormAktionen">
+            <button class="stundenplanSekundaerKnopf"
+              id="stundenplanHausaufgabeAbbrechen" type="button">Abbrechen</button>
+            <button class="stundenplanSpeichern" type="submit">Speichern</button>
+          </div>
+        </form>
+        <div id="stundenplanHausaufgaben" class="stundenplanEintragsListe"></div>
+      </section>
+
+      <section id="stundenplanBereichTests"
+        class="stundenplanAnsichtBereich" data-stundenplan-panel="tests"
+        role="tabpanel" hidden>
+        <div class="stundenplanAktionen">
+          <p class="stundenplanHilfetext">Tests erscheinen auch einmalig im Familienkalender.</p>
+          <button id="stundenplanTestHinzufuegen" class="stundenplanHauptknopf"
+            type="button">+ Klassenarbeit / Test hinzufügen</button>
+        </div>
+        <form id="stundenplanTestForm" class="stundenplanForm" hidden>
+          <h3 id="stundenplanTestFormTitel">Klassenarbeit / Test hinzufügen</h3>
+          <div class="stundenplanFelder">
+            <label for="stundenplanTestFach">Fach *
+              <input id="stundenplanTestFach" type="text" maxlength="100" required>
+            </label>
+            <label for="stundenplanTestDatum">Datum *
+              <input id="stundenplanTestDatum" type="date" required>
+            </label>
+            <label for="stundenplanTestZeit">Uhrzeit
+              <input id="stundenplanTestZeit" type="time">
+            </label>
+            <label for="stundenplanTestErinnerung">Lernerinnerung
+              <select id="stundenplanTestErinnerung">
+                <option value="3">3 Tage vorher</option>
+                <option value="1">1 Tag vorher</option>
+                <option value="0">Am selben Tag</option>
+                <option value="none">Keine Erinnerung</option>
+              </select>
+            </label>
+            <label class="stundenplanVoll" for="stundenplanTestStoff">
+              Lernstoff
+              <textarea id="stundenplanTestStoff" maxlength="1500"></textarea>
+            </label>
+            <label class="stundenplanVoll" for="stundenplanTestNotiz">
+              Notizen
+              <textarea id="stundenplanTestNotiz" maxlength="1000"></textarea>
+            </label>
+          </div>
+          <div class="stundenplanFormAktionen">
+            <button class="stundenplanSekundaerKnopf"
+              id="stundenplanTestAbbrechen" type="button">Abbrechen</button>
+            <button class="stundenplanSpeichern" type="submit">Speichern</button>
+          </div>
+        </form>
+        <div id="stundenplanTests" class="stundenplanEintragsListe"></div>
+      </section>
+
+      <section id="stundenplanBereichDuties"
+        class="stundenplanAnsichtBereich" data-stundenplan-panel="duties"
+        role="tabpanel" hidden>
+        <div class="stundenplanAktionen">
+          <p class="stundenplanHilfetext">Erinnerung am Vorabend oder am Tag der Aufgabe.</p>
+          <button id="stundenplanPflichtHinzufuegen"
+            class="stundenplanHauptknopf" type="button">+ Schulpflicht hinzufügen</button>
+        </div>
+        <form id="stundenplanPflichtForm" class="stundenplanForm" hidden>
+          <h3 id="stundenplanPflichtFormTitel">Schulpflicht hinzufügen</h3>
+          <div class="stundenplanFelder">
+            <label class="stundenplanVoll" for="stundenplanPflichtText">
+              Aufgabe *
+              <input id="stundenplanPflichtText" type="text" maxlength="300"
+                placeholder="z. B. Sportsachen mitbringen" required>
+            </label>
+            <label for="stundenplanPflichtDatum">Datum *
+              <input id="stundenplanPflichtDatum" type="date" required>
+            </label>
+            <label for="stundenplanPflichtErinnerung">Erinnerung
+              <select id="stundenplanPflichtErinnerung">
+                <option value="evening">Am Vorabend</option>
+                <option value="same">Am selben Tag</option>
+                <option value="none">Keine Erinnerung</option>
+              </select>
+            </label>
+            <label class="stundenplanVoll" for="stundenplanPflichtNotiz">
+              Notiz
+              <textarea id="stundenplanPflichtNotiz" maxlength="1000"></textarea>
+            </label>
+          </div>
+          <div class="stundenplanFormAktionen">
+            <button class="stundenplanSekundaerKnopf"
+              id="stundenplanPflichtAbbrechen" type="button">Abbrechen</button>
+            <button class="stundenplanSpeichern" type="submit">Speichern</button>
+          </div>
+        </form>
+        <div id="stundenplanPflichten" class="stundenplanEintragsListe"></div>
+      </section>
+
+      <p id="stundenplanStatus" class="stundenplanLadehinweis"
+        data-i18n-ignore
+        role="status" aria-live="polite" hidden></p>
+      <button id="stundenplanZurueck" class="stundenplanSekundaerKnopf"
+        type="button">Zurück</button>
+    </div>
+  </section>
+
 <section id="familieAnsicht" hidden>
 <h2><span style="color:#E7A4BA;">♥</span> Unsere Familie <span id="familieAnzahl"></span></h2>
   <p>Jedes Familienmitglied hat seine eigene Farbe.</p>
@@ -3625,6 +3921,9 @@ terminPolja.forEach((polje, index) => {
     } catch (e) {
       termine = [];
     }
+    if (window.familienplanerStundenplan) {
+      termine = window.familienplanerStundenplan.filterCalendarEvents(termine);
+    }
 
     const heute = new Date();
 
@@ -3949,6 +4248,13 @@ function familienplanerTerminListenEintragErstellen(termin, termine) {
 
   eintrag.appendChild(erstelleTerminFarbmarkierung(termin));
 
+  if (termin.school_test_id) {
+    if (termin.status === "erledigt") {
+      eintrag.style.textDecoration = "line-through";
+    }
+    return eintrag;
+  }
+
   if (termin.status === "erledigt") {
     eintrag.style.textDecoration = "line-through";
     return eintrag;
@@ -4010,7 +4316,10 @@ function familienplanerTermineListenZeichnen(termine) {
   liste.replaceChildren();
   verlauf.replaceChildren();
 
-  termine
+  const sichtbareTermine = window.familienplanerStundenplan
+    ? window.familienplanerStundenplan.filterCalendarEvents(termine)
+    : termine;
+  sichtbareTermine
     .filter(termin => termin && typeof termin === "object")
     .slice()
     .sort(function (a, b) {
@@ -4175,6 +4484,9 @@ function zeigeWochenTermine() {
     termine = Array.isArray(daten) ? daten : [];
   } catch (fehler) {
     console.error("Termine konnten nicht geladen werden.", fehler);
+  }
+  if (window.familienplanerStundenplan) {
+    termine = window.familienplanerStundenplan.filterCalendarEvents(termine);
   }
 
   const raster = document.getElementById("wochenTermine");
@@ -6028,6 +6340,7 @@ karte.append(farbpunkt, name, akcije);
 })();
 </script>
 <script src="ferien-feiertage.js"></script>
+<script src="stundenplan.js"></script>
 <script src="einkaufsliste.js"></script>
 <script src="i18n.js"></script>
 </body>
