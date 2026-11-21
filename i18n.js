@@ -74,6 +74,163 @@
     "E-Mail": ["E-pošta", "Email"],
     "E-Mail des eingeladenen Kontos": ["E-pošta pozvanog računa", "Email of the invited account"],
     "Einkaufsliste": ["Popis za kupnju", "Shopping list"],
+    "Filter": ["Filtar", "Filter"],
+    "Unsere Einkaufsliste": [
+      "Naš popis za kupnju ♡",
+      "Our shopping list ♡"
+    ],
+    "Gemeinsam einkaufen, nichts vergessen.": [
+      "Kupujmo zajedno i ne zaboravimo ništa.",
+      "Shop together and don't forget a thing."
+    ],
+    "Artikel hinzufügen": ["Dodaj namirnicu", "Add item"],
+    "Artikel bearbeiten": ["Uredi namirnicu", "Edit item"],
+    "Artikelname": ["Naziv namirnice", "Item name"],
+    "Menge (optional)": ["Količina (nije obavezno)", "Quantity (optional)"],
+    "Einheit": ["Jedinica mjere", "Unit"],
+    "Keine Einheit": ["Bez jedinice", "No unit"],
+    "Liter": ["Litra", "Liter"],
+    "Stück": ["Komad", "Piece"],
+    "Packung": ["Pakiranje", "Pack"],
+    "Geschäft": ["Trgovina", "Store"],
+    "Ohne Geschäft": ["Bez trgovine", "No store"],
+    "Notiz (optional)": ["Bilješka (nije obavezno)", "Note (optional)"],
+    "Einkaufsdatum (optional)": [
+      "Datum kupnje (nije obavezno)",
+      "Shopping date (optional)"
+    ],
+    "{{done}} von {{total}} Artikeln erledigt": [
+      "Dovršeno {{done}} od {{total}} namirnica",
+      "{{done}} of {{total}} items completed"
+    ],
+    "{{count}} offen": ["{{count}} preostalih", "{{count}} open"],
+    "Gekaufte Artikel entfernen": [
+      "Ukloni kupljene namirnice",
+      "Remove purchased items"
+    ],
+    "Favoriten": ["Favoriti", "Favorites"],
+    "Artikel speichern": ["Spremi namirnicu", "Save item"],
+    "Geschäfte verwalten": ["Upravljaj trgovinama", "Manage stores"],
+    "Eigenes Geschäft hinzufügen": [
+      "Dodaj vlastitu trgovinu",
+      "Add a custom store"
+    ],
+    "Geschäft hinzufügen": ["Dodaj trgovinu", "Add store"],
+    "Geschäftsname": ["Naziv trgovine", "Store name"],
+    "Entfernen": ["Ukloni", "Remove"],
+    "Alle Artikel": ["Sve namirnice", "All items"],
+    "Heute einkaufen": ["Kupiti danas", "Shop today"],
+    "Noch offen": ["Još nije kupljeno", "Still needed"],
+    "Bereits gekauft": ["Već kupljeno", "Already purchased"],
+    "Als gekauft markieren": ["Označi kao kupljeno", "Mark as purchased"],
+    "Gekauft": ["Kupljeno", "Purchased"],
+    "Kaufmarkierung aufgehoben.": [
+      "Oznaka kupljenog proizvoda je poništena.",
+      "Purchased mark removed."
+    ],
+    "Artikel als gekauft markiert.": [
+      "Namirnica je označena kao kupljena.",
+      "Item marked as purchased."
+    ],
+    "Zu Favoriten hinzufügen": ["Dodaj u favorite", "Add to favorites"],
+    "Aus Favoriten entfernen": ["Ukloni iz favorita", "Remove from favorites"],
+    "Favorit erneut hinzufügen": [
+      "Ponovno dodaj omiljenu namirnicu",
+      "Add favorite again"
+    ],
+    "Geschäft ändern": ["Promijeni trgovinu", "Change store"],
+    "Artikel löschen": ["Obriši namirnicu", "Delete item"],
+    "Notiz:": ["Bilješka:", "Note:"],
+    "Einkaufen am": ["Kupiti do", "Buy by"],
+    "Hinzugefügt von": ["Dodao/la", "Added by"],
+    "Keine Artikel für diesen Filter.": [
+      "Nema namirnica za ovaj filtar.",
+      "No items match this filter."
+    ],
+    "Keine Artikel in diesem Geschäft.": [
+      "U ovoj trgovini nema namirnica.",
+      "No items in this store."
+    ],
+    "Noch keine eigenen Geschäfte.": [
+      "Još nema vlastitih trgovina.",
+      "No custom stores yet."
+    ],
+    "Bitte einen Artikelnamen eingeben.": [
+      "Unesi naziv namirnice.",
+      "Enter an item name."
+    ],
+    "Bitte einen Geschäftsnamen eingeben.": [
+      "Unesi naziv trgovine.",
+      "Enter a store name."
+    ],
+    "Bitte ein Geschäft auswählen.": [
+      "Odaberi trgovinu.",
+      "Select a store."
+    ],
+    "Die Menge muss größer als Null sein.": [
+      "Količina mora biti veća od nule.",
+      "Quantity must be greater than zero."
+    ],
+    "Dieses Geschäft gibt es bereits.": [
+      "Ta trgovina već postoji.",
+      "That store already exists."
+    ],
+    "Diesen Artikel gibt es in diesem Geschäft bereits. Menge erhöhen?": [
+      "Ta namirnica već postoji u ovoj trgovini. Povećati količinu?",
+      "This item is already in this store. Increase the quantity?"
+    ],
+    "Die Einheiten unterscheiden sich. Der Artikel wird separat geführt.": [
+      "Mjerne jedinice se razlikuju pa će namirnice biti navedene zasebno.",
+      "The units differ, so the items will remain separate."
+    ],
+    "Geschäft wirklich entfernen? Zugeordnete Artikel werden zu „Ohne Geschäft“ verschoben.": [
+      "Zaista ukloniti trgovinu? Pridružene namirnice premjestit će se u kategoriju „Bez trgovine“.",
+      "Remove this store? Its items will be moved to “No store”."
+    ],
+    "Diesen Artikel wirklich löschen?": [
+      "Zaista obrisati ovu namirnicu?",
+      "Delete this item?"
+    ],
+    "Alle gekauften Artikel entfernen?": [
+      "Ukloniti sve kupljene namirnice?",
+      "Remove all purchased items?"
+    ],
+    "Artikel hinzugefügt.": ["Namirnica je dodana.", "Item added."],
+    "Artikel aktualisiert.": ["Namirnica je ažurirana.", "Item updated."],
+    "Artikel gelöscht.": ["Namirnica je obrisana.", "Item deleted."],
+    "Menge erhöht.": ["Količina je povećana.", "Quantity increased."],
+    "Artikel verschoben.": ["Namirnica je premještena.", "Item moved."],
+    "Geschäft hinzugefügt.": ["Trgovina je dodana.", "Store added."],
+    "Geschäft gespeichert.": ["Trgovina je spremljena.", "Store saved."],
+    "Geschäft entfernt.": ["Trgovina je uklonjena.", "Store removed."],
+    "Aus Favoriten entfernt.": [
+      "Namirnica je uklonjena iz favorita.",
+      "Item removed from favorites."
+    ],
+    "Zu Favoriten hinzugefügt.": [
+      "Namirnica je dodana u favorite.",
+      "Item added to favorites."
+    ],
+    "Favorit erneut hinzugefügt.": [
+      "Omiljena namirnica ponovno je dodana.",
+      "Favorite added to the list again."
+    ],
+    "Gekaufte Artikel entfernt.": [
+      "Kupljene namirnice su uklonjene.",
+      "Purchased items removed."
+    ],
+    "Die Einkaufsliste konnte nicht geladen werden.": [
+      "Popis za kupnju nije moguće učitati.",
+      "The shopping list could not be loaded."
+    ],
+    "Die Einkaufsliste konnte nicht gespeichert werden.": [
+      "Popis za kupnju nije moguće spremiti.",
+      "The shopping list could not be saved."
+    ],
+    "Der Artikel konnte nicht gefunden werden.": [
+      "Namirnica nije pronađena.",
+      "The item could not be found."
+    ],
     "Einladung annehmen": ["Prihvati pozivnicu", "Accept invitation"],
     "Einladungscode": ["Kod pozivnice", "Invitation code"],
     "Einladungscode erstellen": ["Izradi kod pozivnice", "Create invitation code"],

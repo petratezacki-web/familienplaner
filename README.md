@@ -12,3 +12,11 @@ lokal zwischengespeichert. Kroatien wird vom API derzeit ohne regionale
 Unterteilung angeboten; noch nicht veröffentlichte Schulferiendaten werden
 nicht ergänzt oder geschätzt. Erinnerungen erscheinen nur bei geöffneter
 Anwendung; Push-Mitteilungen bei geschlossener Anwendung sind nicht eingerichtet.
+
+## Einkaufsliste
+
+Die Einkaufsliste wird lokal im Browser gespeichert. Sie kann von Mitgliedern
+verwendet werden, die dasselbe Browserprofil auf diesem Gerät nutzen; eine
+Synchronisierung zwischen Geräten oder über Supabase ist noch nicht aktiv.
+Artikel, eigene Geschäfte und Favoriten bleiben erhalten, bis sie manuell
+geändert oder entfernt werden.

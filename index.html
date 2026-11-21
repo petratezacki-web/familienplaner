@@ -6,6 +6,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">   
     <title>Familienplaner</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="einkaufsliste.css">
   <style>  
 
    </style>
@@ -2770,7 +2771,9 @@ body {
       <span class="hauptkarteIcon" aria-hidden="true">📝</span>
       <strong>Familien-Notizen</strong>
     </article>
-    <article id="einkaufslisteButton" class="hauptkarte">
+    <article id="einkaufslisteButton" class="hauptkarte"
+      role="button" tabindex="0" aria-expanded="false"
+      aria-controls="einkaufslisteAnsicht">
       <span class="hauptkarteIcon" aria-hidden="true">🛒</span>
       <strong>Einkaufsliste</strong>
     </article>
@@ -2779,6 +2782,120 @@ body {
       <strong>Stundenplan</strong>
     </article>
   </div>
+  <section id="einkaufslisteAnsicht" class="einkaufAnsicht" hidden
+    aria-labelledby="einkaufTitel">
+    <header class="einkaufKopf">
+      <h2 id="einkaufTitel">Unsere Einkaufsliste <span aria-hidden="true">♡</span></h2>
+      <p>Gemeinsam einkaufen, nichts vergessen.</p>
+    </header>
+
+    <p id="einkaufMeldung" class="einkaufMeldung" role="status"
+      aria-live="polite" hidden></p>
+
+    <div class="einkaufFortschritt">
+      <div class="einkaufFortschrittText">
+        <strong id="einkaufFortschrittText">0 von 0 Artikeln erledigt</strong>
+        <progress id="einkaufFortschritt" max="1" value="0"></progress>
+      </div>
+      <button id="einkaufGekauftEntfernen" type="button" disabled>
+        Gekaufte Artikel entfernen
+      </button>
+    </div>
+
+    <section id="einkaufFavoritenBereich" class="einkaufFavoriten" hidden
+      aria-labelledby="einkaufFavoritenTitel">
+      <h3 id="einkaufFavoritenTitel">Favoriten</h3>
+      <div id="einkaufFavoriten"></div>
+    </section>
+
+    <div class="einkaufAktionen">
+      <button id="einkaufHinzufuegen" class="einkaufPrimaer" type="button">
+        <span aria-hidden="true">＋</span> Artikel hinzufügen
+      </button>
+      <button id="einkaufGeschaefteUmschalten" type="button"
+        aria-expanded="false" aria-controls="einkaufGeschaeftePanel">
+        Geschäfte verwalten
+      </button>
+    </div>
+
+    <form id="einkaufFormPanel" class="einkaufForm" hidden>
+      <h3 id="einkaufFormTitel">Artikel hinzufügen</h3>
+      <div class="einkaufFormRaster">
+        <label class="einkaufFeld einkaufFeldVoll" for="einkaufArtikelName">
+          <span>Artikelname</span>
+          <input id="einkaufArtikelName" name="name" type="text"
+            maxlength="120" required autocomplete="off">
+        </label>
+        <label class="einkaufFeld" for="einkaufMenge">
+          <span>Menge (optional)</span>
+          <input id="einkaufMenge" name="quantity" type="number"
+            min="0.01" step="any" inputmode="decimal">
+        </label>
+        <label class="einkaufFeld" for="einkaufEinheit">
+          <span>Einheit</span>
+          <select id="einkaufEinheit" name="unit">
+            <option value="">Keine Einheit</option>
+            <option value="kg">kg</option>
+            <option value="g">g</option>
+            <option value="l">Liter</option>
+            <option value="piece">Stück</option>
+            <option value="pack">Packung</option>
+          </select>
+        </label>
+        <label class="einkaufFeld einkaufFeldVoll" for="einkaufGeschaeft">
+          <span>Geschäft</span>
+          <select id="einkaufGeschaeft" name="store_id"></select>
+        </label>
+        <label class="einkaufFeld einkaufFeldVoll" for="einkaufNotiz">
+          <span>Notiz (optional)</span>
+          <textarea id="einkaufNotiz" name="note" rows="2"
+            maxlength="500"></textarea>
+        </label>
+        <label class="einkaufFeld einkaufFeldVoll" for="einkaufDatum">
+          <span>Einkaufsdatum (optional)</span>
+          <input id="einkaufDatum" name="due_date" type="date">
+        </label>
+      </div>
+      <div class="einkaufFormAktionen">
+        <button id="einkaufAbbrechen" type="button">Abbrechen</button>
+        <button id="einkaufSpeichern" class="einkaufPrimaer"
+          type="submit">Speichern</button>
+      </div>
+    </form>
+
+    <section id="einkaufGeschaeftePanel" class="einkaufGeschaefteVerwaltung"
+      hidden aria-labelledby="einkaufGeschaefteTitel">
+      <h3 id="einkaufGeschaefteTitel">Geschäfte verwalten</h3>
+      <div class="einkaufNeuesGeschaeft">
+        <label class="einkaufFeld" for="einkaufNeuesGeschaeftName">
+          <span>Eigenes Geschäft hinzufügen</span>
+          <input id="einkaufNeuesGeschaeftName" type="text" maxlength="60">
+        </label>
+        <button id="einkaufGeschaeftHinzufuegen" class="einkaufPrimaer"
+          type="button">Geschäft hinzufügen</button>
+      </div>
+      <div id="einkaufEigeneGeschaefte"></div>
+    </section>
+
+    <nav class="einkaufFilter" aria-label="Filter">
+      <button type="button" data-einkauf-filter="all" aria-pressed="true">
+        Alle Artikel
+      </button>
+      <button type="button" data-einkauf-filter="today" aria-pressed="false">
+        Heute einkaufen
+      </button>
+      <button type="button" data-einkauf-filter="open" aria-pressed="false">
+        Noch offen
+      </button>
+      <button type="button" data-einkauf-filter="bought" aria-pressed="false">
+        Bereits gekauft
+      </button>
+    </nav>
+
+    <div id="einkaufGeschaefte" class="einkaufGeschaefte"></div>
+    <button id="einkaufZurueck" class="einkaufZurueck"
+      type="button">Zurück</button>
+  </section>
   <aside id="naechsterGeburtstag" class="geburtstagVorschau" hidden
     aria-live="polite">
     <strong>🎂 Bald Geburtstag</strong>
@@ -5895,6 +6012,7 @@ karte.append(farbpunkt, name, akcije);
 })();
 </script>
 <script src="ferien-feiertage.js"></script>
+<script src="einkaufsliste.js"></script>
 <script src="i18n.js"></script>
 </body>
 </html>
