@@ -22,17 +22,27 @@
 }
 
 body {
-  background-image:
-    linear-gradient(rgba(248, 247, 242, 0.28), rgba(223, 232, 220, 0.26)),
-    url("assets/familienplaner-hintergrund.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  position: relative;
+  isolation: isolate;
   background-color: var(--cream);
   font-family: Arial, sans-serif;
   color: #455F4D;
   margin: 8px;
+}
+
+body::before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background-image: var(
+    --familienplanerFoto,
+    url("assets/familienplaner-hintergrund.jpg")
+  );
+  background-position: var(--familienplanerFotoPosition, 50% 50%);
+  background-repeat: no-repeat;
+  background-size: var(--familienplanerFotoSize, cover);
+  content: "";
+  pointer-events: none;
 }
 
 h1 {
@@ -883,6 +893,203 @@ body {
   transform: none;
 }
 
+#fotoEditorOverlay {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(31, 47, 35, 0.58);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+#fotoEditorOverlay[hidden] {
+  display: none;
+}
+
+.fotoEditorDialog {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(250px, 0.85fr);
+  gap: 22px;
+  width: min(820px, 100%);
+  max-height: min(92vh, 760px);
+  max-height: min(92dvh, 760px);
+  overflow: auto;
+  padding: 24px;
+  border: 1px solid rgba(52, 85, 62, 0.14);
+  border-radius: 24px;
+  background: rgba(248, 247, 242, 0.97);
+  color: #34553E;
+  box-shadow: 0 20px 60px rgba(20, 34, 24, 0.28);
+}
+
+.fotoEditorDialog h2 {
+  margin: 0 0 8px;
+  color: #34553E;
+  font-size: 24px;
+}
+
+.fotoEditorDialog p {
+  margin: 0 0 16px;
+  color: #617765;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.fotoEditorVorschau {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-height: min(64vh, 560px);
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid rgba(52, 85, 62, 0.18);
+  border-radius: 20px;
+  background: #dfe8dc;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+  touch-action: none;
+  cursor: grab;
+}
+
+.fotoEditorVorschau:active {
+  cursor: grabbing;
+}
+
+#fotoEditorBild {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+.fotoEditorMuster {
+  position: absolute;
+  inset: 9% 7%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.fotoEditorMusterKopf {
+  align-self: center;
+  padding: 8px 13px;
+  border-radius: 17px;
+  background: rgba(223, 232, 220, 0.57);
+  color: #34553E;
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(17px, 4vw, 24px);
+  font-weight: 700;
+  text-shadow: 0 1px 5px rgba(255, 255, 255, 0.55);
+}
+
+.fotoEditorMusterKarten {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.fotoEditorMusterKarten span {
+  display: grid;
+  min-height: 33px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.44);
+  border-radius: 10px;
+  background: rgba(235, 203, 211, 0.62);
+  color: #34553E;
+  font-size: 9px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.fotoEditorEinstellungen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fotoEditorZoomZeile {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 6px 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+#fotoZoomRegler {
+  width: 100%;
+  accent-color: #66836b;
+}
+
+.fotoEditorHinweis {
+  margin-top: 12px !important;
+}
+
+.fotoEditorAktionen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.fotoEditorAktionen button {
+  flex: 1 1 105px;
+  min-width: 0;
+  margin: 0;
+  padding: 11px 12px;
+  font-size: 14px;
+}
+
+#fotoEditorSpeichern {
+  background: #d5e4d1;
+  font-weight: 700;
+}
+
+#fotoEditorAbbrechen,
+#fotoEditorZuruecksetzen {
+  background: rgba(223, 232, 220, 0.72);
+}
+
+@media (max-width: 600px) {
+  #fotoEditorOverlay {
+    padding: 10px;
+  }
+
+  .fotoEditorDialog {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    width: min(480px, 100%);
+    max-height: 94vh;
+    max-height: 94dvh;
+    padding: 17px;
+    border-radius: 20px;
+  }
+
+  .fotoEditorDialog h2 {
+    font-size: 21px;
+  }
+
+  .fotoEditorDialog p {
+    margin-bottom: 10px;
+  }
+
+  .fotoEditorVorschau {
+    width: min(100%, 190px);
+    max-height: min(51vh, 430px);
+    margin: 0 auto;
+    aspect-ratio: 9 / 19;
+  }
+
+  .fotoEditorAktionen {
+    margin-top: 14px;
+  }
+}
+
 #naechsterTermin {
   max-width: 1000px;
   padding: 25px;
@@ -970,15 +1177,6 @@ body {
   background: rgba(235, 203, 211, 0.58);
   color: #5D675D;
   text-align: center;
-}
-
-.bildEditorBereich {
-  margin-top: 20px;
-}
-
-#bildEditor {
-  background: rgba(223, 232, 220, 0.68) !important;
-  box-shadow: 0 6px 18px rgba(52, 85, 62, 0.10);
 }
 
 #geburtstageAnsicht {
@@ -1372,7 +1570,6 @@ body {
 #geburtstageAnsicht,
 #terminForm,
 #geburtstagForm,
-#bildEditor,
 #listaTermina > p,
 #povijestTermina > p,
 #familieListe .familieMitglied,
@@ -1415,11 +1612,7 @@ body {
 @media (max-width: 600px) {
   .zaglavlje {
     padding: 40px 14px 10px;
-    background: rgba(223, 232, 220, 0.58);
-  }
-
-  body {
-    background-attachment: scroll;
+    background: rgba(223, 232, 220, 0.48);
   }
 
   .zaglavlje h1 {
@@ -1440,6 +1633,7 @@ body {
     gap: 8px;
     margin: 12px auto 8px;
     padding: 10px;
+    background: rgba(223, 232, 220, 0.53);
   }
 
   .meni .hauptkarte {
@@ -1450,6 +1644,14 @@ body {
     min-height: 72px;
     padding: 4px;
     text-align: center;
+  }
+
+  .meni .hauptkarte::before {
+    background: rgba(235, 203, 211, 0.62);
+  }
+
+  .meni .hauptkarte:hover::before {
+    background: rgba(235, 203, 211, 0.74);
   }
 
   #einkaufslisteButton {
@@ -1491,52 +1693,6 @@ body {
     text-align: center;
   }
 
-  body {
-    position: relative;
-    isolation: isolate;
-    background-color: var(--cream);
-    background-image: none !important;
-  }
-
-  body::before {
-    position: fixed;
-    z-index: -2;
-    inset: -24px;
-    background-image:
-      linear-gradient(
-        rgba(248, 247, 242, 0.28),
-        rgba(223, 232, 220, 0.26)
-      ),
-      var(--familienplanerFoto, url("assets/familienplaner-hintergrund.jpg"));
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    content: "";
-    filter: blur(18px);
-    opacity: 0.82;
-    pointer-events: none;
-    transform: scale(1.04);
-  }
-
-  body::after {
-    position: fixed;
-    z-index: -1;
-    inset: 0;
-    background-image:
-      linear-gradient(
-        rgba(248, 247, 242, 0.28),
-        rgba(223, 232, 220, 0.26)
-      ),
-      var(--familienplanerFoto, url("assets/familienplaner-hintergrund.jpg"));
-    background-position:
-      center,
-      var(--familienplanerFotoPosition, 50% 50%);
-    background-repeat: no-repeat, no-repeat;
-    background-size: 100% 100%, contain;
-    content: "";
-    pointer-events: none;
-  }
-
   .fotoSteuerung {
     top: 10px;
     right: 10px;
@@ -1560,7 +1716,7 @@ body {
 
   #naechsterTermin {
     padding: 18px 14px;
-    background-color: rgba(241, 247, 239, 0.66);
+    background-color: rgba(241, 247, 239, 0.56);
   }
 
   .wochenTermin {
@@ -1650,6 +1806,45 @@ body {
   </div>
   <input type="file" id="familienFoto"
     accept="image/*" style="display:none;">
+</div>
+<div id="fotoEditorOverlay" hidden>
+  <section class="fotoEditorDialog" role="dialog" aria-modal="true"
+    aria-labelledby="fotoEditorTitel">
+    <div>
+      <h2 id="fotoEditorTitel">Hintergrundbild anpassen</h2>
+      <p>Ziehe das Foto zum Verschieben. Nutze zwei Finger zum Zoomen.</p>
+      <div id="fotoEditorVorschau" class="fotoEditorVorschau">
+        <img id="fotoEditorBild" alt="">
+        <div class="fotoEditorMuster" aria-hidden="true">
+          <div class="fotoEditorMusterKopf">Hallo, Familie! ♡</div>
+          <div class="fotoEditorMusterKarten">
+            <span>Einkaufsliste</span>
+            <span>Stundenplan</span>
+            <span>Familien-Notizen</span>
+            <span>Geburtstage</span>
+            <span>Kalender</span>
+            <span>Unsere Familie</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fotoEditorEinstellungen">
+      <div class="fotoEditorZoomZeile">
+        <label for="fotoZoomRegler">Zoom</label>
+        <output id="fotoZoomWert" for="fotoZoomRegler">100 %</output>
+      </div>
+      <input id="fotoZoomRegler" type="range"
+        min="100" max="300" step="1" value="100">
+      <p class="fotoEditorHinweis">
+        Die Anpassung gilt für dieses Gerät und bleibt nach dem Neuladen erhalten.
+      </p>
+      <div class="fotoEditorAktionen">
+        <button id="fotoEditorSpeichern" type="button">Speichern</button>
+        <button id="fotoEditorAbbrechen" type="button">Abbrechen</button>
+        <button id="fotoEditorZuruecksetzen" type="button">Zurücksetzen</button>
+      </div>
+    </div>
+  </section>
 </div>
 <button id="einstellungenButton" type="button"
   aria-label="Einstellungen" title="Einstellungen">⚙️</button>
@@ -3610,58 +3805,217 @@ karte.append(farbpunkt, name, akcije);
   if (!fotoInput) return;
   const fotoMenue = document.getElementById("fotoMenue");
   const menueTaste = document.getElementById("fotoMenueButton");
+  const overlay = document.getElementById("fotoEditorOverlay");
+  const vorschau = document.getElementById("fotoEditorVorschau");
+  const vorschauBild = document.getElementById("fotoEditorBild");
+  const zoomRegler = document.getElementById("fotoZoomRegler");
+  const zoomWert = document.getElementById("fotoZoomWert");
+  const standardFoto = new URL(
+    "assets/familienplaner-hintergrund.jpg",
+    document.baseURI
+  ).href;
+  const einstellungsSchluessel = {
+    desktop: "familienFotoEinstellungenDesktop",
+    mobil: "familienFotoEinstellungenMobil"
+  };
+  const minZoom = 1;
+  const maxZoom = 3;
+  let foto = localStorage.getItem("familienFoto") || standardFoto;
+  let fotoBild = null;
+  let fotoLadeVorgang = 0;
+  let desktopEinstellungen = leseEinstellungen("desktop");
+  let mobilEinstellungen = leseEinstellungen("mobil");
+  let entwurfBild = null;
+  let entwurfEinstellungen = null;
+  let entwurfProfil = null;
+  let entwurfIstNeu = false;
+  let vorherigerFokus = null;
+  let vorherigesOverflow = "";
+  let vorschauAbmessungen = null;
+  let zeiger = new Map();
+  let geste = null;
 
-  let positionX = Number(localStorage.getItem("fotoX") ?? 50);
-  let positionY = Number(localStorage.getItem("fotoY") ?? 50);
+  function begrenze(wert, min, max) {
+    return Math.max(min, Math.min(max, wert));
+  }
 
-  function zeigeFamilienFoto(bild) {
+  function istMobil() {
+    return window.matchMedia("(max-width: 600px)").matches;
+  }
+
+  function standardEinstellungen() {
+    return { zoom: 1, x: 50, y: 50 };
+  }
+
+  function zahlOderStandard(wert, standard) {
+    if (wert === null || wert === undefined || wert === "") return standard;
+    const zahl = Number(wert);
+    return Number.isFinite(zahl) ? zahl : standard;
+  }
+
+  function pruefeEinstellungen(einstellungen) {
+    const werte = einstellungen && typeof einstellungen === "object"
+      ? einstellungen
+      : {};
+    return {
+      zoom: begrenze(zahlOderStandard(werte.zoom, 1), minZoom, maxZoom),
+      x: begrenze(zahlOderStandard(werte.x, 50), 0, 100),
+      y: begrenze(zahlOderStandard(werte.y, 50), 0, 100)
+    };
+  }
+
+  function leseEinstellungen(profil) {
+    const gespeichert = localStorage.getItem(einstellungsSchluessel[profil]);
+    if (gespeichert) {
+      try {
+        return pruefeEinstellungen(JSON.parse(gespeichert));
+      } catch (fehler) {
+        console.error("Hintergrundbild-Einstellungen konnten nicht gelesen werden.", fehler);
+      }
+    }
+
+    return {
+      zoom: 1,
+      x: begrenze(zahlOderStandard(localStorage.getItem("fotoX"), 50), 0, 100),
+      y: begrenze(zahlOderStandard(localStorage.getItem("fotoY"), 50), 0, 100)
+    };
+  }
+
+  function aktuelleEinstellungen() {
+    return istMobil() ? mobilEinstellungen : desktopEinstellungen;
+  }
+
+  function aktualisiereFotoGroesse() {
+    if (!fotoBild) return;
+    const einstellungen = aktuelleEinstellungen();
+    const faktor = Math.max(
+      window.innerWidth / fotoBild.naturalWidth,
+      window.innerHeight / fotoBild.naturalHeight
+    ) * einstellungen.zoom;
+    const breite = fotoBild.naturalWidth * faktor;
+    const hoehe = fotoBild.naturalHeight * faktor;
     document.body.style.setProperty(
-      "--familienplanerFoto",
-      `url("${bild}")`
+      "--familienplanerFotoSize",
+      `${breite}px ${hoehe}px`
     );
     document.body.style.setProperty(
       "--familienplanerFotoPosition",
-      `${positionX}% ${positionY}%`
+      `${einstellungen.x}% ${einstellungen.y}%`
     );
-    document.body.style.backgroundImage =
-      `linear-gradient(rgba(248, 247, 242, 0.28), rgba(223, 232, 220, 0.26)), url("${bild}")`;
-    document.body.style.backgroundSize = "cover";
-    document.body.style.backgroundPosition =
-      `${positionX}% ${positionY}%`;
   }
 
-  const gespeichertesFoto = localStorage.getItem("familienFoto");
-  if (gespeichertesFoto) zeigeFamilienFoto(gespeichertesFoto);
+  function ladeHintergrundbild(neuesFoto) {
+    foto = neuesFoto;
+    const vorgang = ++fotoLadeVorgang;
+    const bild = new Image();
+    bild.onload = function () {
+      if (vorgang !== fotoLadeVorgang) return;
+      fotoBild = bild;
+      document.body.style.setProperty(
+        "--familienplanerFoto",
+        `url("${foto}")`
+      );
+      aktualisiereFotoGroesse();
+    };
+    bild.onerror = function () {
+      if (vorgang !== fotoLadeVorgang) return;
+      fotoBild = null;
+      document.body.style.removeProperty("--familienplanerFotoSize");
+      document.body.style.setProperty(
+        "--familienplanerFoto",
+        `url("${standardFoto}")`
+      );
+      console.error("Das Hintergrundbild konnte nicht geladen werden.");
+    };
+    bild.src = neuesFoto;
+  }
 
-  const bereich = document.createElement("div");
-  bereich.className = "bildEditorBereich";
+  ladeHintergrundbild(foto);
+  window.addEventListener("resize", function () {
+    aktualisiereFotoGroesse();
+    if (!overlay.hidden) {
+      vorschau.style.aspectRatio = `${window.innerWidth} / ${window.innerHeight}`;
+      requestAnimationFrame(zeichneVorschau);
+    }
+  });
 
-  bereich.innerHTML = `
-    <div id="bildEditor" hidden
-      style="max-width:650px;margin:15px auto;
-      padding:15px;background:#F8F7F2;
-      border-radius:18px;">
-      <p>Bild mit Maus oder Finger verschieben</p>
-      <div id="bildVorschau"
-        style="height:280px;border-radius:12px;
-        background-size:cover;
-        background-repeat:no-repeat;
-        background-position:center;
-        touch-action:none;cursor:grab;">
-      </div>
-      <button type="button" id="bildSpeichern"
-        style="margin-top:12px;padding:10px 20px;
-        border:0;border-radius:12px;
-        background:#DDEBDD;color:#34553E;">
-        Speichern
-      </button>
-    </div>
-  `;
+  function zeichneVorschau() {
+    if (!entwurfBild || !vorschauAbmessungen) return;
+    const breite = vorschau.clientWidth;
+    const hoehe = vorschau.clientHeight;
+    if (!breite || !hoehe) return;
 
-  document.querySelector(".zaglavlje").appendChild(bereich);
+    const faktor = Math.max(
+      breite / vorschauAbmessungen.breite,
+      hoehe / vorschauAbmessungen.hoehe
+    ) * entwurfEinstellungen.zoom;
+    const bildBreite = vorschauAbmessungen.breite * faktor;
+    const bildHoehe = vorschauAbmessungen.hoehe * faktor;
+    const ueberhangX = Math.max(0, bildBreite - breite);
+    const ueberhangY = Math.max(0, bildHoehe - hoehe);
 
-  const editor = document.getElementById("bildEditor");
-  const vorschau = document.getElementById("bildVorschau");
+    vorschauBild.style.width = `${bildBreite}px`;
+    vorschauBild.style.height = `${bildHoehe}px`;
+    vorschauBild.style.left =
+      `${-ueberhangX * entwurfEinstellungen.x / 100}px`;
+    vorschauBild.style.top =
+      `${-ueberhangY * entwurfEinstellungen.y / 100}px`;
+    zoomRegler.value = String(Math.round(entwurfEinstellungen.zoom * 100));
+    zoomWert.value = `${zoomRegler.value} %`;
+    zoomWert.textContent = `${zoomRegler.value} %`;
+  }
+
+  function oeffneEditor(bild, einstellungen, istNeu) {
+    entwurfBild = bild;
+    entwurfEinstellungen = pruefeEinstellungen(einstellungen);
+    entwurfProfil = istMobil() ? "mobil" : "desktop";
+    entwurfIstNeu = istNeu;
+    vorschauAbmessungen = null;
+    zeiger.clear();
+    geste = null;
+    vorherigerFokus = document.activeElement;
+    vorherigesOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    vorschau.style.aspectRatio = `${window.innerWidth} / ${window.innerHeight}`;
+    overlay.hidden = false;
+    vorschauBild.onload = function () {
+      vorschauAbmessungen = {
+        breite: vorschauBild.naturalWidth,
+        hoehe: vorschauBild.naturalHeight
+      };
+      zeichneVorschau();
+    };
+    vorschauBild.onerror = function () {
+      schliesseEditor();
+      alert("Das Foto konnte nicht für die Vorschau geladen werden.");
+    };
+    if (vorschauBild.src === bild && vorschauBild.complete &&
+        vorschauBild.naturalWidth) {
+      vorschauAbmessungen = {
+        breite: vorschauBild.naturalWidth,
+        hoehe: vorschauBild.naturalHeight
+      };
+      requestAnimationFrame(zeichneVorschau);
+    } else {
+      vorschauBild.src = bild;
+    }
+    zoomRegler.value = String(Math.round(entwurfEinstellungen.zoom * 100));
+    requestAnimationFrame(zeichneVorschau);
+    document.getElementById("fotoEditorSpeichern").focus();
+  }
+
+  function schliesseEditor() {
+    overlay.hidden = true;
+    document.body.style.overflow = vorherigesOverflow;
+    zeiger.clear();
+    geste = null;
+    entwurfBild = null;
+    entwurfEinstellungen = null;
+    vorschauAbmessungen = null;
+    if (vorherigerFokus && typeof vorherigerFokus.focus === "function") {
+      vorherigerFokus.focus();
+    }
+  }
 
   function schliesseFotoMenue() {
     fotoMenue.hidden = true;
@@ -3688,12 +4042,14 @@ karte.append(farbpunkt, name, akcije);
     localStorage.removeItem("familienFoto");
     localStorage.removeItem("fotoX");
     localStorage.removeItem("fotoY");
+    localStorage.removeItem(einstellungsSchluessel.desktop);
+    localStorage.removeItem(einstellungsSchluessel.mobil);
+    desktopEinstellungen = standardEinstellungen();
+    mobilEinstellungen = standardEinstellungen();
     document.body.style.removeProperty("--familienplanerFoto");
     document.body.style.removeProperty("--familienplanerFotoPosition");
-    document.body.style.backgroundImage = "";
-    positionX = 50;
-    positionY = 50;
-    editor.hidden = true;
+    ladeHintergrundbild(standardFoto);
+    if (!overlay.hidden) schliesseEditor();
     schliesseFotoMenue();
   });
 
@@ -3703,95 +4059,238 @@ karte.append(farbpunkt, name, akcije);
     }
   });
 
-  function aktualisieren() {
-    const bild = localStorage.getItem("familienFoto");
-    if (!bild) return;
-    vorschau.style.backgroundImage = `url("${bild}")`;
-    vorschau.style.backgroundPosition =
-      `${positionX}% ${positionY}%`;
-    zeigeFamilienFoto(bild);
-  }
-
   document.getElementById("bildAnpassen").onclick = function () {
-    if (!localStorage.getItem("familienFoto")) {
+    const gespeichertesFoto = localStorage.getItem("familienFoto");
+    if (!gespeichertesFoto) {
       alert("Bitte zuerst ein Foto auswählen.");
       return;
     }
     schliesseFotoMenue();
-    editor.hidden = !editor.hidden;
-    aktualisieren();
+    const profil = istMobil() ? "mobil" : "desktop";
+    const einstellungen = profil === "mobil"
+      ? mobilEinstellungen
+      : desktopEinstellungen;
+    oeffneEditor(gespeichertesFoto, einstellungen, false);
   };
 
-  let startX, startY, altX, altY;
+  function positionAusBewegung(start, delta, ueberhang) {
+    if (ueberhang <= 0) return start;
+    return begrenze(start - delta / ueberhang * 100, 0, 100);
+  }
 
-  vorschau.addEventListener("pointerdown", function (e) {
-    startX = e.clientX;
-    startY = e.clientY;
-    altX = positionX;
-    altY = positionY;
-    vorschau.setPointerCapture(e.pointerId);
+  function vorschauUeberhang() {
+    if (!vorschauAbmessungen) return { x: 0, y: 0 };
+    const faktor = Math.max(
+      vorschau.clientWidth / vorschauAbmessungen.breite,
+      vorschau.clientHeight / vorschauAbmessungen.hoehe
+    ) * entwurfEinstellungen.zoom;
+    return {
+      x: Math.max(0, vorschauAbmessungen.breite * faktor - vorschau.clientWidth),
+      y: Math.max(0, vorschauAbmessungen.hoehe * faktor - vorschau.clientHeight)
+    };
+  }
+
+  function zeigerPunkt(event) {
+    return { x: event.clientX, y: event.clientY };
+  }
+
+  function abstand(a, b) {
+    return Math.hypot(a.x - b.x, a.y - b.y);
+  }
+
+  function mittelpunkt(a, b) {
+    return { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+  }
+
+  vorschau.addEventListener("pointerdown", function (event) {
+    event.preventDefault();
+    zeiger.set(event.pointerId, zeigerPunkt(event));
+    vorschau.setPointerCapture(event.pointerId);
+
+    if (zeiger.size === 1) {
+      geste = {
+        typ: "verschieben",
+        punkt: zeigerPunkt(event),
+        x: entwurfEinstellungen.x,
+        y: entwurfEinstellungen.y
+      };
+      return;
+    }
+
+    if (zeiger.size === 2) {
+      const punkte = Array.from(zeiger.values());
+      geste = {
+        typ: "zoom",
+        abstand: abstand(punkte[0], punkte[1]),
+        mitte: mittelpunkt(punkte[0], punkte[1]),
+        zoom: entwurfEinstellungen.zoom,
+        x: entwurfEinstellungen.x,
+        y: entwurfEinstellungen.y
+      };
+    }
   });
 
-  vorschau.addEventListener("pointermove", function (e) {
-    if (!vorschau.hasPointerCapture(e.pointerId)) return;
+  vorschau.addEventListener("pointermove", function (event) {
+    if (!zeiger.has(event.pointerId) || !geste) return;
+    zeiger.set(event.pointerId, zeigerPunkt(event));
 
-    const breite = vorschau.clientWidth;
-    const hoehe = vorschau.clientHeight;
+    if (geste.typ === "zoom" && zeiger.size > 1) {
+      const punkte = Array.from(zeiger.values());
+      const mitte = mittelpunkt(punkte[0], punkte[1]);
+      entwurfEinstellungen.zoom = begrenze(
+        geste.zoom * abstand(punkte[0], punkte[1]) / Math.max(geste.abstand, 1),
+        minZoom,
+        maxZoom
+      );
+      const ueberhang = vorschauUeberhang();
+      entwurfEinstellungen.x = positionAusBewegung(
+        geste.x,
+        mitte.x - geste.mitte.x,
+        ueberhang.x
+      );
+      entwurfEinstellungen.y = positionAusBewegung(
+        geste.y,
+        mitte.y - geste.mitte.y,
+        ueberhang.y
+      );
+      zeichneVorschau();
+      return;
+    }
 
-    positionX = Math.max(0, Math.min(100,
-      altX - (e.clientX - startX) / breite * 100));
-
-    positionY = Math.max(0, Math.min(100,
-      altY - (e.clientY - startY) / hoehe * 100));
-
-    aktualisieren();
+    if (geste.typ === "verschieben") {
+      const punkt = zeiger.get(event.pointerId);
+      const ueberhang = vorschauUeberhang();
+      entwurfEinstellungen.x = positionAusBewegung(
+        geste.x,
+        punkt.x - geste.punkt.x,
+        ueberhang.x
+      );
+      entwurfEinstellungen.y = positionAusBewegung(
+        geste.y,
+        punkt.y - geste.punkt.y,
+        ueberhang.y
+      );
+      zeichneVorschau();
+    }
   });
 
-  document.getElementById("bildSpeichern").onclick = function () {
-    localStorage.setItem("fotoX", positionX);
-    localStorage.setItem("fotoY", positionY);
-    editor.hidden = true;
-  };
+  function beendeZeiger(event) {
+    zeiger.delete(event.pointerId);
+    if (zeiger.size === 1) {
+      const eintrag = Array.from(zeiger.entries())[0];
+      geste = {
+        typ: "verschieben",
+        punkt: eintrag[1],
+        x: entwurfEinstellungen.x,
+        y: entwurfEinstellungen.y
+      };
+    } else {
+      geste = null;
+    }
+  }
+
+  vorschau.addEventListener("pointerup", beendeZeiger);
+  vorschau.addEventListener("pointercancel", beendeZeiger);
+
+  zoomRegler.addEventListener("input", function () {
+    if (!entwurfEinstellungen) return;
+    entwurfEinstellungen.zoom = Number(zoomRegler.value) / 100;
+    zeichneVorschau();
+  });
+
+  document.getElementById("fotoEditorZuruecksetzen").addEventListener(
+    "click",
+    function () {
+      if (!entwurfEinstellungen) return;
+      entwurfEinstellungen = standardEinstellungen();
+      zeichneVorschau();
+    }
+  );
+
+  document.getElementById("fotoEditorAbbrechen").addEventListener(
+    "click",
+    schliesseEditor
+  );
+  overlay.addEventListener("click", function (event) {
+    if (event.target === overlay) schliesseEditor();
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && !overlay.hidden) schliesseEditor();
+  });
+
+  document.getElementById("fotoEditorSpeichern").addEventListener(
+    "click",
+    function () {
+      if (!entwurfBild || !entwurfEinstellungen) return;
+      const einstellungen = pruefeEinstellungen(entwurfEinstellungen);
+      try {
+        localStorage.setItem("familienFoto", entwurfBild);
+        if (entwurfIstNeu) {
+          desktopEinstellungen = standardEinstellungen();
+          mobilEinstellungen = standardEinstellungen();
+        }
+
+        if (entwurfProfil === "mobil") {
+          mobilEinstellungen = einstellungen;
+        } else {
+          desktopEinstellungen = einstellungen;
+        }
+
+        localStorage.setItem(
+          einstellungsSchluessel.desktop,
+          JSON.stringify(desktopEinstellungen)
+        );
+        localStorage.setItem(
+          einstellungsSchluessel.mobil,
+          JSON.stringify(mobilEinstellungen)
+        );
+        localStorage.setItem("fotoX", einstellungen.x);
+        localStorage.setItem("fotoY", einstellungen.y);
+        const gespeichertesFoto = entwurfBild;
+        schliesseEditor();
+        ladeHintergrundbild(gespeichertesFoto);
+      } catch (fehler) {
+        console.error("Das Hintergrundbild konnte nicht gespeichert werden.", fehler);
+        alert("Das Foto konnte nicht gespeichert werden. Bitte prüfe den verfügbaren Speicherplatz.");
+      }
+    }
+  );
 
   fotoInput.addEventListener("change", function (event) {
     const datei = event.target.files[0];
     if (!datei) return;
 
     const reader = new FileReader();
-
     reader.onload = function (e) {
       const bild = new Image();
-
       bild.onload = function () {
-        const canvas = document.createElement("canvas");
-        const faktor = Math.min(
-          1, 1200 / Math.max(bild.width, bild.height)
-        );
-
-        canvas.width = Math.round(bild.width * faktor);
-        canvas.height = Math.round(bild.height * faktor);
-
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(bild, 0, 0, canvas.width, canvas.height);
-
-        const klein = canvas.toDataURL("image/jpeg", 0.7);
-
         try {
-          localStorage.setItem("familienFoto", klein);
-          positionX = 50;
-          positionY = 50;
-          localStorage.setItem("fotoX", positionX);
-          localStorage.setItem("fotoY", positionY);
-          aktualisieren();
+          const canvas = document.createElement("canvas");
+          const faktor = Math.min(
+            1, 1200 / Math.max(bild.width, bild.height)
+          );
+          canvas.width = Math.round(bild.width * faktor);
+          canvas.height = Math.round(bild.height * faktor);
+          const kontext = canvas.getContext("2d");
+          if (!kontext) throw new Error("Canvas ist nicht verfügbar.");
+          kontext.drawImage(bild, 0, 0, canvas.width, canvas.height);
+          const klein = canvas.toDataURL("image/jpeg", 0.78);
           schliesseFotoMenue();
+          oeffneEditor(klein, standardEinstellungen(), true);
         } catch (fehler) {
-          alert("Nicht genug Speicherplatz für das Foto.");
+          console.error("Das Foto konnte nicht vorbereitet werden.", fehler);
+          alert("Das Foto konnte nicht vorbereitet werden. Bitte wähle ein anderes Bild.");
         }
       };
-
+      bild.onerror = function () {
+        alert("Die ausgewählte Bilddatei konnte nicht geöffnet werden.");
+      };
       bild.src = e.target.result;
     };
-
+    reader.onerror = function () {
+      alert("Die ausgewählte Bilddatei konnte nicht gelesen werden.");
+    };
     reader.readAsDataURL(datei);
   });
 })();
