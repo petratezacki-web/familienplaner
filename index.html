@@ -2782,6 +2782,28 @@ body {
       <strong>Stundenplan</strong>
     </article>
   </div>
+  <aside id="naechsterGeburtstag" class="geburtstagVorschau" hidden
+    aria-live="polite">
+    <strong>🎂 Bald Geburtstag</strong>
+    <span id="naechsterGeburtstagText"></span>
+  </aside>
+ <div id="naechsterTermin">
+    <h2>Diese Woche ♡</h2>
+    <p id="wochenZeitraum" class="wochenZeitraum"></p>
+    <div id="wochenTermine" class="wochenTermine"></div>
+    <div id="ferienWoche" class="ferienWoche" hidden></div>
+    <div id="ferienErinnerungen" class="ferienErinnerungen" hidden
+      role="status" aria-live="polite">
+      <div id="ferienErinnerungenListe"></div>
+      <button id="ferienErinnerungenSchliessen" type="button"
+        aria-label="Erinnerungen schließen">✕</button>
+    </div>
+    <p id="wochenLeer" class="wochenLeermeldung" hidden></p>
+    <p id="heuteFrei" class="heuteFrei" hidden>
+      Heute ist alles frei – genießt die gemeinsame Zeit!
+    </p>
+</div>
+
   <section id="einkaufslisteAnsicht" class="einkaufAnsicht" hidden
     aria-labelledby="einkaufTitel">
     <header class="einkaufKopf">
@@ -2896,28 +2918,6 @@ body {
     <button id="einkaufZurueck" class="einkaufZurueck"
       type="button">Zurück</button>
   </section>
-  <aside id="naechsterGeburtstag" class="geburtstagVorschau" hidden
-    aria-live="polite">
-    <strong>🎂 Bald Geburtstag</strong>
-    <span id="naechsterGeburtstagText"></span>
-  </aside>
- <div id="naechsterTermin">
-    <h2>Diese Woche ♡</h2>
-    <p id="wochenZeitraum" class="wochenZeitraum"></p>
-    <div id="wochenTermine" class="wochenTermine"></div>
-    <div id="ferienWoche" class="ferienWoche" hidden></div>
-    <div id="ferienErinnerungen" class="ferienErinnerungen" hidden
-      role="status" aria-live="polite">
-      <div id="ferienErinnerungenListe"></div>
-      <button id="ferienErinnerungenSchliessen" type="button"
-        aria-label="Erinnerungen schließen">✕</button>
-    </div>
-    <p id="wochenLeer" class="wochenLeermeldung" hidden></p>
-    <p id="heuteFrei" class="heuteFrei" hidden>
-      Heute ist alles frei – genießt die gemeinsame Zeit!
-    </p>
-</div>   
-
    
 <section id="familieAnsicht" hidden>
 <h2><span style="color:#E7A4BA;">♥</span> Unsere Familie <span id="familieAnzahl"></span></h2>
