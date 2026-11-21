@@ -22,10 +22,13 @@
 }
 
 body {
+  background-image:
+    linear-gradient(rgba(248, 247, 242, 0.28), rgba(223, 232, 220, 0.26)),
+    url("assets/familienplaner-hintergrund.jpg");
   background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-color: var(--cream);
   font-family: Arial, sans-serif;
   color: #455F4D;
@@ -693,48 +696,910 @@ h2 {
     font-size: 25px;
     font-weight: 600;
 }
+
+body {
+  min-height: 100vh;
+  background-color: var(--cream);
+}
+
+.zaglavlje {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 760px;
+  margin: 20px auto 14px;
+  padding: 14px 30px 8px;
+  background: rgba(223, 232, 220, 0.58);
+  box-shadow: 0 8px 24px rgba(52, 85, 62, 0.10);
+}
+
+.zaglavlje h1 {
+  margin: 0 0 6px;
+}
+
+.zaglavlje > p {
+  margin: 4px 0;
+}
+
+#heute {
+  width: fit-content;
+  margin: 8px auto 0;
+  padding: 8px 20px;
+  border-radius: 18px;
+  background: rgba(235, 203, 211, 0.78);
+  color: #34553E;
+  font-size: 28px;
+  line-height: 1.2;
+  box-shadow: 0 4px 12px rgba(52, 85, 62, 0.08);
+}
+
+.meni {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 760px;
+  gap: 12px;
+  margin: 20px auto 8px;
+  padding: 16px;
+  border: 1px solid rgba(223, 232, 220, 0.8);
+  border-radius: 24px;
+  background: rgba(223, 232, 220, 0.64);
+  box-shadow: 0 8px 24px rgba(52, 85, 62, 0.10);
+}
+
+.meni .hauptkarte {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  height: 72px;
+  min-height: 72px;
+  margin: 0;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 17px;
+  background: transparent;
+  color: #34553E;
+  text-align: left;
+  box-shadow: none;
+  transition: none;
+}
+
+.meni .hauptkarte::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border: 1px solid rgba(223, 232, 220, 0.9);
+  border-radius: inherit;
+  background: rgba(235, 203, 211, 0.72);
+  box-shadow: 0 5px 16px rgba(52, 85, 62, 0.10);
+  content: "";
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.meni .hauptkarte:hover {
+  transform: none;
+}
+
+.meni .hauptkarte:hover::before {
+  transform: translateY(-4px);
+  background: rgba(235, 203, 211, 0.86);
+  box-shadow: 0 10px 22px rgba(52, 85, 62, 0.15);
+}
+
+.hauptkarteIcon {
+  display: grid;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--sage);
+  font-size: 25px;
+}
+
+.hauptkarte strong {
+  font-size: 17px;
+}
+
+.fotoSteuerung {
+  position: fixed;
+  z-index: 20;
+  top: 14px;
+  right: 14px;
+}
+
+#einstellungenButton {
+  position: fixed;
+  z-index: 20;
+  top: 14px;
+  right: 70px;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgba(52, 85, 62, 0.16);
+  border-radius: 50%;
+  background: rgba(223, 232, 220, 0.88);
+  font-size: 21px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+#fotoMenueButton {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgba(52, 85, 62, 0.16);
+  border-radius: 50%;
+  background: rgba(223, 232, 220, 0.88);
+  font-size: 21px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+#fotoMenue {
+  position: absolute;
+  top: 54px;
+  right: 0;
+  display: grid;
+  gap: 5px;
+  width: max-content;
+  min-width: 205px;
+  padding: 8px;
+  border: 1px solid rgba(52, 85, 62, 0.12);
+  border-radius: 16px;
+  background: rgba(248, 247, 242, 0.96);
+  box-shadow: 0 8px 24px rgba(52, 85, 62, 0.16);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+#fotoMenue[hidden] {
+  display: none;
+}
+
+#fotoMenue button {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 10px 12px;
+  background: transparent;
+  box-shadow: none;
+  text-align: left;
+  font-size: 14px;
+}
+
+#fotoMenue button:hover {
+  background: rgba(223, 232, 220, 0.72);
+  transform: none;
+}
+
+#naechsterTermin {
+  max-width: 1000px;
+  padding: 25px;
+  background: rgba(223, 232, 220, 0.64);
+}
+
+#naechsterTermin h2 {
+  margin: 0 0 6px;
+  color: #34553E;
+}
+
+.wochenZeitraum {
+  margin: 0 0 18px;
+  color: #6A806D;
+  font-size: 15px;
+}
+
+.wochenTermine {
+  display: grid;
+  gap: 10px;
+}
+
+.wochenTermin {
+  display: grid;
+  grid-template-columns: 8px minmax(0, 1fr);
+  align-items: stretch;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid rgba(223, 232, 220, 0.9);
+  border-radius: 16px;
+  background: rgba(223, 232, 220, 0.58);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.wochenTermin:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 16px rgba(52, 85, 62, 0.12);
+}
+
+.wochenTerminNaechster {
+  padding: 18px;
+  border-color: rgba(197, 143, 160, 0.45);
+  background: rgba(235, 203, 211, 0.74);
+  box-shadow: 0 5px 16px rgba(52, 85, 62, 0.09);
+}
+
+.terminFarbmarkierung {
+  display: inline-block;
+  flex: 0 0 9px;
+  width: 9px;
+  min-height: 30px;
+  border-radius: 99px;
+  vertical-align: middle;
+}
+
+.wochenTerminInhalt {
+  display: grid;
+  gap: 3px;
+}
+
+.wochenTerminDatum {
+  color: #607664;
+  font-size: 14px;
+}
+
+.wochenTerminTitel {
+  color: #34553E;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.wochenTerminNaechster .wochenTerminTitel {
+  font-size: 19px;
+}
+
+.wochenLeermeldung {
+  margin: 8px 0;
+  color: #607664;
+}
+
+.heuteFrei {
+  margin: 18px 0 0;
+  padding: 13px 16px;
+  border-radius: 14px;
+  background: rgba(235, 203, 211, 0.58);
+  color: #5D675D;
+  text-align: center;
+}
+
+.bildEditorBereich {
+  margin-top: 20px;
+}
+
+#bildEditor {
+  background: rgba(223, 232, 220, 0.68) !important;
+  box-shadow: 0 6px 18px rgba(52, 85, 62, 0.10);
+}
+
+#geburtstageAnsicht {
+  max-width: 1150px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid rgba(223, 232, 220, 0.8);
+  border-radius: 20px;
+  background: rgba(223, 232, 220, 0.64);
+  box-shadow: 0 4px 12px rgba(52, 85, 62, 0.10);
+}
+
+#geburtstageAnsicht[hidden] {
+  display: none;
+}
+
+.geburtstagVorschau {
+  display: grid;
+  gap: 5px;
+  max-width: 760px;
+  margin: 12px auto;
+  padding: 14px 18px;
+  border: 1px solid rgba(197, 143, 160, 0.35);
+  border-radius: 16px;
+  background: rgba(235, 203, 211, 0.72);
+  color: #34553E;
+}
+
+.geburtstagVorschau[hidden] {
+  display: none;
+}
+
+#geburtstageAnsicht .geburtstagsKalenderTagWeiblich {
+  background-color: rgba(235, 203, 211, 0.78) !important;
+}
+
+#geburtstageAnsicht .geburtstagKalenderEintrag {
+  display: block;
+  color: #34553E;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+}
+
+#geburtstageAnsicht .geburtstagsKalenderTagMaennlich {
+  background-color: rgba(190, 216, 239, 0.86) !important;
+}
+
+#geburtstageAnsicht .geburtstagsKalenderTagGemischt {
+  background: linear-gradient(
+    135deg,
+    rgba(235, 203, 211, 0.82) 0 50%,
+    rgba(190, 216, 239, 0.86) 50% 100%
+  ) !important;
+}
+
+#geburtstageAnsicht .geburtstagKalenderEintrag.geburtstagRosa {
+  background-color: rgba(235, 203, 211, 0.82) !important;
+}
+
+#geburtstageAnsicht .geburtstagKalenderEintrag.geburtstagBlau {
+  background-color: rgba(190, 216, 239, 0.9) !important;
+}
+
+.geburtstagDatumKlick {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  min-height: 28px;
+  margin: -3px 0 0;
+  padding: 2px 5px;
+  border-radius: 8px;
+  background: transparent;
+  box-shadow: none;
+  font-size: inherit;
+  font-weight: 700;
+}
+
+.geburtstagDatumKlick:hover {
+  background: rgba(235, 203, 211, 0.6);
+}
+
+#geburtstagForm .geburtstagsFeldDatum {
+  grid-column: 1 / -1;
+}
+
+#geburtstagForm {
+  max-width: 720px;
+  margin: 16px 0 28px;
+  padding: 20px;
+  border: 1px solid rgba(223, 232, 220, 0.8);
+  border-radius: 18px;
+  background: rgba(223, 232, 220, 0.68);
+}
+
+.geburtstagsFormular {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 0.8fr);
+  gap: 14px;
+}
+
+.geburtstagsDatum {
+  display: grid;
+  grid-template-columns: minmax(42px, 0.65fr) auto
+    minmax(42px, 0.65fr) auto minmax(76px, 1fr);
+  align-items: center;
+  gap: 7px;
+}
+
+.geburtstagsDatumTrenner {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.geburtstagsFeld {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.geburtstagsDatum input {
+  text-align: center;
+}
+
+#geburtstagForm input,
+#geburtstagForm select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #D5E2D2;
+  border-radius: 10px;
+  background: rgba(248, 247, 242, 0.92);
+  color: #34553E;
+  font: inherit;
+}
+
+.geburtstagsFormAktionen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.geburtstagsFormAktionen button {
+  flex: 1 1 150px;
+  min-width: 0;
+  margin: 0;
+}
+
+.kommendeGeburtstage {
+  display: grid;
+  gap: 10px;
+  margin: 16px 0 22px;
+}
+
+.geburtstagsEintrag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid rgba(223, 232, 220, 0.8);
+  border-radius: 15px;
+  background: rgba(223, 232, 220, 0.62);
+}
+
+.geburtstagsEintragText {
+  display: grid;
+  gap: 4px;
+}
+
+.geburtstagsEintragAktionen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.geburtstagsEintragAktionen button {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  place-items: center;
+  margin: 0;
+  padding: 6px;
+  font-size: 19px;
+}
+
+.geburtstagsHinweis {
+  margin: 16px 0;
+  color: #5D675D;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+#einstellungenAnsicht {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 22px;
+  border: 1px solid rgba(223, 232, 220, 0.8);
+  border-radius: 20px;
+  background: rgba(223, 232, 220, 0.76);
+  box-shadow: 0 4px 12px rgba(52, 85, 62, 0.10);
+  color: #34553E;
+}
+
+#einstellungenAnsicht[hidden] {
+  display: none;
+}
+
+.einstellungenKopf {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.einstellungenKopf h2 {
+  margin: 0 0 6px;
+}
+
+.einstellungenKopf p,
+.einstellungenHinweis {
+  color: #5D675D;
+  line-height: 1.5;
+}
+
+.einstellungenZurueck {
+  min-width: 0;
+  margin: 0;
+  padding: 10px 14px;
+}
+
+.einstellungenMitglied {
+  display: grid;
+  gap: 7px;
+  max-width: 420px;
+  margin: 18px 0;
+  font-weight: 600;
+}
+
+.einstellungenMitglied select,
+.einstellungenKategorie select,
+#supabaseFamilienkonto input,
+#supabaseFamilienkonto select {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  margin: 6px 0 12px;
+  min-height: 42px;
+  padding: 9px 12px;
+  border: 1px solid #D5E2D2;
+  border-radius: 10px;
+  background: rgba(248, 247, 242, 0.94);
+  color: #34553E;
+  font: inherit;
+}
+
+.supabaseFeld {
+  display: block;
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.supabaseAktionen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.supabaseAktionen button {
+  min-width: 0;
+  margin: 0;
+}
+
+#supabaseFamilienkonto h3 {
+  margin: 20px 0 8px;
+  color: #34553E;
+}
+
+#supabaseErstellterCode {
+  font-family: Consolas, monospace;
+}
+
+.ruhezeiten input {
+  display: inline-block;
+  width: auto;
+  max-width: 130px;
+  margin: 0;
+}
+
+#benachrichtigungsOptionen {
+  min-width: 0;
+  margin: 16px 0 0;
+  padding: 16px;
+  border: 1px solid rgba(52, 85, 62, 0.16);
+  border-radius: 16px;
+}
+
+#benachrichtigungsOptionen legend {
+  padding: 0 8px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.einstellungenSchalter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  margin: 14px 0;
+}
+
+.einstellungenSchalter label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.einstellungenSchalter input {
+  accent-color: #66836B;
+  width: 18px;
+  height: 18px;
+}
+
+.einstellungenKategorie {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(150px, 0.8fr) auto;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 13px;
+  background: rgba(248, 247, 242, 0.62);
+}
+
+.einstellungenKategorie button,
+.vibrationTest {
+  min-width: 0;
+  margin: 0;
+  padding: 9px 12px;
+  font-size: 14px;
+}
+
+.ruhezeiten {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.ruhezeiten label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.einstellungenStatus {
+  min-height: 1.5em;
+  color: #34553E;
+  font-weight: 600;
+}
+
+#benachrichtigungsOptionen:disabled {
+  opacity: 0.58;
+}
+
+#familieAnsicht,
+#kalenderAnsicht,
+#geburtstageAnsicht {
+  background: rgba(223, 232, 220, 0.64) !important;
+}
+
+#terminForm,
+#geburtstagForm,
+#listaTermina > p,
+#povijestTermina > p,
+#familieListe .familieMitglied,
+.kalenderTag,
+.kalenderEintrag {
+  background-color: rgba(223, 232, 220, 0.62) !important;
+}
+
+#familieAnsicht,
+#kalenderAnsicht,
+#geburtstageAnsicht,
+#terminForm,
+#geburtstagForm,
+#bildEditor,
+#listaTermina > p,
+#povijestTermina > p,
+#familieListe .familieMitglied,
+.kalenderTag,
+.kalenderEintrag,
+.meni,
+.meni .hauptkarte,
+.zaglavlje,
+#heute,
+#naechsterTermin,
+.wochenTermin {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+#terminForm select {
+  padding: 12px;
+  border: 1px solid #D5E2D2;
+  border-radius: 10px;
+  background: white;
+  color: #34553E;
+  font-size: 16px;
+  margin: 6px;
+  max-width: 100%;
+}
+
+#listaTermina > p,
+#povijestTermina > p {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#listaTermina .terminFarbmarkierung,
+#povijestTermina .terminFarbmarkierung {
+  min-height: 20px;
+}
+
+@media (max-width: 600px) {
+  .zaglavlje {
+    padding: 40px 14px 10px;
+    background: rgba(223, 232, 220, 0.58);
+  }
+
+  body {
+    background-attachment: scroll;
+  }
+
+  .zaglavlje h1 {
+    padding: 0 10px;
+  }
+
+  #heute {
+    max-width: 100%;
+    padding: 8px 12px;
+    font-size: 23px;
+  }
+
+  .meni {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .meni .hauptkarte {
+    height: 70px;
+    min-height: 70px;
+    padding: 12px;
+  }
+
+  .fotoSteuerung {
+    top: 10px;
+    right: 10px;
+  }
+
+  #einstellungenButton {
+    top: 10px;
+    right: 60px;
+    width: 42px;
+    height: 42px;
+  }
+
+  #fotoMenueButton {
+    width: 42px;
+    height: 42px;
+  }
+
+  #fotoMenue {
+    top: 49px;
+  }
+
+  #naechsterTermin {
+    padding: 18px 14px;
+  }
+
+  .wochenTermin {
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .wochenTerminNaechster {
+    padding: 14px;
+  }
+
+  #terminForm select {
+    display: block;
+    width: 100%;
+    margin: 6px 0;
+  }
+
+  #geburtstageAnsicht {
+    padding: 10px;
+  }
+
+  .geburtstagsFormular {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .geburtstagsDatum {
+    grid-template-columns: minmax(38px, 0.65fr) auto
+      minmax(38px, 0.65fr) auto minmax(66px, 1fr);
+    gap: 5px;
+  }
+
+  .geburtstagsEintrag {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .geburtstagsEintragAktionen {
+    width: 100%;
+  }
+
+  .geburtstagsEintragAktionen button {
+    flex: 1;
+  }
+
+  #einstellungenAnsicht {
+    padding: 14px;
+  }
+
+  .einstellungenKopf {
+    align-items: flex-start;
+  }
+
+  .einstellungenKategorie {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .einstellungenKategorie strong {
+    grid-column: 1 / -1;
+  }
+
+  .supabaseAktionen {
+    display: grid;
+  }
+}
 </style>
   </head>
   <body>
- <div style="text-align:center; margin:15px;">
-  <select id="hintergrundModus"
-    style="padding:10px; border-radius:12px;
-    background:#DDEBDD; color:#34553E;">
-    <option value="familie">Gemeinsamer Hintergrund</option>
-    <option value="privat">Mein Hintergrund</option>
-  </select>
-
-  <label for="familienFoto"
-    style="display:inline-block; cursor:pointer;
-    color:#34553E; padding:10px;">
-    📷 Bild aus Galerie wählen
-  </label>
-
+ <div class="fotoSteuerung">
+  <button id="fotoMenueButton" type="button" aria-label="Hintergrundbild verwalten"
+    aria-expanded="false" aria-controls="fotoMenue">📷</button>
+  <div id="fotoMenue" role="menu" hidden>
+    <button id="fotoAendern" type="button" role="menuitem">
+      Hintergrundbild ändern
+    </button>
+    <button id="bildAnpassen" type="button" role="menuitem">
+      Bildausschnitt anpassen
+    </button>
+    <button id="fotoEntfernen" type="button" role="menuitem">
+      Hintergrundbild entfernen
+    </button>
+  </div>
   <input type="file" id="familienFoto"
     accept="image/*" style="display:none;">
 </div>
-  <div class="zaglavlje"> 
-
- <h1>Hallo, Familie! ♡</h1>
-    
-<p>Schön, dass wir zusammen sind. 🩷</p>
-<p>Gemeinsam planen. Gemeinsam leben.</p>
-    <p id="heute" style="color:#42664F;
-      font-weight:bold;
-      background:#F8E4EA; padding:10px;
-      border-radius:20px;
-      text-align:center;
-      width:fit-content; margin:12px auto;"></p>
-        <div class="meni">    
-  <p><button id="kalenderButton">📅 Kalender</button></p>
-<p><button id="familieButton">♡ Unsere Familie</button></p>
-<p><button>🔔 Erinnerungen</button></p>
-<p><button>🛒 Unsere Einkaufsliste</button></p>
- </div> 
- </div>   
+<button id="einstellungenButton" type="button"
+  aria-label="Einstellungen" title="Einstellungen">⚙️</button>
+  <div class="zaglavlje">
+  <h1>Hallo, Familie! ♡</h1>
+  <p>Schön, dass wir zusammen sind. 🩷</p>
+  <p>Gemeinsam planen. Gemeinsam leben.</p>
+    <p id="heute"></p>
+  </div>
+  <div class="meni" aria-label="Familienbereiche">
+    <button id="kalenderButton" type="button"
+      class="hauptkarte">
+      <span class="hauptkarteIcon" aria-hidden="true">📅</span>
+      <strong>Kalender</strong>
+    </button>
+    <button id="familieButton" type="button"
+      class="hauptkarte">
+      <span class="hauptkarteIcon" aria-hidden="true">♡</span>
+      <strong>Unsere Familie</strong>
+    </button>
+    <button id="geburtstageButton" type="button" class="hauptkarte">
+      <span class="hauptkarteIcon" aria-hidden="true">🎂</span>
+      <strong>Geburtstage</strong>
+    </button>
+    <article class="hauptkarte">
+      <span class="hauptkarteIcon" aria-hidden="true">📝</span>
+      <strong>Familien-Notizen</strong>
+    </article>
+    <article class="hauptkarte">
+      <span class="hauptkarteIcon" aria-hidden="true">🛒</span>
+      <strong>Einkaufsliste</strong>
+    </article>
+    <article class="hauptkarte">
+      <span class="hauptkarteIcon" aria-hidden="true">📚</span>
+      <strong>Stundenplan</strong>
+    </article>
+  </div>
+  <aside id="naechsterGeburtstag" class="geburtstagVorschau" hidden
+    aria-live="polite">
+    <strong>🎂 Bald Geburtstag</strong>
+    <span id="naechsterGeburtstagText"></span>
+  </aside>
  <div id="naechsterTermin">
- <h2><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 8px;"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/><path d="M12 18s-4-2.4-4-4.5a2 2 0 0 1 4-0.6 2 2 0 0 1 4 0.6C16 15.6 12 18 12 18z"/></svg>Unser nächster Termin ♡</h2>
-  <p>Noch keine Termine geplant. ♡</p>
+    <h2>Diese Woche ♡</h2>
+    <p id="wochenZeitraum" class="wochenZeitraum"></p>
+    <div id="wochenTermine" class="wochenTermine"></div>
+    <p id="wochenLeer" class="wochenLeermeldung" hidden></p>
+    <p id="heuteFrei" class="heuteFrei" hidden>
+      Heute ist alles frei – genießt die gemeinsame Zeit!
+    </p>
 </div>   
 
    
@@ -786,6 +1651,272 @@ h2 {
     Zurück
   </button>
 </section>
+<section id="geburtstageAnsicht" hidden>
+  <div class="kalenderKopf">
+    <button id="geburtstagsMonatZurueck" type="button"
+      aria-label="Vorheriger Monat">❮</button>
+    <h2 id="geburtstagsKalenderMonat"></h2>
+    <button id="geburtstagsMonatWeiter" type="button"
+      aria-label="Nächster Monat">❯</button>
+  </div>
+
+  <div id="geburtstagsKalenderRaster" class="kalenderRaster"></div>
+
+  <button id="geburtstagHinzufuegen" type="button">
+    Geburtstag hinzufügen
+  </button>
+
+  <div id="geburtstagForm" class="geburtstagsForm" hidden>
+    <h3 id="geburtstagFormTitel">Geburtstag hinzufügen</h3>
+    <div class="geburtstagsFormular">
+      <div class="geburtstagsFeld">
+        <label for="geburtstagVorname">Vorname</label>
+        <input id="geburtstagVorname" type="text" maxlength="60"
+          autocomplete="given-name">
+      </div>
+      <div class="geburtstagsFeld">
+        <label for="geburtstagNachname">Nachname</label>
+        <input id="geburtstagNachname" type="text" maxlength="60"
+          autocomplete="family-name">
+      </div>
+      <div class="geburtstagsFeld">
+        <label for="geburtstagGeschlecht">Geschlecht (optional)</label>
+        <select id="geburtstagGeschlecht">
+          <option value="keineAngabe">Keine Angabe</option>
+          <option value="weiblich">Weiblich</option>
+          <option value="maennlich">Männlich</option>
+        </select>
+      </div>
+      <div class="geburtstagsFeld geburtstagsFeldDatum">
+        <span>Geburtsdatum (TT.MM.JJJJ, Geburtsjahr optional)</span>
+        <div class="geburtstagsDatum">
+          <input id="geburtstagTag" type="text" inputmode="numeric"
+            maxlength="2" placeholder="TT" aria-label="Tag">
+          <span class="geburtstagsDatumTrenner" aria-hidden="true">.</span>
+          <input id="geburtstagMonat" type="text" inputmode="numeric"
+            maxlength="2" placeholder="MM" aria-label="Monat">
+          <span class="geburtstagsDatumTrenner" aria-hidden="true">.</span>
+          <input id="geburtstagJahr" type="text" inputmode="numeric"
+            maxlength="4" placeholder="JJJJ"
+            aria-label="Geburtsjahr, optional">
+        </div>
+      </div>
+    </div>
+    <div class="geburtstagsFormAktionen">
+      <button id="geburtstagSpeichern" type="button">Speichern</button>
+      <button id="geburtstagAbbrechen" type="button">Abbrechen</button>
+      <button id="geburtstagFormLoeschen" type="button" hidden>
+        Geburtstag löschen
+      </button>
+    </div>
+  </div>
+
+  <h2>Kommende Geburtstage</h2>
+  <div id="kommendeGeburtstage" class="kommendeGeburtstage"></div>
+  <p class="geburtstagsHinweis">
+    Die Geburtstage werden nur in diesem Browser gespeichert. Gemeinsame
+    Synchronisierung und Push-Erinnerungen benötigen einen Serverdienst und
+    sind noch nicht eingerichtet.
+  </p>
+  <button id="geburtstageZurueck" type="button">Zurück</button>
+</section>
+<section id="einstellungenAnsicht" hidden>
+  <div class="einstellungenKopf">
+    <div>
+      <h2>Einstellungen</h2>
+      <p>Persönliche Einstellungen für jedes Familienmitglied.</p>
+    </div>
+    <button id="einstellungenSchliessen" class="einstellungenZurueck"
+      type="button">Zurück</button>
+  </div>
+
+  <label class="einstellungenMitglied" for="einstellungenMitgliedAuswahl">
+    Einstellungen für
+    <select id="einstellungenMitgliedAuswahl"></select>
+  </label>
+
+  <fieldset id="supabaseFamilienkonto">
+    <legend>Familienkonto &amp; Verbindung</legend>
+    <p class="einstellungenHinweis">
+      Diese Grundstufe verbindet Konten und Familienmitgliedschaften.
+      Termine, Geburtstage, Fotos und andere Planerdaten bleiben vorerst
+      lokal und werden noch nicht synchronisiert.
+    </p>
+    <div class="supabaseKonfiguration">
+      <label for="supabaseProjektUrl">Supabase-Projekt-URL</label>
+      <input id="supabaseProjektUrl" type="url"
+        placeholder="https://dein-projekt.supabase.co" autocomplete="url">
+      <label for="supabasePublishableKey">
+        Publishable Key oder öffentlicher anon-Key
+      </label>
+      <input id="supabasePublishableKey" type="password"
+        autocomplete="off" spellcheck="false">
+      <p class="einstellungenHinweis">
+        Verwende nur den öffentlichen Publishable/anon-Key, niemals einen
+        Secret- oder service_role-Key.
+      </p>
+      <button id="supabaseVerbinden" type="button">
+        Verbindung speichern &amp; prüfen
+      </button>
+    </div>
+    <p id="supabaseVerbindungsStatus" class="einstellungenStatus"
+      aria-live="polite"></p>
+
+    <div id="supabaseKontoBereich" hidden>
+      <div id="supabaseAngemeldet" hidden>
+        <p id="supabaseKontoStatus" class="einstellungenHinweis"></p>
+        <button id="supabaseAbmelden" type="button">Abmelden</button>
+      </div>
+      <div id="supabaseAnmeldung">
+        <h3>Familienkonto</h3>
+        <label class="supabaseFeld" for="supabaseEmail">E-Mail</label>
+        <input id="supabaseEmail" type="email" autocomplete="email">
+        <label class="supabaseFeld" for="supabasePasswort">Passwort</label>
+        <input id="supabasePasswort" type="password"
+          autocomplete="current-password">
+        <div class="supabaseAktionen">
+          <button id="supabaseRegistrieren" type="button">
+            Konto erstellen
+          </button>
+          <button id="supabaseAnmelden" type="button">Anmelden</button>
+        </div>
+      </div>
+
+      <div id="supabaseFamilienAktionen" hidden>
+        <h3>Familie erstellen</h3>
+        <label class="supabaseFeld" for="supabaseFamilienName">
+          Familienname
+        </label>
+        <input id="supabaseFamilienName" type="text" maxlength="80">
+        <label class="supabaseFeld" for="supabaseAnzeigename">
+          Dein Name in der Familie
+        </label>
+        <input id="supabaseAnzeigename" type="text" maxlength="80">
+        <button id="supabaseFamilieErstellen" type="button">
+          Familie erstellen
+        </button>
+
+        <h3>Mit Einladung beitreten</h3>
+        <label class="supabaseFeld" for="supabaseEinladungscode">
+          Einladungscode
+        </label>
+        <input id="supabaseEinladungscode" type="text"
+          autocomplete="off" spellcheck="false">
+        <label class="supabaseFeld" for="supabaseEinladungsName">
+          Dein Name in der Familie
+        </label>
+        <input id="supabaseEinladungsName" type="text" maxlength="80">
+        <button id="supabaseEinladungAnnehmen" type="button">
+          Einladung annehmen
+        </button>
+
+        <h3>Mitglieder einladen</h3>
+        <label class="supabaseFeld" for="supabaseFamilieFuerEinladung">
+          Familie
+        </label>
+        <select id="supabaseFamilieFuerEinladung"></select>
+        <label class="supabaseFeld" for="supabaseEinladungsEmail">
+          E-Mail des eingeladenen Kontos
+        </label>
+        <input id="supabaseEinladungsEmail" type="email"
+          autocomplete="email">
+        <button id="supabaseEinladungErstellen" type="button">
+          Einladungscode erstellen
+        </button>
+        <div id="supabaseEinladungErgebnis" hidden>
+          <label class="supabaseFeld" for="supabaseErstellterCode">
+            Einmaliger Einladungscode (7 Tage gültig)
+          </label>
+          <input id="supabaseErstellterCode" type="text" readonly>
+          <button id="supabaseCodeKopieren" type="button">
+            Code kopieren
+          </button>
+        </div>
+      </div>
+      <p id="supabaseKontoMeldung" class="einstellungenHinweis"
+        aria-live="polite"></p>
+    </div>
+  </fieldset>
+
+  <fieldset id="benachrichtigungsOptionen">
+    <legend>Benachrichtigungen &amp; Töne</legend>
+    <p class="einstellungenHinweis">
+      Einstellungen werden auf diesem Gerät gespeichert. Die Klangvorschau
+      funktioniert bei geöffneter Seite; automatische Benachrichtigungen,
+      Vibration und Ruhezeiten sind noch nicht mit Terminen verbunden.
+    </p>
+
+    <div class="einstellungenSchalter">
+      <label>
+        <input id="einstellungenKlaengeAn" type="checkbox">
+        Töne aktivieren
+      </label>
+      <label>
+        <input id="einstellungenVibrationAn" type="checkbox">
+        Vibration aktivieren
+      </label>
+      <button id="vibrationTest" class="vibrationTest" type="button">
+        Vibration testen
+      </button>
+    </div>
+    <p id="vibrationHinweis" class="einstellungenHinweis"></p>
+
+    <div class="einstellungenKategorie">
+      <strong>Geburtstage</strong>
+      <select id="tonGeburtstag" aria-label="Ton für Geburtstage">
+        <option value="freudig">Fröhliche Glocken</option>
+        <option value="sanft">Sanfter Klang</option>
+        <option value="klar">Klare Doppeltöne</option>
+        <option value="lernen">Lernimpuls</option>
+      </select>
+      <button type="button" data-ton-test="tonGeburtstag">▶ Anhören</button>
+    </div>
+    <div class="einstellungenKategorie">
+      <strong>Normale Termine</strong>
+      <select id="tonTermin" aria-label="Ton für normale Termine">
+        <option value="freudig">Fröhliche Glocken</option>
+        <option value="sanft">Sanfter Klang</option>
+        <option value="klar">Klare Doppeltöne</option>
+        <option value="lernen">Lernimpuls</option>
+      </select>
+      <button type="button" data-ton-test="tonTermin">▶ Anhören</button>
+    </div>
+    <div class="einstellungenKategorie">
+      <strong>Wichtige Termine</strong>
+      <select id="tonWichtig" aria-label="Ton für wichtige Termine">
+        <option value="freudig">Fröhliche Glocken</option>
+        <option value="sanft">Sanfter Klang</option>
+        <option value="klar">Klare Doppeltöne</option>
+        <option value="lernen">Lernimpuls</option>
+      </select>
+      <button type="button" data-ton-test="tonWichtig">▶ Anhören</button>
+    </div>
+    <div class="einstellungenKategorie">
+      <strong>Schultests &amp; Lernen</strong>
+      <select id="tonLernen" aria-label="Ton für Schultests und Lernen">
+        <option value="freudig">Fröhliche Glocken</option>
+        <option value="sanft">Sanfter Klang</option>
+        <option value="klar">Klare Doppeltöne</option>
+        <option value="lernen">Lernimpuls</option>
+      </select>
+      <button type="button" data-ton-test="tonLernen">▶ Anhören</button>
+    </div>
+
+    <div class="ruhezeiten">
+      <strong>Ruhezeiten</strong>
+      <label for="ruhezeitStart">Von
+        <input id="ruhezeitStart" type="time" value="22:00">
+      </label>
+      <label for="ruhezeitEnde">Bis
+        <input id="ruhezeitEnde" type="time" value="07:00">
+      </label>
+    </div>
+  </fieldset>
+
+  <p id="einstellungenMitgliederHinweis" class="einstellungenHinweis"></p>
+  <p id="einstellungenSpeicherStatus" class="einstellungenStatus"
+    aria-live="polite"></p>
+</section>
     <h2>Unsere Termine</h2>
    
       <button id="terminHinzufuegen" onclick="document.getElementById('terminForm').hidden = false" style="padding: 12px 20px; font-size: 16px; font-weight: bold;">
@@ -801,6 +1932,10 @@ h2 {
   <input type="text" id="terminName" placeholder="Was steht an?">
   <input type="date" id="terminDatum">
   <input type="time" id="terminZeit" style="display:inlinie-block; margin:10px 0;">
+  <label for="terminMitglied">Gehört zu (optional)</label>
+  <select id="terminMitglied">
+    <option value="">Gemeinsam</option>
+  </select>
   <br>
   <button class="speichernBtn" style="background-color:
     #DDEBDD;"
@@ -959,10 +2094,195 @@ terminPolja.forEach((polje, index) => {
 })();
 </script>
 <script>
+function ladeFamilienMitgliederFuerTermine() {
+  try {
+    const mitglieder = JSON.parse(
+      localStorage.getItem("familieMitglieder") || "[]"
+    );
+    return Array.isArray(mitglieder) ? mitglieder : [];
+  } catch (fehler) {
+    console.error("Familienmitglieder konnten nicht geladen werden.", fehler);
+    return [];
+  }
+}
+
+function aktualisiereTerminMitglieder() {
+  const auswahl = document.getElementById("terminMitglied");
+  if (!auswahl) return;
+
+  const bisherigerName = auswahl.selectedOptions[0]?.dataset.name || "";
+  auswahl.replaceChildren(new Option("Gemeinsam", ""));
+
+  ladeFamilienMitgliederFuerTermine().forEach(function (mitglied, index) {
+    if (!mitglied || typeof mitglied.name !== "string") return;
+
+    const option = new Option(mitglied.name, String(index));
+    option.dataset.name = mitglied.name;
+    option.dataset.farbe = mitglied.farbe || "";
+    auswahl.add(option);
+
+    if (mitglied.name === bisherigerName) {
+      auswahl.value = String(index);
+    }
+  });
+}
+
+function erstelleTerminFarbmarkierung(termin) {
+  const markierung = document.createElement("span");
+  const mitglieder = ladeFamilienMitgliederFuerTermine();
+  const mitglied = mitglieder.find(function (eintrag) {
+    return eintrag.name === termin.familienmitglied;
+  });
+  const gespeicherteFarbe = termin.familienfarbe;
+  const farbe = mitglied && /^#[0-9a-f]{6}$/i.test(mitglied.farbe || "")
+    ? mitglied.farbe
+    : /^#[0-9a-f]{6}$/i.test(gespeicherteFarbe || "")
+      ? gespeicherteFarbe
+      : "#DFE8DC";
+
+  markierung.className = "terminFarbmarkierung";
+  markierung.dataset.mitglied = termin.familienmitglied || "";
+  markierung.dataset.fallbackFarbe = gespeicherteFarbe || "#DFE8DC";
+  markierung.style.backgroundColor = farbe;
+  markierung.setAttribute(
+    "aria-label",
+    termin.familienmitglied
+      ? "Farbmarkierung für " + termin.familienmitglied
+      : "Gemeinsamer Termin"
+  );
+  return markierung;
+}
+
+function aktualisiereTerminFarbmarkierungen() {
+  const mitglieder = ladeFamilienMitgliederFuerTermine();
+  document.querySelectorAll(".terminFarbmarkierung").forEach(function (punkt) {
+    const mitglied = mitglieder.find(function (eintrag) {
+      return eintrag.name === punkt.dataset.mitglied;
+    });
+    const farbe = mitglied && /^#[0-9a-f]{6}$/i.test(mitglied.farbe || "")
+      ? mitglied.farbe
+      : punkt.dataset.fallbackFarbe;
+    punkt.style.backgroundColor = /^#[0-9a-f]{6}$/i.test(farbe || "")
+      ? farbe
+      : "#DFE8DC";
+  });
+}
+
+function zeigeWochenTermine() {
+  let termine = [];
+  try {
+    const daten = JSON.parse(localStorage.getItem("termini") || "[]");
+    termine = Array.isArray(daten) ? daten : [];
+  } catch (fehler) {
+    console.error("Termine konnten nicht geladen werden.", fehler);
+  }
+
+  const raster = document.getElementById("wochenTermine");
+  const leer = document.getElementById("wochenLeer");
+  const heuteFrei = document.getElementById("heuteFrei");
+  const zeitraum = document.getElementById("wochenZeitraum");
+  raster.replaceChildren();
+
+  const heute = new Date();
+  heute.setHours(0, 0, 0, 0);
+  const heuteISO = [
+    heute.getFullYear(),
+    String(heute.getMonth() + 1).padStart(2, "0"),
+    String(heute.getDate()).padStart(2, "0")
+  ].join("-");
+
+  const montag = new Date(heute);
+  montag.setDate(heute.getDate() - ((heute.getDay() + 6) % 7));
+  const sonntag = new Date(montag);
+  sonntag.setDate(montag.getDate() + 6);
+  const datumISO = function (datum) {
+    return [
+      datum.getFullYear(),
+      String(datum.getMonth() + 1).padStart(2, "0"),
+      String(datum.getDate()).padStart(2, "0")
+    ].join("-");
+  };
+  zeitraum.textContent =
+    montag.toLocaleDateString("de-DE", { day: "numeric", month: "long" }) +
+    " – " +
+    sonntag.toLocaleDateString("de-DE", {
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    });
+
+  heuteFrei.hidden = termine.some(function (termin) {
+    return termin.datum === heuteISO;
+  });
+
+  const termineDieseWoche = termine
+    .filter(function (termin) {
+      return termin.datum >= datumISO(montag) &&
+        termin.datum <= datumISO(sonntag) &&
+        termin.status !== "erledigt";
+    })
+    .sort(function (a, b) {
+      return (a.datum + a.zeit).localeCompare(b.datum + b.zeit);
+    });
+
+  const jetzt = new Date();
+  jetzt.setSeconds(0, 0);
+  const naechsterIndex = termineDieseWoche.findIndex(function (termin) {
+    return new Date(termin.datum + "T" + termin.zeit) >= jetzt;
+  });
+
+  if (termineDieseWoche.length === 0) {
+    leer.textContent = "Diese Woche sind keine offenen Termine geplant.";
+    leer.hidden = false;
+  } else {
+    leer.hidden = true;
+    termineDieseWoche.forEach(function (termin, index) {
+      const eintrag = document.createElement("article");
+      eintrag.className = "wochenTermin";
+      if (index === naechsterIndex) {
+        eintrag.classList.add("wochenTerminNaechster");
+      }
+
+      const inhalt = document.createElement("div");
+      inhalt.className = "wochenTerminInhalt";
+
+      const datum = new Date(
+        Number(termin.datum.slice(0, 4)),
+        Number(termin.datum.slice(5, 7)) - 1,
+        Number(termin.datum.slice(8, 10))
+      );
+      const datumText = document.createElement("span");
+      datumText.className = "wochenTerminDatum";
+      datumText.textContent =
+        datum.toLocaleDateString("de-DE", {
+          weekday: "short",
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric"
+        }) + " · " + termin.zeit;
+
+      const titel = document.createElement("span");
+      titel.className = "wochenTerminTitel";
+      titel.textContent = termin.name;
+
+      inhalt.append(datumText, titel);
+      eintrag.append(erstelleTerminFarbmarkierung(termin), inhalt);
+      raster.appendChild(eintrag);
+    });
+  }
+}
+
 function speichereTermin() {
   let name = document.getElementById("terminName").value;
   let datum = document.getElementById("terminDatum").value;
   let zeit = document.getElementById("terminZeit").value;
+  const mitgliedAuswahl = document.getElementById("terminMitglied");
+  const ausgewaehltesMitglied = mitgliedAuswahl.selectedOptions[0];
+  const familienmitglied =
+    mitgliedAuswahl.value === "" ? "" : ausgewaehltesMitglied.dataset.name;
+  const familienfarbe = mitgliedAuswahl.value === ""
+    ? "#DFE8DC"
+    : ausgewaehltesMitglied.dataset.farbe;
 
   if (!name || !datum || !zeit) {
     alert("Bitte alle Felder ausfüllen!");
@@ -978,6 +2298,16 @@ function speichereTermin() {
  let lijepiDatum = datum.split("-").reverse().join(".");
 
 termin.textContent = lijepiDatum + " - " + zeit + " - " + name;
+const terminDaten = {
+  name: name,
+  datum: datum,
+  zeit: zeit,
+  status: "offen",
+  erinnerungen: [7, 2],
+  familienmitglied: familienmitglied || null,
+  familienfarbe: familienfarbe || "#DFE8DC"
+};
+termin.appendChild(erstelleTerminFarbmarkierung(terminDaten));
 let termini = JSON.parse(localStorage.getItem("termini")) || [];
 let gumb = document.createElement("button");
 gumb.textContent = "✓ Erledigt";
@@ -1031,6 +2361,7 @@ gumbBrisanje.onclick = function() {
       termini.splice(index, 1);
       localStorage.setItem("termini", JSON.stringify(termini));
       termin.remove();
+      zeigeWochenTermine();
       alert("Termin gelöscht!");
     }
   }
@@ -1048,19 +2379,15 @@ liste.insertBefore(termin, sljedeciTermin || null);
 termin.dataset.datum = noviDatum;
 
 
-termini.push({
-  name: name,
-  datum: datum,
-  zeit: zeit,
-  status: "offen",
-  erinnerungen: [7, 2]
-});
+termini.push(terminDaten);
 
 localStorage.setItem("termini", JSON.stringify(termini));
+zeigeWochenTermine();
   alert ("Termin gespeichert! ");
 document.getElementById("terminName").value = "";
 document.getElementById("terminDatum").value = "";
 document.getElementById("terminZeit").value = "";
+mitgliedAuswahl.value = "";
 document.getElementById("terminZeit").hidden = false; 
 }
 </script>
@@ -1068,38 +2395,18 @@ document.getElementById("terminZeit").hidden = false;
 window.addEventListener("DOMContentLoaded", function() {
   let termini = JSON.parse(localStorage.getItem("termini")) || [];
   let liste = document.getElementById("listaTermina");
+  zeigeWochenTermine();
+  aktualisiereTerminMitglieder();
 termini.sort(function(a, b) {
   return (a.datum + a.zeit).localeCompare(b.datum + b.zeit);
 });
-  let sada = new Date();
-
-let sljedeci = termini.find(function(t) {
-  let datumTermina = new Date(t.datum + "T" + t.zeit);
-  return t.status !== "erledigt" && datumTermina >= sada;
-});
-
-let kartica = document.getElementById("naechsterTermin");
-
-if (sljedeci) {
-  let datum = sljedeci.datum.split("-").reverse().join(".");
- const naslov = kartica.querySelector("h2");
-kartica.replaceChildren();
-kartica.appendChild(naslov);
-
-const datumTekst = document.createElement("p");
-datumTekst.textContent = datum + " um " + sljedeci.zeit + " Uhr";
-
-const nazivTekst = document.createElement("p");
-nazivTekst.textContent = sljedeci.name;
-
-kartica.append(datumTekst, nazivTekst);
-}
   termini.forEach(function(t) {
     let termin = document.createElement("p");
     termin.dataset.datum = t.datum + t.zeit;
     let datum = t.datum.split("-").reverse().join(".");
 
     termin.textContent = datum + " - " + t.zeit + " - " + t.name;
+    termin.appendChild(erstelleTerminFarbmarkierung(t));
     if (t.status === "erledigt") {
   termin.style.textDecoration = "line-through";
 } else {
@@ -1118,6 +2425,17 @@ kartica.append(datumTekst, nazivTekst);
   };
 
   termin.appendChild(gumb);
+  let gumbUredi = document.createElement("button");
+  gumbUredi.textContent = "✏️ Bearbeiten";
+  gumbUredi.onclick = function() {
+    let neuerName = prompt("Neuer Terminname:", t.name);
+    if (neuerName === null || neuerName.trim() === "") return;
+    t.name = neuerName.trim();
+    localStorage.setItem("termini", JSON.stringify(termini));
+    location.reload();
+  };
+  termin.appendChild(gumbUredi);
+
  let gumbBrisanje = document.createElement("button");
 gumbBrisanje.textContent = "🗑️ Löschen";
 gumbBrisanje.onclick = function() {
@@ -1127,6 +2445,7 @@ gumbBrisanje.onclick = function() {
       termini.splice(index, 1);
       localStorage.setItem("termini", JSON.stringify(termini));
       termin.remove();
+      zeigeWochenTermine();
    alert("Termin gelöscht!");   
     }
   };
@@ -1147,6 +2466,10 @@ if (t.status === "erledigt") {
   const liste = document.getElementById("familieListe");
   const nameInput = document.getElementById("familieName");
   const farbeInput = document.getElementById("familieFarbe");
+
+  function neueMitgliedId() {
+    return Date.now().toString(36) + Math.random().toString(36).slice(2);
+  }
 
   function ladeMitglieder() {
     try {
@@ -1226,6 +2549,7 @@ document.getElementById("familieAnzahl").textContent = "(" + mitglieder.length +
       speichern.onclick = function () {
         const daten = ladeMitglieder();
         daten[index] = {
+          id: mitglied.id || neueMitgliedId(),
           name: neuerName.trim(),
           rolle: rolle,
           farbe: farbe.value
@@ -1234,6 +2558,9 @@ document.getElementById("familieAnzahl").textContent = "(" + mitglieder.length +
           "familieMitglieder",
           JSON.stringify(daten)
         );
+        aktualisiereTerminMitglieder();
+        aktualisiereTerminFarbmarkierungen();
+        zeigeWochenTermine();
         nameInput.value = "";
         zeigeMitglieder();
       };
@@ -1266,6 +2593,9 @@ document.getElementById("familieAnzahl").textContent = "(" + mitglieder.length +
         "familieMitglieder",
         JSON.stringify(daten)
       );
+      aktualisiereTerminMitglieder();
+      aktualisiereTerminFarbmarkierungen();
+      zeigeWochenTermine();
       zeigeMitglieder();
     };
 
@@ -1295,6 +2625,7 @@ karte.append(farbpunkt, name, akcije);
 
       const mitglieder = ladeMitglieder();
     mitglieder.push({
+  id: neueMitgliedId(),
   name: name,
   rolle: document.getElementById("familieRolle").value,
   farbe: farbeInput.value
@@ -1305,6 +2636,9 @@ karte.append(farbpunkt, name, akcije);
         JSON.stringify(mitglieder)
       );
 
+      aktualisiereTerminMitglieder();
+      aktualisiereTerminFarbmarkierungen();
+      zeigeWochenTermine();
       nameInput.value = "";
       zeigeMitglieder();
     });
@@ -1317,36 +2651,884 @@ karte.append(farbpunkt, name, akcije);
     });
 })();
 </script>
+<script src="supabase-client.js"></script>
+<script>
+(function () {
+  const ansicht = document.getElementById("geburtstageAnsicht");
+  const raster = document.getElementById("geburtstagsKalenderRaster");
+  const monatTitel = document.getElementById("geburtstagsKalenderMonat");
+  const liste = document.getElementById("kommendeGeburtstage");
+  const formular = document.getElementById("geburtstagForm");
+  const vornameInput = document.getElementById("geburtstagVorname");
+  const nachnameInput = document.getElementById("geburtstagNachname");
+  const geschlechtInput = document.getElementById("geburtstagGeschlecht");
+  const tagInput = document.getElementById("geburtstagTag");
+  const monatInput = document.getElementById("geburtstagMonat");
+  const jahrInput = document.getElementById("geburtstagJahr");
+  const loeschenImFormular =
+    document.getElementById("geburtstagFormLoeschen");
+  const vorschau = document.getElementById("naechsterGeburtstag");
+  const vorschauTitel = vorschau.querySelector("strong");
+  const vorschauText = document.getElementById("naechsterGeburtstagText");
+
+  let angezeigterMonat = new Date();
+  angezeigterMonat.setDate(1);
+  let bearbeiteteId = null;
+
+  function geburtstagsName(geburtstag) {
+    const ganzerName = [geburtstag.vorname, geburtstag.nachname]
+      .filter(Boolean)
+      .join(" ")
+      .trim();
+    return ganzerName || geburtstag.name || "";
+  }
+
+  function ladeGeburtstage() {
+    try {
+      const daten = JSON.parse(localStorage.getItem("geburtstage") || "[]");
+      return Array.isArray(daten) ? daten : [];
+    } catch (fehler) {
+      console.error("Geburtstage konnten nicht geladen werden.", fehler);
+      return [];
+    }
+  }
+
+  function speichereGeburtstage(daten) {
+    try {
+      localStorage.setItem("geburtstage", JSON.stringify(daten));
+      return true;
+    } catch (fehler) {
+      console.error("Geburtstage konnten nicht gespeichert werden.", fehler);
+      alert("Die Geburtstage konnten nicht gespeichert werden.");
+      return false;
+    }
+  }
+
+  function geburtstagsTagImJahr(geburtstag, jahr) {
+    const schaltjahr = jahr % 4 === 0 && (jahr % 100 !== 0 || jahr % 400 === 0);
+    if (geburtstag.monat === 2 && geburtstag.tag === 29 && !schaltjahr) {
+      return 28;
+    }
+    return geburtstag.tag;
+  }
+
+  function datumImJahr(geburtstag, jahr) {
+    return new Date(
+      jahr,
+      geburtstag.monat - 1,
+      geburtstagsTagImJahr(geburtstag, jahr)
+    );
+  }
+
+  function ermittleAnstehendeGeburtstage() {
+    const heute = new Date();
+    heute.setHours(0, 0, 0, 0);
+
+    return ladeGeburtstage()
+      .filter(function (geburtstag) {
+        return geburtstag && geburtstag.id && geburtstagsName(geburtstag) &&
+          Number.isInteger(geburtstag.monat) &&
+          Number.isInteger(geburtstag.tag);
+      })
+      .map(function (geburtstag) {
+        let datum = datumImJahr(geburtstag, heute.getFullYear());
+        if (datum < heute) {
+          datum = datumImJahr(geburtstag, heute.getFullYear() + 1);
+        }
+        return {
+          geburtstag: geburtstag,
+          datum: datum,
+          tageBis: Math.round((datum - heute) / 86400000),
+          alter: Number.isInteger(geburtstag.geburtsjahr)
+            ? datum.getFullYear() - geburtstag.geburtsjahr
+            : null
+        };
+      })
+      .sort(function (a, b) {
+        return a.datum - b.datum ||
+          geburtstagsName(a.geburtstag)
+            .localeCompare(geburtstagsName(b.geburtstag), "de");
+      });
+  }
+
+  function zeigeNaechstenGeburtstag() {
+    const naechster = ermittleAnstehendeGeburtstage()[0];
+    if (!naechster || naechster.tageBis > 30) {
+      vorschau.hidden = true;
+      return;
+    }
+
+    const datum = naechster.datum.toLocaleDateString("de-DE", {
+      day: "numeric",
+      month: "long"
+    });
+    const alterText = naechster.alter === null
+      ? ""
+      : " und wird " + naechster.alter + " Jahre alt";
+    vorschauTitel.textContent = naechster.tageBis === 0
+      ? "🎉 Heute Geburtstag"
+      : "🎂 Bald Geburtstag";
+    vorschauText.textContent = naechster.tageBis === 0
+      ? geburtstagsName(naechster.geburtstag) + " hat heute Geburtstag" +
+        alterText + "."
+      : geburtstagsName(naechster.geburtstag) + " hat am " + datum +
+        " Geburtstag" + alterText + ".";
+    vorschau.hidden = false;
+  }
+
+  function zeichneKalender() {
+    raster.replaceChildren();
+    monatTitel.textContent = angezeigterMonat.toLocaleDateString("de-DE", {
+      month: "long",
+      year: "numeric"
+    });
+
+    ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"].forEach(function (tag) {
+      const feld = document.createElement("div");
+      feld.className = "kalenderWochentag";
+      feld.textContent = tag;
+      raster.appendChild(feld);
+    });
+
+    const jahr = angezeigterMonat.getFullYear();
+    const monatszahl = angezeigterMonat.getMonth();
+    const ersterTag = new Date(jahr, monatszahl, 1);
+    const anzahlTage = new Date(jahr, monatszahl + 1, 0).getDate();
+    const start = (ersterTag.getDay() + 6) % 7;
+
+    for (let i = 0; i < start; i++) {
+      raster.appendChild(document.createElement("div"));
+    }
+
+    const geburtstage = ladeGeburtstage();
+    const heute = new Date();
+
+    for (let tag = 1; tag <= anzahlTage; tag++) {
+      const feld = document.createElement("div");
+      feld.className = "kalenderTag";
+
+      if (
+        tag === heute.getDate() &&
+        monatszahl === heute.getMonth() &&
+        jahr === heute.getFullYear()
+      ) {
+        feld.classList.add("kalenderHeute");
+      }
+
+      const nummer = document.createElement("button");
+      nummer.type = "button";
+      nummer.className = "geburtstagDatumKlick";
+      nummer.textContent = String(tag);
+      nummer.setAttribute(
+        "aria-label",
+        "Geburtstag am " + String(tag).padStart(2, "0") + "." +
+          String(monatszahl + 1).padStart(2, "0") + " hinzufügen"
+      );
+      feld.appendChild(nummer);
+
+      const geburtstageAmTag = geburtstage.filter(function (geburtstag) {
+        return geburtstag.monat === monatszahl + 1 &&
+          geburtstagsTagImJahr(geburtstag, jahr) === tag;
+      });
+
+      if (geburtstageAmTag.length > 0) {
+        feld.classList.add("geburtstagsKalenderTag");
+        const hatMaennlichenGeburtstag = geburtstageAmTag.some(
+          function (geburtstag) {
+            return geburtstag.geschlecht === "maennlich";
+          }
+        );
+        const hatWeiblichenGeburtstag = geburtstageAmTag.some(
+          function (geburtstag) {
+            return geburtstag.geschlecht !== "maennlich";
+          }
+        );
+        if (hatMaennlichenGeburtstag && hatWeiblichenGeburtstag) {
+          feld.classList.add("geburtstagsKalenderTagGemischt");
+        } else if (hatMaennlichenGeburtstag) {
+          feld.classList.add("geburtstagsKalenderTagMaennlich");
+        } else {
+          feld.classList.add("geburtstagsKalenderTagWeiblich");
+        }
+
+        const kuchen = document.createElement("span");
+        kuchen.className = "geburtstagKuchen";
+        kuchen.textContent = " 🎂";
+        kuchen.setAttribute("aria-label", "Geburtstag");
+        nummer.appendChild(kuchen);
+
+        geburtstageAmTag.forEach(function (geburtstag) {
+          const eintrag = document.createElement("span");
+          eintrag.className = "kalenderEintrag geburtstagKalenderEintrag";
+          eintrag.classList.add(
+            geburtstag.geschlecht === "maennlich"
+              ? "geburtstagBlau"
+              : "geburtstagRosa"
+          );
+          eintrag.textContent = geburtstagsName(geburtstag);
+          eintrag.setAttribute("role", "button");
+          eintrag.tabIndex = 0;
+          eintrag.setAttribute(
+            "aria-label",
+            "Geburtstag von " + geburtstagsName(geburtstag) +
+              " bearbeiten oder löschen"
+          );
+          eintrag.addEventListener("click", function (event) {
+            event.stopPropagation();
+            bearbeiteGeburtstag(geburtstag);
+          });
+          eintrag.addEventListener("keydown", function (event) {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              event.stopPropagation();
+              bearbeiteGeburtstag(geburtstag);
+            }
+          });
+          feld.appendChild(eintrag);
+        });
+      }
+
+      feld.addEventListener("click", function (event) {
+        if (event.target.closest(".geburtstagsKalenderEintrag")) return;
+        oeffneFormular(new Date(jahr, monatszahl, tag));
+      });
+
+      raster.appendChild(feld);
+    }
+  }
+
+  function zeigeKommendeGeburtstage() {
+    liste.replaceChildren();
+    const geburtstage = ermittleAnstehendeGeburtstage();
+
+    if (geburtstage.length === 0) {
+      const hinweis = document.createElement("p");
+      hinweis.className = "wochenLeermeldung";
+      hinweis.textContent = "Noch keine Geburtstage eingetragen.";
+      liste.appendChild(hinweis);
+      return;
+    }
+
+    geburtstage.forEach(function (eintrag) {
+      const karte = document.createElement("article");
+      karte.className = "geburtstagsEintrag";
+
+      const text = document.createElement("div");
+      text.className = "geburtstagsEintragText";
+
+      const name = document.createElement("strong");
+      name.textContent = "🎂 " + geburtstagsName(eintrag.geburtstag);
+
+      const datum = document.createElement("span");
+      datum.textContent = eintrag.datum.toLocaleDateString("de-DE", {
+        weekday: "long",
+        day: "numeric",
+        month: "long"
+      });
+      if (eintrag.alter !== null) {
+        datum.textContent += " · wird " + eintrag.alter + " Jahre alt";
+      }
+      text.append(name, datum);
+
+      const aktionen = document.createElement("div");
+      aktionen.className = "geburtstagsEintragAktionen";
+
+      const bearbeiten = document.createElement("button");
+      bearbeiten.type = "button";
+      bearbeiten.textContent = "✏️";
+      bearbeiten.setAttribute("aria-label", "Geburtstag bearbeiten");
+      bearbeiten.title = "Geburtstag bearbeiten";
+      bearbeiten.addEventListener("click", function () {
+        bearbeiteGeburtstag(eintrag.geburtstag);
+      });
+
+      const loeschen = document.createElement("button");
+      loeschen.type = "button";
+      loeschen.textContent = "🗑️";
+      loeschen.setAttribute("aria-label", "Geburtstag löschen");
+      loeschen.title = "Geburtstag löschen";
+      loeschen.addEventListener("click", function () {
+        loescheGeburtstag(eintrag.geburtstag);
+      });
+
+      aktionen.append(bearbeiten, loeschen);
+      karte.append(text, aktionen);
+      liste.appendChild(karte);
+    });
+  }
+
+  function loescheGeburtstag(geburtstag) {
+    if (!confirm("Möchtest du diesen Geburtstag wirklich löschen?")) return;
+    const daten = ladeGeburtstage();
+    const verbleibendeDaten = daten.filter(function (eintrag) {
+      return eintrag.id !== geburtstag.id;
+    });
+    if (verbleibendeDaten.length === daten.length) {
+      alert("Dieser Geburtstag wurde nicht gefunden.");
+      return;
+    }
+
+    if (speichereGeburtstage(verbleibendeDaten)) {
+      bearbeiteteId = null;
+      formular.hidden = true;
+      aktualisiereAnsicht();
+    }
+  }
+
+  function aktualisiereAnsicht() {
+    zeichneKalender();
+    zeigeKommendeGeburtstage();
+    zeigeNaechstenGeburtstag();
+  }
+
+  function oeffneFormular(datum) {
+    bearbeiteteId = null;
+    document.getElementById("geburtstagFormTitel").textContent =
+      "Geburtstag hinzufügen";
+    document.getElementById("geburtstagSpeichern").textContent = "Speichern";
+    loeschenImFormular.hidden = true;
+    formular.hidden = false;
+    vornameInput.value = "";
+    nachnameInput.value = "";
+    geschlechtInput.value = "keineAngabe";
+    tagInput.value = "";
+    monatInput.value = "";
+    jahrInput.value = "";
+    if (datum) {
+      tagInput.value = String(datum.getDate()).padStart(2, "0");
+      monatInput.value = String(datum.getMonth() + 1).padStart(2, "0");
+    }
+    formular.scrollIntoView({ behavior: "smooth", block: "center" });
+    vornameInput.focus();
+  }
+
+  function bearbeiteGeburtstag(geburtstag) {
+    bearbeiteteId = geburtstag.id;
+    document.getElementById("geburtstagFormTitel").textContent =
+      "Geburtstag bearbeiten";
+    document.getElementById("geburtstagSpeichern").textContent =
+      "Änderungen speichern";
+    loeschenImFormular.hidden = false;
+    vornameInput.value = geburtstag.vorname || geburtstag.name || "";
+    nachnameInput.value = geburtstag.nachname || "";
+    geschlechtInput.value = geburtstag.geschlecht || "keineAngabe";
+    tagInput.value = String(geburtstag.tag).padStart(2, "0");
+    monatInput.value = String(geburtstag.monat).padStart(2, "0");
+    jahrInput.value = geburtstag.geburtsjahr
+      ? String(geburtstag.geburtsjahr)
+      : "";
+    formular.hidden = false;
+    formular.scrollIntoView({ behavior: "smooth", block: "center" });
+    vornameInput.focus();
+  }
+
+  function speichereGeburtstag() {
+    const vorname = vornameInput.value.trim();
+    const nachname = nachnameInput.value.trim();
+    const geschlecht = geschlechtInput.value;
+    const name = [vorname, nachname].filter(Boolean).join(" ");
+    const tagText = tagInput.value.trim();
+    const monatText = monatInput.value.trim();
+    const tag = Number(tagText);
+    const monat = Number(monatText);
+    const jahrText = jahrInput.value.trim();
+    const geburtsjahr = jahrText === "" ? null : Number(jahrText);
+    const pruefJahr = geburtsjahr === null ? 2024 : geburtsjahr;
+    const pruefDatum = new Date(pruefJahr, monat - 1, tag);
+
+    if (
+      !vorname ||
+      !/^\d{1,2}$/.test(tagText) ||
+      !/^\d{1,2}$/.test(monatText) ||
+      !Number.isInteger(tag) ||
+      !Number.isInteger(monat) ||
+      pruefDatum.getMonth() !== monat - 1 ||
+      pruefDatum.getDate() !== tag
+    ) {
+      alert("Bitte gib einen Namen und ein gültiges Geburtsdatum ein.");
+      return;
+    }
+
+    if (
+      geburtsjahr !== null &&
+      (!Number.isInteger(geburtsjahr) ||
+        jahrText.length !== 4 ||
+        geburtsjahr < 1900 ||
+        geburtsjahr > new Date().getFullYear())
+    ) {
+      alert("Bitte gib ein gültiges Geburtsjahr ein oder lass es leer.");
+      return;
+    }
+
+    const daten = ladeGeburtstage();
+    if (bearbeiteteId) {
+      const index = daten.findIndex(function (geburtstag) {
+        return geburtstag.id === bearbeiteteId;
+      });
+      if (index === -1) {
+        alert("Dieser Geburtstag wurde nicht gefunden.");
+        return;
+      }
+      daten[index] = {
+        ...daten[index],
+        name: name,
+        vorname: vorname,
+        nachname: nachname,
+        geschlecht: geschlecht,
+        tag: tag,
+        monat: monat,
+        geburtsjahr: geburtsjahr
+      };
+    } else {
+      daten.push({
+        id: Date.now().toString(36) + Math.random().toString(36).slice(2),
+        name: name,
+        vorname: vorname,
+        nachname: nachname,
+        geschlecht: geschlecht,
+        tag: tag,
+        monat: monat,
+        geburtsjahr: geburtsjahr
+      });
+    }
+
+    if (!speichereGeburtstage(daten)) return;
+    bearbeiteteId = null;
+    formular.hidden = true;
+    aktualisiereAnsicht();
+  }
+
+  function normalisiereDatumsteil(feld) {
+    if (/^\d{1,2}$/.test(feld.value.trim())) {
+      feld.value = feld.value.trim().padStart(2, "0");
+    }
+  }
+
+  tagInput.addEventListener("blur", function () {
+    normalisiereDatumsteil(tagInput);
+  });
+  monatInput.addEventListener("blur", function () {
+    normalisiereDatumsteil(monatInput);
+  });
+
+  function enterZumNaechstenFeld(feld, naechstesFeld, normalisieren) {
+    feld.addEventListener("keydown", function (event) {
+      if (event.key !== "Enter") return;
+      event.preventDefault();
+      if (normalisieren) normalisiereDatumsteil(feld);
+      if (naechstesFeld) naechstesFeld.focus();
+      else speichereGeburtstag();
+    });
+  }
+
+  enterZumNaechstenFeld(vornameInput, nachnameInput, false);
+  enterZumNaechstenFeld(nachnameInput, tagInput, false);
+  enterZumNaechstenFeld(tagInput, monatInput, true);
+  enterZumNaechstenFeld(monatInput, jahrInput, true);
+  enterZumNaechstenFeld(jahrInput, null, false);
+
+  loeschenImFormular.addEventListener("click", function () {
+    const geburtstag = ladeGeburtstage().find(function (eintrag) {
+      return eintrag.id === bearbeiteteId;
+    });
+    if (!geburtstag) {
+      alert("Dieser Geburtstag wurde nicht gefunden.");
+      return;
+    }
+    loescheGeburtstag(geburtstag);
+  });
+
+  document.getElementById("geburtstageButton")
+    .addEventListener("click", function () {
+      if (!ansicht.hidden) {
+        ansicht.hidden = true;
+        formular.hidden = true;
+        return;
+      }
+
+      aktualisiereAnsicht();
+      ansicht.hidden = false;
+      ansicht.scrollIntoView({ behavior: "smooth" });
+    });
+
+  document.getElementById("geburtstagsMonatZurueck")
+    .addEventListener("click", function () {
+      angezeigterMonat.setMonth(angezeigterMonat.getMonth() - 1);
+      zeichneKalender();
+    });
+
+  document.getElementById("geburtstagsMonatWeiter")
+    .addEventListener("click", function () {
+      angezeigterMonat.setMonth(angezeigterMonat.getMonth() + 1);
+      zeichneKalender();
+    });
+
+  document.getElementById("geburtstagHinzufuegen")
+    .addEventListener("click", function () {
+      oeffneFormular();
+    });
+  document.getElementById("geburtstagSpeichern")
+    .addEventListener("click", speichereGeburtstag);
+  document.getElementById("geburtstagAbbrechen")
+    .addEventListener("click", function () {
+      formular.hidden = true;
+    });
+  document.getElementById("geburtstageZurueck")
+    .addEventListener("click", function () {
+      ansicht.hidden = true;
+      document.querySelector(".meni")
+        .scrollIntoView({ behavior: "smooth" });
+    });
+
+  aktualisiereAnsicht();
+})();
+</script>
+<script>
+(function () {
+  const speicherSchluessel = "familienBenachrichtigungsEinstellungen";
+  const ansicht = document.getElementById("einstellungenAnsicht");
+  const mitgliedAuswahl =
+    document.getElementById("einstellungenMitgliedAuswahl");
+  const optionen = document.getElementById("benachrichtigungsOptionen");
+  const hinweis = document.getElementById("einstellungenMitgliederHinweis");
+  const status = document.getElementById("einstellungenSpeicherStatus");
+  const klangSchalter = document.getElementById("einstellungenKlaengeAn");
+  const vibrationsSchalter =
+    document.getElementById("einstellungenVibrationAn");
+  const ruhezeitStart = document.getElementById("ruhezeitStart");
+  const ruhezeitEnde = document.getElementById("ruhezeitEnde");
+  const tonFelder = {
+    geburtstag: document.getElementById("tonGeburtstag"),
+    termin: document.getElementById("tonTermin"),
+    wichtig: document.getElementById("tonWichtig"),
+    lernen: document.getElementById("tonLernen")
+  };
+  const standardToene = {
+    geburtstag: "freudig",
+    termin: "sanft",
+    wichtig: "klar",
+    lernen: "lernen"
+  };
+  const klangMuster = {
+    freudig: { noten: [523.25, 659.25, 783.99, 1046.5], form: "sine" },
+    sanft: { noten: [440, 523.25, 659.25], form: "sine" },
+    klar: { noten: [659.25, 659.25, 880], form: "triangle" },
+    lernen: { noten: [392, 493.88, 587.33, 659.25], form: "triangle" }
+  };
+
+  function neueMitgliedId() {
+    return Date.now().toString(36) + Math.random().toString(36).slice(2);
+  }
+
+  function ladeMitglieder() {
+    let mitglieder;
+    try {
+      mitglieder = JSON.parse(
+        localStorage.getItem("familieMitglieder") || "[]"
+      );
+    } catch (fehler) {
+      console.error("Familienmitglieder konnten nicht geladen werden.", fehler);
+      hinweis.textContent =
+        "Familienmitglieder konnten nicht geladen werden.";
+      return null;
+    }
+
+    if (!Array.isArray(mitglieder)) {
+      hinweis.textContent = "Die Familienliste ist ungültig.";
+      return null;
+    }
+
+    let geaendert = false;
+    const verwendeteIds = new Set();
+    mitglieder.forEach(function (mitglied) {
+      if (!mitglied || typeof mitglied !== "object") return;
+      if (!mitglied.id || verwendeteIds.has(mitglied.id)) {
+        mitglied.id = neueMitgliedId();
+        geaendert = true;
+      }
+      verwendeteIds.add(mitglied.id);
+    });
+
+    if (geaendert) {
+      try {
+        localStorage.setItem(
+          "familieMitglieder",
+          JSON.stringify(mitglieder)
+        );
+      } catch (fehler) {
+        console.error("Mitgliedskennungen konnten nicht gespeichert werden.", fehler);
+        hinweis.textContent =
+          "Mitgliedseinstellungen können auf diesem Gerät nicht gespeichert werden.";
+        return null;
+      }
+    }
+    return mitglieder.filter(function (mitglied) {
+      return mitglied && typeof mitglied === "object";
+    });
+  }
+
+  function ladeEinstellungen() {
+    try {
+      const daten = JSON.parse(
+        localStorage.getItem(speicherSchluessel) || "{}"
+      );
+      if (!daten || Array.isArray(daten) || typeof daten !== "object") {
+        throw new Error("Ungültiges Einstellungsformat.");
+      }
+      return daten;
+    } catch (fehler) {
+      console.error("Benachrichtigungseinstellungen konnten nicht geladen werden.", fehler);
+      status.textContent =
+        "Einstellungen konnten nicht geladen werden. Bitte prüfe den lokalen Speicher.";
+      optionen.disabled = true;
+      return null;
+    }
+  }
+
+  function standardEinstellungen() {
+    return {
+      klaengeAktiv: true,
+      vibrationAktiv: false,
+      ruhezeitStart: "22:00",
+      ruhezeitEnde: "07:00",
+      toene: { ...standardToene }
+    };
+  }
+
+  function normalisiereEinstellungen(einstellung) {
+    const normal = standardEinstellungen();
+    if (!einstellung || typeof einstellung !== "object") return normal;
+
+    if (typeof einstellung.klaengeAktiv === "boolean") {
+      normal.klaengeAktiv = einstellung.klaengeAktiv;
+    }
+    if (typeof einstellung.vibrationAktiv === "boolean") {
+      normal.vibrationAktiv = einstellung.vibrationAktiv;
+    }
+    if (/^\d{2}:\d{2}$/.test(einstellung.ruhezeitStart || "")) {
+      normal.ruhezeitStart = einstellung.ruhezeitStart;
+    }
+    if (/^\d{2}:\d{2}$/.test(einstellung.ruhezeitEnde || "")) {
+      normal.ruhezeitEnde = einstellung.ruhezeitEnde;
+    }
+
+    Object.keys(standardToene).forEach(function (typ) {
+      const ton = einstellung.toene && einstellung.toene[typ];
+      if (Object.prototype.hasOwnProperty.call(klangMuster, ton)) {
+        normal.toene[typ] = ton;
+      }
+    });
+    return normal;
+  }
+
+  function zeigeMitgliedsEinstellungen() {
+    const alleEinstellungen = ladeEinstellungen();
+    if (!alleEinstellungen) return;
+    const einstellung = normalisiereEinstellungen(
+      alleEinstellungen[mitgliedAuswahl.value]
+    );
+
+    klangSchalter.checked = einstellung.klaengeAktiv;
+    vibrationsSchalter.checked = einstellung.vibrationAktiv;
+    ruhezeitStart.value = einstellung.ruhezeitStart;
+    ruhezeitEnde.value = einstellung.ruhezeitEnde;
+    Object.keys(tonFelder).forEach(function (typ) {
+      tonFelder[typ].value = einstellung.toene[typ];
+    });
+    status.textContent = "";
+  }
+
+  function aktualisiereMitgliederAuswahl() {
+    const vorherigeId = mitgliedAuswahl.value;
+    const mitglieder = ladeMitglieder();
+    mitgliedAuswahl.replaceChildren();
+
+    if (!mitglieder) {
+      optionen.disabled = true;
+      mitgliedAuswahl.disabled = true;
+      return;
+    }
+
+    mitglieder.forEach(function (mitglied) {
+      const option = document.createElement("option");
+      option.value = mitglied.id;
+      option.textContent = mitglied.name +
+        (mitglied.rolle ? " · " + mitglied.rolle : "");
+      mitgliedAuswahl.appendChild(option);
+    });
+
+    const hatVorherigesMitglied = mitglieder.some(function (mitglied) {
+      return mitglied.id === vorherigeId;
+    });
+    if (hatVorherigesMitglied) {
+      mitgliedAuswahl.value = vorherigeId;
+    }
+
+    const keineMitglieder = mitglieder.length === 0;
+    optionen.disabled = keineMitglieder;
+    mitgliedAuswahl.disabled = keineMitglieder;
+    hinweis.textContent = keineMitglieder
+      ? "Bitte füge zuerst unter „Unsere Familie“ ein Familienmitglied hinzu."
+      : "Die Auswahl ordnet Einstellungen einem Mitglied zu, ist aber keine Anmeldung.";
+    if (!keineMitglieder) zeigeMitgliedsEinstellungen();
+  }
+
+  function speichereMitgliedsEinstellungen() {
+    if (!mitgliedAuswahl.value || optionen.disabled) return;
+    const alleEinstellungen = ladeEinstellungen();
+    if (!alleEinstellungen) return;
+
+    const toene = {};
+    Object.keys(tonFelder).forEach(function (typ) {
+      toene[typ] = tonFelder[typ].value;
+    });
+    alleEinstellungen[mitgliedAuswahl.value] = {
+      klaengeAktiv: klangSchalter.checked,
+      vibrationAktiv: vibrationsSchalter.checked,
+      ruhezeitStart: ruhezeitStart.value,
+      ruhezeitEnde: ruhezeitEnde.value,
+      toene: toene
+    };
+
+    try {
+      localStorage.setItem(
+        speicherSchluessel,
+        JSON.stringify(alleEinstellungen)
+      );
+      status.textContent = "Einstellungen auf diesem Gerät gespeichert.";
+    } catch (fehler) {
+      console.error("Benachrichtigungseinstellungen konnten nicht gespeichert werden.", fehler);
+      status.textContent = "Einstellungen konnten nicht gespeichert werden.";
+      alert("Die Einstellungen konnten nicht gespeichert werden.");
+    }
+  }
+
+  function spieleKlang(klangName) {
+    const AudioKontext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioKontext) {
+      alert("Die Klangvorschau wird von diesem Browser nicht unterstützt.");
+      return;
+    }
+
+    let audio;
+    try {
+      audio = new AudioKontext();
+    } catch (fehler) {
+      console.error("Die Klangvorschau konnte nicht gestartet werden.", fehler);
+      alert("Die Klangvorschau konnte nicht gestartet werden.");
+      return;
+    }
+
+    const muster = klangMuster[klangName];
+    audio.resume().then(function () {
+      const start = audio.currentTime;
+      muster.noten.forEach(function (frequenz, index) {
+        const zeit = start + index * 0.15;
+        const oszillator = audio.createOscillator();
+        const lautstaerke = audio.createGain();
+        oszillator.type = muster.form;
+        oszillator.frequency.setValueAtTime(frequenz, zeit);
+        lautstaerke.gain.setValueAtTime(0.0001, zeit);
+        lautstaerke.gain.exponentialRampToValueAtTime(0.045, zeit + 0.025);
+        lautstaerke.gain.exponentialRampToValueAtTime(0.0001, zeit + 0.13);
+        oszillator.connect(lautstaerke);
+        lautstaerke.connect(audio.destination);
+        oszillator.start(zeit);
+        oszillator.stop(zeit + 0.14);
+        if (index === muster.noten.length - 1) {
+          oszillator.addEventListener("ended", function () {
+            audio.close();
+          }, { once: true });
+        }
+      });
+    }, function (fehler) {
+      console.error("Die Klangvorschau konnte nicht gestartet werden.", fehler);
+      alert("Die Klangvorschau konnte nicht gestartet werden.");
+      audio.close();
+    });
+  }
+
+  document.getElementById("einstellungenButton")
+    .addEventListener("click", function () {
+      if (!ansicht.hidden) {
+        ansicht.hidden = true;
+        return;
+      }
+      aktualisiereMitgliederAuswahl();
+      ansicht.hidden = false;
+      ansicht.scrollIntoView({ behavior: "smooth" });
+    });
+
+  document.getElementById("einstellungenSchliessen")
+    .addEventListener("click", function () {
+      ansicht.hidden = true;
+      document.querySelector(".meni")
+        .scrollIntoView({ behavior: "smooth" });
+    });
+
+  mitgliedAuswahl.addEventListener("change", zeigeMitgliedsEinstellungen);
+  [
+    klangSchalter,
+    vibrationsSchalter,
+    ruhezeitStart,
+    ruhezeitEnde
+  ].forEach(function (feld) {
+    feld.addEventListener("change", speichereMitgliedsEinstellungen);
+  });
+  Object.keys(tonFelder).forEach(function (typ) {
+    tonFelder[typ].addEventListener(
+      "change",
+      speichereMitgliedsEinstellungen
+    );
+  });
+
+  document.querySelectorAll("[data-ton-test]").forEach(function (taste) {
+    taste.addEventListener("click", function () {
+      const tonId = taste.getAttribute("data-ton-test");
+      spieleKlang(document.getElementById(tonId).value);
+    });
+  });
+
+  const vibrationTest = document.getElementById("vibrationTest");
+  const vibrationHinweis = document.getElementById("vibrationHinweis");
+  const vibrationVerfuegbar = typeof navigator.vibrate === "function";
+  vibrationTest.disabled = !vibrationVerfuegbar;
+  vibrationHinweis.textContent = vibrationVerfuegbar
+    ? "Vibration hängt von Gerät und Browser ab."
+    : "Vibration wird von diesem Gerät oder Browser nicht unterstützt.";
+  vibrationTest.addEventListener("click", function () {
+    if (navigator.vibrate && !navigator.vibrate([120, 80, 120])) {
+      vibrationHinweis.textContent =
+        "Vibration ist auf diesem Gerät derzeit nicht verfügbar.";
+    }
+  });
+})();
+</script>
 <script>
 (function () {
   const fotoInput = document.getElementById("familienFoto");
   if (!fotoInput) return;
+  const fotoMenue = document.getElementById("fotoMenue");
+  const menueTaste = document.getElementById("fotoMenueButton");
 
   let positionX = Number(localStorage.getItem("fotoX") ?? 50);
   let positionY = Number(localStorage.getItem("fotoY") ?? 50);
 
   function zeigeFamilienFoto(bild) {
-    document.body.style.backgroundImage = `url("${bild}")`;
+    document.body.style.backgroundImage =
+      `linear-gradient(rgba(248, 247, 242, 0.28), rgba(223, 232, 220, 0.26)), url("${bild}")`;
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundPosition =
       `${positionX}% ${positionY}%`;
-    document.body.style.backgroundAttachment = "fixed";
   }
 
   const gespeichertesFoto = localStorage.getItem("familienFoto");
   if (gespeichertesFoto) zeigeFamilienFoto(gespeichertesFoto);
 
   const bereich = document.createElement("div");
-  bereich.style.cssText =
-    "text-align:center;margin:10px auto;";
+  bereich.className = "bildEditorBereich";
 
   bereich.innerHTML = `
-    <button type="button" id="bildAnpassen"
-      style="background:#DDEBDD;color:#34553E;
-      border:1px solid #DFE8DC;border-radius:12px;
-      padding:10px 18px;cursor:pointer;">
-      📷 Bild anpassen
-    </button>
     <div id="bildEditor" hidden
       style="max-width:650px;margin:15px auto;
       padding:15px;background:#F8F7F2;
@@ -1368,10 +3550,48 @@ karte.append(farbpunkt, name, akcije);
     </div>
   `;
 
-  fotoInput.parentElement.after(bereich);
+  document.querySelector(".zaglavlje").appendChild(bereich);
 
   const editor = document.getElementById("bildEditor");
   const vorschau = document.getElementById("bildVorschau");
+
+  function schliesseFotoMenue() {
+    fotoMenue.hidden = true;
+    menueTaste.setAttribute("aria-expanded", "false");
+  }
+
+  menueTaste.addEventListener("click", function () {
+    fotoMenue.hidden = !fotoMenue.hidden;
+    menueTaste.setAttribute("aria-expanded", String(!fotoMenue.hidden));
+  });
+
+  document.getElementById("fotoAendern").addEventListener("click", function () {
+    schliesseFotoMenue();
+    fotoInput.value = "";
+    fotoInput.click();
+  });
+
+  document.getElementById("fotoEntfernen").addEventListener("click", function () {
+    if (
+      localStorage.getItem("familienFoto") &&
+      !confirm("Möchtest du das gespeicherte Hintergrundbild wirklich entfernen?")
+    ) return;
+
+    localStorage.removeItem("familienFoto");
+    localStorage.removeItem("fotoX");
+    localStorage.removeItem("fotoY");
+    document.body.style.backgroundImage = "";
+    positionX = 50;
+    positionY = 50;
+    editor.hidden = true;
+    schliesseFotoMenue();
+  });
+
+  document.addEventListener("click", function (event) {
+    if (!event.target.closest(".fotoSteuerung")) {
+      schliesseFotoMenue();
+    }
+  });
 
   function aktualisieren() {
     const bild = localStorage.getItem("familienFoto");
@@ -1387,6 +3607,7 @@ karte.append(farbpunkt, name, akcije);
       alert("Bitte zuerst ein Foto auswählen.");
       return;
     }
+    schliesseFotoMenue();
     editor.hidden = !editor.hidden;
     aktualisieren();
   };
@@ -1452,6 +3673,7 @@ karte.append(farbpunkt, name, akcije);
           localStorage.setItem("fotoX", positionX);
           localStorage.setItem("fotoY", positionY);
           aktualisieren();
+          schliesseFotoMenue();
         } catch (fehler) {
           alert("Nicht genug Speicherplatz für das Foto.");
         }
