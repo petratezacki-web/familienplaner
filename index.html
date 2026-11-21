@@ -2147,6 +2147,539 @@ body {
     font-size: 13px;
   }
 }
+
+.termineBereich {
+  width: calc(100% - 32px);
+  max-width: 900px;
+  margin: 30px auto 42px;
+}
+
+.termineKopf {
+  margin: 0 0 18px;
+  text-align: center;
+}
+
+.termineKopf h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  color: #526E57;
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(34px, 5vw, 44px);
+  font-weight: 700;
+  line-height: 1.15;
+  text-shadow: 0 1px 4px rgba(248, 247, 242, 0.88);
+}
+
+.termineKopf h2 span {
+  color: #C88191;
+  font-family: sans-serif;
+  font-size: 22px;
+}
+
+.termineKopf p {
+  margin: 4px 0 0;
+  color: #647563;
+  font-size: 14px;
+  text-shadow: 0 1px 3px rgba(248, 247, 242, 0.9);
+}
+
+.termineBereich button {
+  min-width: 0;
+  margin: 0;
+  font-family: inherit;
+}
+
+.terminHinzufuegen {
+  display: grid;
+  grid-template-columns: 30px 1fr 22px;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 56px;
+  padding: 12px 18px;
+  border: 1px solid rgba(82, 110, 87, 0.18);
+  border-radius: 17px;
+  background: #819D7E;
+  box-shadow: 0 6px 16px rgba(47, 69, 49, 0.12);
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: left;
+  transition: background-color 180ms ease, transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.terminHinzufuegen:hover {
+  background: #718D70;
+  box-shadow: 0 9px 20px rgba(47, 69, 49, 0.17);
+  transform: translateY(-2px);
+}
+
+.terminKalenderIcon,
+.terminPfeil,
+.termineUebersichtIcon,
+.termineUebersichtPfeil {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.terminKalenderIcon {
+  width: 27px;
+  height: 27px;
+}
+
+.terminPfeil {
+  justify-self: end;
+  transition: transform 180ms ease;
+}
+
+.terminHinzufuegen[aria-expanded="true"] .terminPfeil {
+  transform: rotate(180deg);
+}
+
+#terminForm.terminFormKarte {
+  max-width: 760px;
+  max-height: 0;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 0 18px;
+  border: 1px solid rgba(82, 110, 87, 0.2);
+  border-radius: 20px;
+  background: rgba(228, 236, 221, 0.76) !important;
+  box-shadow: 0 9px 24px rgba(47, 69, 49, 0.12);
+  color: #344D38;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: max-height 260ms ease, margin 260ms ease, padding 260ms ease,
+    opacity 200ms ease, transform 200ms ease;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+#terminForm.terminFormKarte[hidden] {
+  display: none !important;
+}
+
+#terminForm.terminFormKarte.terminFormOffen {
+  max-height: 1200px;
+  margin: 14px auto 0;
+  padding: 20px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#terminForm.terminFormKarte h3 {
+  margin: 0 0 16px;
+  color: #526E57;
+  font-family: "Dancing Script", cursive;
+  font-size: 29px;
+  text-align: center;
+}
+
+.terminFormRaster {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.terminFormFeld {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+  color: #526E57;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.terminFormFeldVoll {
+  grid-column: 1 / -1;
+}
+
+#terminForm .terminFormFeld input,
+#terminForm .terminFormFeld select,
+#terminForm .terminFormFeld textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 44px;
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid rgba(82, 110, 87, 0.24);
+  border-radius: 12px;
+  background: rgba(248, 247, 242, 0.88);
+  color: #344D38;
+  font: inherit;
+  font-size: 15px;
+}
+
+#terminForm .terminFormFeld textarea {
+  min-height: 82px;
+  resize: vertical;
+}
+
+#terminForm .terminFormFeld input:focus,
+#terminForm .terminFormFeld select:focus,
+#terminForm .terminFormFeld textarea:focus {
+  outline: 3px solid rgba(129, 157, 126, 0.25);
+  border-color: #819D7E;
+}
+
+.terminErinnerungsFeld {
+  min-width: 0;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid rgba(82, 110, 87, 0.19);
+  border-radius: 13px;
+}
+
+.terminErinnerungsFeld legend {
+  padding: 0 6px;
+  color: #526E57;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.terminErinnerungsOptionen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.terminErinnerungsOptionen label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 9px;
+  border: 1px solid rgba(82, 110, 87, 0.16);
+  border-radius: 999px;
+  background: rgba(248, 247, 242, 0.7);
+  color: #425A46;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.terminErinnerungsOptionen input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: #718D70;
+}
+
+.terminFormAktionen {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.terminFormAktionen button {
+  min-height: 44px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.terminFormAktionen button:hover {
+  transform: translateY(-1px);
+}
+
+.terminAbbrechen {
+  border: 1px solid #819D7E;
+  background: rgba(245, 243, 233, 0.9);
+  color: #526E57;
+}
+
+.terminSpeichern {
+  border: 1px solid #718D70;
+  background: #819D7E;
+  color: #fff;
+}
+
+.termineKartenRaster {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.termineUebersichtKarte {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 11px;
+  min-height: 76px;
+  padding: 13px 15px;
+  border: 1px solid rgba(82, 110, 87, 0.16);
+  border-radius: 17px;
+  background: rgba(228, 236, 221, 0.76);
+  box-shadow: 0 5px 15px rgba(47, 69, 49, 0.1);
+  color: #526E57;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 180ms ease, transform 180ms ease,
+    box-shadow 180ms ease;
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+.termineUebersichtKarte:hover {
+  background: rgba(218, 231, 214, 0.88);
+  box-shadow: 0 8px 18px rgba(47, 69, 49, 0.14);
+  transform: translateY(-2px);
+}
+
+.termineVerlaufKarte {
+  border-color: rgba(117, 96, 83, 0.13);
+  background: rgba(238, 228, 221, 0.8);
+  color: #665348;
+}
+
+.termineVerlaufKarte:hover {
+  background: rgba(233, 220, 210, 0.92);
+}
+
+.termineUebersichtIcon {
+  width: 30px;
+  height: 30px;
+  color: #718D70;
+}
+
+.termineVerlaufKarte .termineUebersichtIcon {
+  color: #927969;
+}
+
+.termineUebersichtText {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.termineUebersichtText strong {
+  color: inherit;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.termineUebersichtText small {
+  color: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.25;
+  opacity: 0.82;
+}
+
+.termineUebersichtPfeil {
+  width: 19px;
+  height: 19px;
+  justify-self: end;
+  transition: transform 180ms ease;
+}
+
+.termineUebersichtKarte[aria-expanded="true"] .termineUebersichtPfeil {
+  transform: rotate(90deg);
+}
+
+.termineListenPanel {
+  margin-top: 10px;
+}
+
+#listaTermina > p,
+#povijestTermina > p {
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid rgba(82, 110, 87, 0.13);
+  border-radius: 15px;
+  background: rgba(228, 236, 221, 0.74) !important;
+  box-shadow: 0 4px 12px rgba(47, 69, 49, 0.08);
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+}
+
+#povijestTermina > p {
+  background: rgba(238, 228, 221, 0.78) !important;
+}
+
+#listaTermina > p button,
+#povijestTermina > p button {
+  min-height: 34px;
+  padding: 7px 10px;
+  border: 1px solid rgba(82, 110, 87, 0.18);
+  border-radius: 10px;
+  background: rgba(248, 247, 242, 0.88);
+  color: #526E57;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.terminNotizAnzeige {
+  flex: 1 1 100%;
+  padding-left: 2px;
+  color: #536655;
+  font-size: 13px;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+
+.terminPrioritaetAnzeige {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(235, 203, 211, 0.68);
+  color: #754856;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.terminPrioritaetDringend {
+  background: rgba(209, 113, 123, 0.2);
+  color: #8A3E4B;
+}
+
+.terminErinnerungStatus {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 12px;
+}
+
+.terminErinnerungEintrag {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 4px 10px;
+  padding: 11px 13px;
+  border: 1px solid rgba(200, 129, 145, 0.28);
+  border-radius: 14px;
+  background: rgba(235, 203, 211, 0.76);
+  color: #67434C;
+}
+
+.terminErinnerungEintrag strong {
+  grid-column: 1;
+  font-size: 13px;
+}
+
+.terminErinnerungEintrag span {
+  grid-column: 1;
+  overflow-wrap: anywhere;
+}
+
+.terminErinnerungEintrag small {
+  grid-column: 1;
+  font-size: 12px;
+}
+
+.terminErinnerungEintrag button {
+  grid-column: 2;
+  grid-row: 1 / span 3;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.5);
+  color: inherit;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+@media (max-width: 600px) {
+  .termineBereich {
+    width: calc(100% - 24px);
+    margin: 22px auto 32px;
+  }
+
+  .termineKopf {
+    margin-bottom: 14px;
+  }
+
+  .terminHinzufuegen {
+    min-height: 52px;
+    padding: 10px 13px;
+    font-size: 15px;
+  }
+
+  #terminForm.terminFormKarte.terminFormOffen {
+    padding: 15px 12px;
+  }
+
+  #terminForm.terminFormKarte h3 {
+    font-size: 26px;
+  }
+
+  .terminFormRaster {
+    gap: 10px;
+  }
+
+  .terminFormFeld {
+    font-size: 13px;
+  }
+
+  #terminForm .terminFormFeld input,
+  #terminForm .terminFormFeld select,
+  #terminForm .terminFormFeld textarea {
+    padding: 9px 10px;
+    font-size: 14px;
+  }
+
+  .terminErinnerungsOptionen {
+    gap: 6px;
+  }
+
+  .terminErinnerungsOptionen label {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+
+  .termineKartenRaster {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+    margin-top: 11px;
+  }
+
+  .termineUebersichtKarte {
+    min-height: 68px;
+    padding: 11px 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .terminFormRaster {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .terminFormFeldVoll {
+    grid-column: 1;
+  }
+
+  .terminFormAktionen {
+    gap: 8px;
+  }
+
+  .terminFormAktionen button {
+    padding: 9px 8px;
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terminHinzufuegen,
+  #terminForm.terminFormKarte,
+  .terminFormAktionen button,
+  .termineUebersichtKarte,
+  .termineUebersichtPfeil {
+    transition: none;
+  }
+}
 </style>
   </head>
   <body>
@@ -2539,7 +3072,8 @@ body {
       Einstellungen werden auf diesem Gerät gespeichert. Die Klangvorschau
       funktioniert bei geöffneter Seite. Erinnerungen für Ferien und Feiertage
       verwenden den ausgewählten Ton und berücksichtigen Vibration sowie
-      Ruhezeiten. Erinnerungen für normale Termine sind noch nicht angebunden.
+      Ruhezeiten. Termin-Erinnerungen erscheinen, solange die App geöffnet ist.
+      Push-Mitteilungen bei geschlossener App benötigen später einen Serverdienst.
     </p>
 
     <div class="einstellungenSchalter">
@@ -2701,8 +3235,8 @@ body {
         2 Tage vor Schulbeginn an das Ferienende erinnern
       </label>
       <p class="einstellungenHinweis">
-        Erinnerungen erscheinen, solange die App geöffnet ist. Push-Mitteilungen
-        bei geschlossener App benötigen später einen Serverdienst.
+        Termin-Erinnerungen erscheinen, solange die App geöffnet ist.
+        Push-Mitteilungen bei geschlossener App benötigen später einen Serverdienst.
       </p>
     </div>
 
@@ -2731,37 +3265,136 @@ body {
   <p id="einstellungenSpeicherStatus" class="einstellungenStatus"
     aria-live="polite"></p>
 </section>
-    <h2>Unsere Termine</h2>
-   
-      <button id="terminHinzufuegen" onclick="document.getElementById('terminForm').hidden = false" style="padding: 12px 20px; font-size: 16px; font-weight: bold;">
-  Termin hinzufügen
-      </button>
+  <section id="termineBereich" class="termineBereich"
+    aria-labelledby="termineTitel">
+    <header class="termineKopf">
+      <h2 id="termineTitel">Unsere Termine <span aria-hidden="true">♡</span></h2>
+      <p>Alles Wichtige an einem Ort</p>
+    </header>
 
-<div id="terminForm" hidden
-  style="background:#EAF2E8;
-  padding:20px; border-radius:18px;
-  margin-top:15px;
-  max-width:650px;">
-  <h3>Neuer Termin</h3>
-  <input type="text" id="terminName" placeholder="Was steht an?">
-  <input type="date" id="terminDatum">
-  <input type="time" id="terminZeit" style="display:inlinie-block; margin:10px 0;">
-  <label for="terminMitglied">Gehört zu (optional)</label>
-  <select id="terminMitglied">
-    <option value="">Gemeinsam</option>
-  </select>
-  <br>
-  <button class="speichernBtn" style="background-color:
-    #DDEBDD;"
-    onclick="speichereTermin()">Speichern</button>
-  <button style="background-color: #F5DCE5;"
-    onclick="document.getElementById('terminForm').hidden =
-    true;">Abbrechen</button>
-</div>
-    <div id="listaTermina"></div>
-    <h2 style="color: #8A9B8A; margin-top: 35px;">✅ 
-    Verlauf</h2>
-<div id="povijestTermina"></div>
+    <div id="terminErinnerungStatus" class="terminErinnerungStatus"
+      aria-live="polite" hidden></div>
+
+    <button id="terminHinzufuegen" class="terminHinzufuegen" type="button"
+      aria-expanded="false" aria-controls="terminForm"
+      onclick="familienplanerTerminFormularUmschalten()">
+      <svg class="terminKalenderIcon" viewBox="0 0 24 24" fill="none"
+        aria-hidden="true">
+        <rect x="3.5" y="5" width="17" height="16" rx="2.5"></rect>
+        <path d="M7.5 3.5v3M16.5 3.5v3M3.5 9.5h17M12 12.5v5M9.5 15h5"></path>
+      </svg>
+      <span>Termin hinzufügen</span>
+      <svg class="terminPfeil" viewBox="0 0 20 20" fill="none"
+        aria-hidden="true">
+        <path d="m5 7.5 5 5 5-5"></path>
+      </svg>
+    </button>
+
+    <div id="terminForm" class="terminFormKarte" hidden
+      aria-labelledby="terminFormTitel">
+      <h3 id="terminFormTitel">Neuer Termin</h3>
+      <div class="terminFormRaster">
+        <label class="terminFormFeld terminFormFeldVoll" for="terminName">
+          <span>Was steht an?</span>
+          <input type="text" id="terminName" placeholder="Was steht an?"
+            autocomplete="off">
+        </label>
+        <label class="terminFormFeld" for="terminDatum">
+          <span>Datum</span>
+          <input type="date" id="terminDatum">
+        </label>
+        <label class="terminFormFeld" for="terminZeit">
+          <span>Uhrzeit</span>
+          <input type="time" id="terminZeit">
+        </label>
+        <label class="terminFormFeld terminFormFeldVoll" for="terminMitglied">
+          <span>Gehört zu (optional)</span>
+          <select id="terminMitglied">
+            <option value="">Gemeinsam</option>
+          </select>
+        </label>
+        <label class="terminFormFeld terminFormFeldVoll" for="terminNotiz">
+          <span>Zusätzliche Notizen</span>
+          <textarea id="terminNotiz" rows="3"
+            placeholder="Notizen oder Details (optional)"></textarea>
+        </label>
+        <label class="terminFormFeld terminFormFeldVoll" for="terminPrioritaet">
+          <span>Priorität</span>
+          <select id="terminPrioritaet">
+            <option value="normal">Normal</option>
+            <option value="wichtig">Wichtig</option>
+            <option value="dringend">Dringend</option>
+          </select>
+        </label>
+        <fieldset class="terminErinnerungsFeld terminFormFeldVoll">
+          <legend>Erinnerungen</legend>
+          <div class="terminErinnerungsOptionen">
+            <label><input type="checkbox" value="7"
+              data-termin-erinnerung checked> 7 Tage vorher</label>
+            <label><input type="checkbox" value="2"
+              data-termin-erinnerung checked> 2 Tage vorher</label>
+            <label><input type="checkbox" value="1"
+              data-termin-erinnerung> 1 Tag vorher</label>
+            <label><input type="checkbox" value="0"
+              data-termin-erinnerung> Am selben Tag</label>
+          </div>
+        </fieldset>
+      </div>
+      <div class="terminFormAktionen">
+        <button id="terminAbbrechen" class="terminAbbrechen" type="button"
+          onclick="familienplanerTerminFormularAbbrechen()">Abbrechen</button>
+        <button id="terminSpeichern" class="terminSpeichern" type="button"
+          onclick="speichereTermin()">Speichern</button>
+      </div>
+    </div>
+
+    <div class="termineKartenRaster">
+      <button id="alleTermineButton" class="termineUebersichtKarte"
+        type="button" aria-expanded="false" aria-controls="alleTerminePanel"
+        onclick="familienplanerTermineAnsichtUmschalten('alleTermineButton', 'alleTerminePanel')">
+        <svg class="termineUebersichtIcon" viewBox="0 0 24 24" fill="none"
+          aria-hidden="true">
+          <rect x="3.5" y="5" width="17" height="16" rx="2.5"></rect>
+          <path d="M7.5 3.5v3M16.5 3.5v3M3.5 9.5h17"></path>
+          <path d="M8 13h2M14 13h2M8 17h2"></path>
+        </svg>
+        <span class="termineUebersichtText">
+          <strong>Alle Termine</strong>
+          <small>Unsere geplanten Termine</small>
+        </span>
+        <svg class="termineUebersichtPfeil" viewBox="0 0 20 20" fill="none"
+          aria-hidden="true">
+          <path d="m7.5 4 6 6-6 6"></path>
+        </svg>
+      </button>
+      <button id="verlaufButton" class="termineUebersichtKarte termineVerlaufKarte"
+        type="button" aria-expanded="false" aria-controls="verlaufPanel"
+        onclick="familienplanerTermineAnsichtUmschalten('verlaufButton', 'verlaufPanel')">
+        <svg class="termineUebersichtIcon" viewBox="0 0 24 24" fill="none"
+          aria-hidden="true">
+          <path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3L4.5 9"></path>
+          <path d="M4.5 4.5V9h4.5M12 7.5V12l3 2"></path>
+        </svg>
+        <span class="termineUebersichtText">
+          <strong>Verlauf</strong>
+          <small>Vergangene und erledigte Termine</small>
+        </span>
+        <svg class="termineUebersichtPfeil" viewBox="0 0 20 20" fill="none"
+          aria-hidden="true">
+          <path d="m7.5 4 6 6-6 6"></path>
+        </svg>
+      </button>
+    </div>
+
+    <section id="alleTerminePanel" class="termineListenPanel" hidden
+      aria-labelledby="alleTermineButton">
+      <div id="listaTermina"></div>
+    </section>
+    <section id="verlaufPanel" class="termineListenPanel termineVerlaufPanel"
+      hidden aria-labelledby="verlaufButton">
+      <div id="povijestTermina"></div>
+    </section>
+  </section>
 <script>
 function familienplanerLocale() {
   return window.familienplanerI18n
@@ -2809,7 +3442,7 @@ terminPolja.forEach((polje, index) => {
       if (index < terminPolja.length - 1) {
         terminPolja[index + 1].focus();
       } else {
-        document.querySelector(".speichernBtn").click();
+        document.getElementById("terminSpeichern").click();
       }
     }
   });
@@ -2902,15 +3535,7 @@ terminPolja.forEach((polje, index) => {
           ferien.zeigeDetails(datum);
           return;
         }
-        document.getElementById("terminForm").hidden = false;
-        document.getElementById("terminDatum").value = datum;
-
-        document.getElementById("terminForm").scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
-
-        document.getElementById("terminName").focus();
+        familienplanerTerminFormularOeffnen(datum);
       });
 
       raster.appendChild(feld);
@@ -2980,6 +3605,123 @@ function aktualisiereTerminMitglieder() {
   });
 }
 
+window.familienplanerBearbeiteterTermin = null;
+let terminFormularSchliessTimer = null;
+
+function familienplanerTerminText(text) {
+  return window.familienplanerI18n
+    ? window.familienplanerI18n.t(text)
+    : text;
+}
+
+function familienplanerTerminFormularZuruecksetzen() {
+  document.getElementById("terminName").value = "";
+  document.getElementById("terminDatum").value = "";
+  document.getElementById("terminZeit").value = "";
+  document.getElementById("terminMitglied").value = "";
+  document.getElementById("terminNotiz").value = "";
+  document.getElementById("terminPrioritaet").value = "normal";
+  document.querySelectorAll("[data-termin-erinnerung]").forEach(function (feld) {
+    feld.checked = feld.value === "7" || feld.value === "2";
+  });
+  document.getElementById("terminFormTitel").textContent =
+    familienplanerTerminText("Neuer Termin");
+  document.getElementById("terminSpeichern").textContent =
+    familienplanerTerminText("Speichern");
+  window.familienplanerBearbeiteterTermin = null;
+}
+
+function familienplanerTerminFormularOeffnen(datum, termin) {
+  const formular = document.getElementById("terminForm");
+  const taster = document.getElementById("terminHinzufuegen");
+  window.clearTimeout(terminFormularSchliessTimer);
+  familienplanerTerminFormularZuruecksetzen();
+
+  if (termin) {
+    window.familienplanerBearbeiteterTermin = termin;
+    document.getElementById("terminName").value = termin.name || "";
+    document.getElementById("terminDatum").value = termin.datum || "";
+    document.getElementById("terminZeit").value = termin.zeit || "";
+    document.getElementById("terminNotiz").value = termin.notiz || "";
+    document.getElementById("terminPrioritaet").value =
+      ["normal", "wichtig", "dringend"].includes(termin.prioritaet)
+        ? termin.prioritaet
+        : "normal";
+    document.getElementById("terminFormTitel").textContent =
+      familienplanerTerminText("Termin bearbeiten");
+    document.getElementById("terminSpeichern").textContent =
+      familienplanerTerminText("Änderungen speichern");
+
+    const mitgliedAuswahl = document.getElementById("terminMitglied");
+    const passendeOption = Array.from(mitgliedAuswahl.options).find(
+      option => option.dataset.name === termin.familienmitglied
+    );
+    if (passendeOption) {
+      mitgliedAuswahl.value = passendeOption.value;
+    } else if (termin.familienmitglied) {
+      const option = new Option(
+        termin.familienmitglied,
+        "gespeichert-" + encodeURIComponent(termin.familienmitglied)
+      );
+      option.dataset.name = termin.familienmitglied;
+      option.dataset.farbe = termin.familienfarbe || "#DFE8DC";
+      option.dataset.i18nIgnore = "";
+      mitgliedAuswahl.add(option);
+      mitgliedAuswahl.value = option.value;
+    }
+
+    const erinnerungen = Array.isArray(termin.erinnerungen)
+      ? termin.erinnerungen.map(Number)
+      : [7, 2];
+    document.querySelectorAll("[data-termin-erinnerung]").forEach(function (feld) {
+      feld.checked = erinnerungen.includes(Number(feld.value));
+    });
+  } else if (datum) {
+    document.getElementById("terminDatum").value = datum;
+  }
+
+  formular.hidden = false;
+  taster.setAttribute("aria-expanded", "true");
+  window.requestAnimationFrame(function () {
+    formular.classList.add("terminFormOffen");
+    formular.scrollIntoView({ behavior: "smooth", block: "center" });
+    document.getElementById("terminName").focus({ preventScroll: true });
+  });
+}
+
+function familienplanerTerminFormularAbbrechen() {
+  const formular = document.getElementById("terminForm");
+  document.getElementById("terminHinzufuegen").setAttribute(
+    "aria-expanded",
+    "false"
+  );
+  formular.classList.remove("terminFormOffen");
+  familienplanerTerminFormularZuruecksetzen();
+  window.clearTimeout(terminFormularSchliessTimer);
+  terminFormularSchliessTimer = window.setTimeout(function () {
+    if (!formular.classList.contains("terminFormOffen")) {
+      formular.hidden = true;
+    }
+  }, 280);
+}
+
+function familienplanerTerminFormularUmschalten() {
+  const formular = document.getElementById("terminForm");
+  if (formular.hidden) {
+    familienplanerTerminFormularOeffnen();
+  } else {
+    familienplanerTerminFormularAbbrechen();
+  }
+}
+
+function familienplanerTermineAnsichtUmschalten(tasterId, panelId) {
+  const taster = document.getElementById(tasterId);
+  const panel = document.getElementById(panelId);
+  const wirdGeoeffnet = panel.hidden;
+  panel.hidden = !wirdGeoeffnet;
+  taster.setAttribute("aria-expanded", String(wirdGeoeffnet));
+}
+
 function erstelleTerminFarbmarkierung(termin) {
   const markierung = document.createElement("span");
   const mitglieder = ladeFamilienMitgliederFuerTermine();
@@ -3019,6 +3761,274 @@ function aktualisiereTerminFarbmarkierungen() {
       ? farbe
       : "#DFE8DC";
   });
+}
+
+function familienplanerNeueTerminId() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2);
+}
+
+function familienplanerTermineSpeichern(termine) {
+  try {
+    localStorage.setItem("termini", JSON.stringify(termine));
+    return true;
+  } catch (fehler) {
+    console.error("Termine konnten nicht gespeichert werden.", fehler);
+    alert(familienplanerTerminText("Termine konnten nicht gespeichert werden."));
+    return false;
+  }
+}
+
+function familienplanerTerminListenEintragErstellen(termin, termine) {
+  const eintrag = document.createElement("p");
+  eintrag.className = "terminListenEintrag";
+  eintrag.dataset.datum = (termin.datum || "") + (termin.zeit || "");
+
+  const text = document.createElement("span");
+  text.dataset.i18nIgnore = "";
+  text.textContent =
+    familienplanerFormatiereISOdatum(termin.datum) +
+    " - " + termin.zeit + " - " + termin.name;
+  eintrag.appendChild(text);
+
+  if (termin.notiz) {
+    const notiz = document.createElement("small");
+    notiz.className = "terminNotizAnzeige";
+    notiz.dataset.i18nIgnore = "";
+    notiz.textContent = termin.notiz;
+    eintrag.appendChild(notiz);
+  }
+
+  if (termin.prioritaet && termin.prioritaet !== "normal") {
+    const prioritaet = document.createElement("span");
+    prioritaet.className = "terminPrioritaetAnzeige";
+    prioritaet.textContent = familienplanerTerminText(
+      termin.prioritaet === "dringend" ? "Dringend" : "Wichtig"
+    );
+    if (termin.prioritaet === "dringend") {
+      prioritaet.classList.add("terminPrioritaetDringend");
+    }
+    eintrag.appendChild(prioritaet);
+  }
+
+  eintrag.appendChild(erstelleTerminFarbmarkierung(termin));
+
+  if (termin.status === "erledigt") {
+    eintrag.style.textDecoration = "line-through";
+    return eintrag;
+  }
+
+  const erledigt = document.createElement("button");
+  erledigt.type = "button";
+  erledigt.textContent = familienplanerTerminText("✓ Erledigt");
+  erledigt.onclick = function () {
+    const index = termine.findIndex(item => item.id === termin.id);
+    if (index === -1) return;
+    const bisherigerStatus = termine[index].status;
+    termine[index].status = "erledigt";
+    if (!familienplanerTermineSpeichern(termine)) {
+      termine[index].status = bisherigerStatus;
+      return;
+    }
+    familienplanerTermineListenZeichnen(termine);
+    zeigeWochenTermine();
+    alert(familienplanerTerminText("Termin erledigt!"));
+  };
+  eintrag.appendChild(erledigt);
+
+  const bearbeiten = document.createElement("button");
+  bearbeiten.type = "button";
+  bearbeiten.textContent = familienplanerTerminText("✏️ Bearbeiten");
+  bearbeiten.onclick = function () {
+    familienplanerTerminFormularOeffnen(null, termin);
+  };
+  eintrag.appendChild(bearbeiten);
+
+  const loeschen = document.createElement("button");
+  loeschen.type = "button";
+  loeschen.textContent = familienplanerTerminText("🗑️ Löschen");
+  loeschen.onclick = function () {
+    if (!confirm(familienplanerTerminText(
+      "Möchtest du diesen Termin wirklich löschen?"
+    ))) {
+      return;
+    }
+    const index = termine.findIndex(item => item.id === termin.id);
+    if (index === -1) return;
+    const entfernteTermine = termine.splice(index, 1);
+    if (!familienplanerTermineSpeichern(termine)) {
+      termine.splice(index, 0, entfernteTermine[0]);
+      return;
+    }
+    familienplanerTermineListenZeichnen(termine);
+    zeigeWochenTermine();
+    alert(familienplanerTerminText("Termin gelöscht!"));
+  };
+  eintrag.appendChild(loeschen);
+  return eintrag;
+}
+
+function familienplanerTermineListenZeichnen(termine) {
+  const liste = document.getElementById("listaTermina");
+  const verlauf = document.getElementById("povijestTermina");
+  liste.replaceChildren();
+  verlauf.replaceChildren();
+
+  termine
+    .filter(termin => termin && typeof termin === "object")
+    .slice()
+    .sort(function (a, b) {
+      return ((a.datum || "") + (a.zeit || ""))
+        .localeCompare((b.datum || "") + (b.zeit || ""));
+    })
+    .forEach(function (termin) {
+      const eintrag = familienplanerTerminListenEintragErstellen(
+        termin,
+        termine
+      );
+      if (termin.status === "erledigt") {
+        verlauf.appendChild(eintrag);
+      } else {
+        liste.appendChild(eintrag);
+      }
+    });
+
+  if (!liste.childElementCount) {
+    const leer = document.createElement("p");
+    leer.className = "termineLeer";
+    leer.textContent = familienplanerTerminText("Keine geplanten Termine.");
+    liste.appendChild(leer);
+  }
+  if (!verlauf.childElementCount) {
+    const leer = document.createElement("p");
+    leer.className = "termineLeer";
+    leer.textContent = familienplanerTerminText("Noch keine erledigten Termine.");
+    verlauf.appendChild(leer);
+  }
+}
+
+const familienplanerTerminErinnerungenSession = new Set();
+
+function familienplanerTerminErinnerungenPruefen() {
+  let termine = [];
+  let gesendet = {};
+  try {
+    const gespeicherteTermine = JSON.parse(
+      localStorage.getItem("termini") || "[]"
+    );
+    termine = Array.isArray(gespeicherteTermine) ? gespeicherteTermine : [];
+  } catch (fehler) {
+    console.error("Terminerinnerungen konnten nicht geladen werden.", fehler);
+    return;
+  }
+  try {
+    const daten = JSON.parse(
+      localStorage.getItem("familienplanerTerminErinnerungenGesendet") || "{}"
+    );
+    if (daten && typeof daten === "object" && !Array.isArray(daten)) {
+      gesendet = daten;
+    }
+  } catch (fehler) {
+    console.error("Gesendete Terminerinnerungen konnten nicht geladen werden.", fehler);
+  }
+
+  const jetzt = new Date();
+  const heuteISO = [
+    jetzt.getFullYear(),
+    String(jetzt.getMonth() + 1).padStart(2, "0"),
+    String(jetzt.getDate()).padStart(2, "0")
+  ].join("-");
+  const erinnerungsEintraege = [];
+
+  termine.forEach(function (termin) {
+    if (
+      !termin ||
+      termin.status === "erledigt" ||
+      !/^\d{4}-\d{2}-\d{2}$/.test(termin.datum || "") ||
+      !Array.isArray(termin.erinnerungen)
+    ) {
+      return;
+    }
+
+    termin.erinnerungen.forEach(function (abstand) {
+      const tage = Number(abstand);
+      if (!Number.isInteger(tage) || tage < 0 || tage > 14) return;
+      const teile = termin.datum.split("-").map(Number);
+      const faellig = new Date(teile[0], teile[1] - 1, teile[2]);
+      faellig.setDate(faellig.getDate() - tage);
+      const faelligISO = [
+        faellig.getFullYear(),
+        String(faellig.getMonth() + 1).padStart(2, "0"),
+        String(faellig.getDate()).padStart(2, "0")
+      ].join("-");
+      if (faelligISO !== heuteISO) return;
+
+      const schluessel = String(termin.id || (
+        termin.name + "|" + termin.datum + "|" + termin.zeit
+      )) + "|" + tage + "|" + faelligISO;
+      if (
+        gesendet[schluessel] ||
+        familienplanerTerminErinnerungenSession.has(schluessel)
+      ) {
+        return;
+      }
+
+      gesendet[schluessel] = jetzt.toISOString();
+      familienplanerTerminErinnerungenSession.add(schluessel);
+      if (!erinnerungsEintraege.some(item => item.id === termin.id)) {
+        erinnerungsEintraege.push(termin);
+      }
+    });
+  });
+
+  if (!erinnerungsEintraege.length) return;
+
+  try {
+    const grenze = Date.now() - 60 * 24 * 60 * 60 * 1000;
+    Object.keys(gesendet).forEach(function (schluessel) {
+      if (Date.parse(gesendet[schluessel]) < grenze) {
+        delete gesendet[schluessel];
+      }
+    });
+    localStorage.setItem(
+      "familienplanerTerminErinnerungenGesendet",
+      JSON.stringify(gesendet)
+    );
+  } catch (fehler) {
+    console.error("Terminerinnerungen konnten nicht gespeichert werden.", fehler);
+  }
+
+  const status = document.getElementById("terminErinnerungStatus");
+  erinnerungsEintraege.forEach(function (termin) {
+    const eintrag = document.createElement("div");
+    eintrag.className = "terminErinnerungEintrag";
+    const titel = document.createElement("strong");
+    titel.textContent = familienplanerTerminText("Erinnerung");
+    const name = document.createElement("span");
+    name.dataset.i18nIgnore = "";
+    name.textContent = termin.name;
+    const datum = document.createElement("small");
+    datum.textContent =
+      familienplanerFormatiereISOdatum(termin.datum) + " · " + termin.zeit;
+    const schliessen = document.createElement("button");
+    schliessen.type = "button";
+    schliessen.setAttribute(
+      "aria-label",
+      familienplanerTerminText("Erinnerung schließen")
+    );
+    schliessen.title = familienplanerTerminText("Erinnerung schließen");
+    schliessen.textContent = "×";
+    schliessen.onclick = function () {
+      eintrag.remove();
+      status.hidden = !status.childElementCount;
+    };
+    eintrag.append(titel, name, datum, schliessen);
+    status.appendChild(eintrag);
+  });
+  status.hidden = false;
+
+  if (typeof window.familienplanerSpieleHinweis === "function") {
+    window.familienplanerSpieleHinweis("termin");
+  }
 }
 
 function zeigeWochenTermine() {
@@ -3065,12 +4075,13 @@ function zeigeWochenTermine() {
     });
 
   heuteFrei.hidden = termine.some(function (termin) {
-    return termin.datum === heuteISO;
+    return termin && termin.datum === heuteISO &&
+      termin.status !== "erledigt";
   });
 
   const termineDieseWoche = termine
     .filter(function (termin) {
-      return termin.datum >= datumISO(montag) &&
+      return termin && termin.datum >= datumISO(montag) &&
         termin.datum <= datumISO(sonntag) &&
         termin.status !== "erledigt";
     })
@@ -3132,197 +4143,128 @@ document.addEventListener(
 );
 
 function speichereTermin() {
-  let name = document.getElementById("terminName").value;
-  let datum = document.getElementById("terminDatum").value;
-  let zeit = document.getElementById("terminZeit").value;
+  const name = document.getElementById("terminName").value.trim();
+  const datum = document.getElementById("terminDatum").value;
+  const zeit = document.getElementById("terminZeit").value;
+  const notiz = document.getElementById("terminNotiz").value.trim();
+  const prioritaet = document.getElementById("terminPrioritaet").value;
+  const erinnerungen = Array.from(
+    document.querySelectorAll("[data-termin-erinnerung]:checked")
+  ).map(feld => Number(feld.value));
   const mitgliedAuswahl = document.getElementById("terminMitglied");
   const ausgewaehltesMitglied = mitgliedAuswahl.selectedOptions[0];
   const familienmitglied =
     mitgliedAuswahl.value === "" ? "" : ausgewaehltesMitglied.dataset.name;
   const familienfarbe = mitgliedAuswahl.value === ""
     ? "#DFE8DC"
-    : ausgewaehltesMitglied.dataset.farbe;
+    : ausgewaehltesMitglied.dataset.farbe || "#DFE8DC";
 
   if (!name || !datum || !zeit) {
-    alert("Bitte alle Felder ausfüllen!");
+    alert(familienplanerTerminText("Bitte alle Felder ausfüllen!"));
     return;
   }
 
-  let liste = document.getElementById("listaTermina");
+  let termine;
+  try {
+    const daten = JSON.parse(localStorage.getItem("termini") || "[]");
+    termine = Array.isArray(daten) ? daten : [];
+  } catch (fehler) {
+    console.error("Termine konnten nicht geladen werden.", fehler);
+    alert(familienplanerTerminText("Termine konnten nicht geladen werden."));
+    return;
+  }
 
-  let termin = document.createElement("p");
-  termin.style.cssText =
-  "background:#EAF2E8; padding:15px; border-radius:15px; margin:12px 0;";
-  termin.dataset.status = "offen";
- let lijepiDatum = familienplanerFormatiereISOdatum(datum);
-
-  const terminText = document.createElement("span");
-  terminText.dataset.i18nIgnore = "";
-  terminText.textContent = lijepiDatum + " - " + zeit + " - " + name;
-  termin.appendChild(terminText);
-const terminDaten = {
-  name: name,
-  datum: datum,
-  zeit: zeit,
-  status: "offen",
-  erinnerungen: [7, 2],
-  familienmitglied: familienmitglied || null,
-  familienfarbe: familienfarbe || "#DFE8DC"
-};
-termin.appendChild(erstelleTerminFarbmarkierung(terminDaten));
-let termini = JSON.parse(localStorage.getItem("termini")) || [];
-let gumb = document.createElement("button");
-gumb.textContent = "✓ Erledigt";
- gumb.onclick = function() {
-let index = termini.findIndex(t =>
-  t.name === name &&
-  t.datum === datum &&
-  t.zeit === zeit &&
-  t.status !== "erledigt"
-);
-
-if (index !== -1) {
-  termini[index].status = "erledigt";
-}  
-   localStorage.setItem("termini", JSON.stringify(termini));
-  termin.style.textDecoration = "line-through";
-  gumb.textContent = "✓ Erledigt!";
-  gumb.disabled = true;
-   alert("Termin erledigt!");
-  document.getElementById("povijestTermina").appendChild(termin); 
-location.reload();   
-}; 
-termin.appendChild(gumb);
-let gumbUredi = document.createElement("button");
-gumbUredi.textContent = "✏️ Bearbeiten";
-gumbUredi.onclick = function() {
-  let noviNaziv = prompt("Neuer Terminname:", name);
-  if (noviNaziv === null || noviNaziv.trim() === "") return;
- let termini = JSON.parse(localStorage.getItem("termini")) || [];
-let index = termini.findIndex(t =>
-  t.name === name && t.datum === datum && t.zeit === zeit
-);
-if (index !== -1) {
-  termini[index].name = noviNaziv;
-  localStorage.setItem("termini", JSON.stringify(termini));
-  location.reload();
-}  
-};
-termin.appendChild(gumbUredi);  
-
-
-let gumbBrisanje = document.createElement("button");
-gumbBrisanje.textContent = "🗑️ Löschen";
-gumbBrisanje.onclick = function() {
-  if (confirm("Möchtest du diesen Termin wirklich löschen?")) {
-    let termini = JSON.parse(localStorage.getItem("termini")) || [];
-    let index = termini.findIndex(t =>
-      t.name === name && t.datum === datum && t.zeit === zeit
-    );
-    if (index !== -1) {
-      termini.splice(index, 1);
-      localStorage.setItem("termini", JSON.stringify(termini));
-      termin.remove();
-      zeigeWochenTermine();
-      alert("Termin gelöscht!");
+  const bearbeitet = window.familienplanerBearbeiteterTermin;
+  let index = -1;
+  if (bearbeitet) {
+    index = termine.findIndex(termin => termin.id === bearbeitet.id);
+    if (index === -1) {
+      alert(familienplanerTerminText("Termin nicht gefunden."));
+      return;
     }
   }
-};  
-termin.appendChild(gumbBrisanje);  
-let postojeciTermini = Array.from(liste.children);
 
-let noviDatum = datum + zeit;
+  const bisherigerTermin = index === -1 ? null : termine[index];
+  const terminDaten = {
+    ...(bisherigerTermin || {}),
+    id: bisherigerTermin ? bisherigerTermin.id : familienplanerNeueTerminId(),
+    name: name,
+    datum: datum,
+    zeit: zeit,
+    notiz: notiz,
+    prioritaet: ["normal", "wichtig", "dringend"].includes(prioritaet)
+      ? prioritaet
+      : "normal",
+    status: bisherigerTermin ? bisherigerTermin.status : "offen",
+    erinnerungen: erinnerungen,
+    familienmitglied: familienmitglied || null,
+    familienfarbe: familienfarbe || "#DFE8DC"
+  };
 
-let sljedeciTermin = postojeciTermini.find(function(element) {
-  return element.dataset.datum > noviDatum;
-});
+  if (index === -1) {
+    termine.push(terminDaten);
+  } else {
+    termine[index] = terminDaten;
+  }
 
-liste.insertBefore(termin, sljedeciTermin || null);
-termin.dataset.datum = noviDatum;
+  if (!familienplanerTermineSpeichern(termine)) return;
 
-
-termini.push(terminDaten);
-
-localStorage.setItem("termini", JSON.stringify(termini));
-zeigeWochenTermine();
-  alert ("Termin gespeichert! ");
-document.getElementById("terminName").value = "";
-document.getElementById("terminDatum").value = "";
-document.getElementById("terminZeit").value = "";
-mitgliedAuswahl.value = "";
-document.getElementById("terminZeit").hidden = false; 
+  familienplanerTermineListenZeichnen(termine);
+  zeigeWochenTermine();
+  familienplanerTerminFormularAbbrechen();
+  familienplanerTerminErinnerungenPruefen();
+  alert(familienplanerTerminText("Termin gespeichert!"));
 }
 </script>
 <script>
 window.addEventListener("DOMContentLoaded", function() {
-  let termini = JSON.parse(localStorage.getItem("termini")) || [];
-  let liste = document.getElementById("listaTermina");
-  zeigeWochenTermine();
-  aktualisiereTerminMitglieder();
-termini.sort(function(a, b) {
-  return (a.datum + a.zeit).localeCompare(b.datum + b.zeit);
-});
-  termini.forEach(function(t) {
-    let termin = document.createElement("p");
-    termin.dataset.datum = t.datum + t.zeit;
-    let datum = familienplanerFormatiereISOdatum(t.datum);
-
-    const terminText = document.createElement("span");
-    terminText.dataset.i18nIgnore = "";
-    terminText.textContent = datum + " - " + t.zeit + " - " + t.name;
-    termin.appendChild(terminText);
-    termin.appendChild(erstelleTerminFarbmarkierung(t));
-    if (t.status === "erledigt") {
-  termin.style.textDecoration = "line-through";
-} else {
-  let gumb = document.createElement("button");
-  gumb.textContent = "✓ Erledigt";
-
-  gumb.onclick = function() {
-    t.status = "erledigt";
-    localStorage.setItem("termini", JSON.stringify(termini));
-    termin.style.textDecoration = "line-through";
-    gumb.textContent = "✓ Erledigt!";
-    gumb.disabled = true;
-      alert("Termin erledigt!");
-    document.getElementById("povijestTermina").appendChild(termin);
-   location.reload(); 
-  };
-
-  termin.appendChild(gumb);
-  let gumbUredi = document.createElement("button");
-  gumbUredi.textContent = "✏️ Bearbeiten";
-  gumbUredi.onclick = function() {
-    let neuerName = prompt("Neuer Terminname:", t.name);
-    if (neuerName === null || neuerName.trim() === "") return;
-    t.name = neuerName.trim();
-    localStorage.setItem("termini", JSON.stringify(termini));
-    location.reload();
-  };
-  termin.appendChild(gumbUredi);
-
- let gumbBrisanje = document.createElement("button");
-gumbBrisanje.textContent = "🗑️ Löschen";
-gumbBrisanje.onclick = function() {
-  if (confirm("Möchtest du diesen Termin wirklich löschen?")) {
-    let index = termini.indexOf(t);
-    if (index !== -1) {
-      termini.splice(index, 1);
-      localStorage.setItem("termini", JSON.stringify(termini));
-      termin.remove();
-      zeigeWochenTermine();
-   alert("Termin gelöscht!");   
+  let termine = [];
+  let datenLesbar = true;
+  try {
+    const daten = JSON.parse(localStorage.getItem("termini") || "[]");
+    if (Array.isArray(daten)) {
+      termine = daten;
+    } else {
+      datenLesbar = false;
+      console.error("Gespeicherte Termine haben ein ungültiges Format.");
     }
-  };
-};      
-termin.appendChild(gumbBrisanje);     
-}
-if (t.status === "erledigt") {
-  document.getElementById("povijestTermina").appendChild(termin);
-} else {
-  liste.appendChild(termin);
-} 
+  } catch (fehler) {
+    datenLesbar = false;
+    console.error("Gespeicherte Termine konnten nicht geladen werden.", fehler);
+  }
+
+  aktualisiereTerminMitglieder();
+  let idErgaenzt = false;
+  termine.forEach(function (termin) {
+    if (termin && !termin.id) {
+      termin.id = familienplanerNeueTerminId();
+      idErgaenzt = true;
+    }
   });
+  if (datenLesbar && idErgaenzt) {
+    try {
+      localStorage.setItem("termini", JSON.stringify(termine));
+    } catch (fehler) {
+      console.error("Termin-IDs konnten nicht gespeichert werden.", fehler);
+    }
+  }
+
+  familienplanerTermineListenZeichnen(termine);
+  zeigeWochenTermine();
+  familienplanerTerminErinnerungenPruefen();
+  window.setInterval(familienplanerTerminErinnerungenPruefen, 30000);
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) familienplanerTerminErinnerungenPruefen();
+  });
+});
+
+document.addEventListener("familienplaner:languagechange", function () {
+  try {
+    const daten = JSON.parse(localStorage.getItem("termini") || "[]");
+    if (Array.isArray(daten)) familienplanerTermineListenZeichnen(daten);
+  } catch (fehler) {
+    console.error("Termine konnten für die Sprache nicht aktualisiert werden.", fehler);
+  }
 });
   </script>
 <script>

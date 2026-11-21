@@ -20,6 +20,11 @@
     "Abmelden fehlgeschlagen": ["Odjava nije uspjela", "Sign-out failed"],
     "Änderungen speichern": ["Spremi promjene", "Save changes"],
     "Am selben Tag": ["Istog dana", "On the same day"],
+    "Alles Wichtige an einem Ort": [
+      "Sve važno na jednom mjestu",
+      "Everything important in one place"
+    ],
+    "Alle Termine": ["Svi termini", "All events"],
     "Anmelden": ["Prijava", "Sign in"],
     "Anmeldung ist fehlgeschlagen:": [
       "Prijava nije uspjela:",
@@ -91,18 +96,21 @@
       "Postavke su spremljene na ovom uređaju.",
       "Settings saved on this device."
     ],
-    "Einstellungen werden auf diesem Gerät gespeichert. Die Klangvorschau funktioniert bei geöffneter Seite. Erinnerungen für Ferien und Feiertage verwenden den ausgewählten Ton und berücksichtigen Vibration sowie Ruhezeiten. Erinnerungen für normale Termine sind noch nicht angebunden.": [
-      "Postavke se spremaju na ovom uređaju. Pregled zvuka radi dok je stranica otvorena. Podsjetnici za praznike i blagdane koriste odabrani zvuk te poštuju vibraciju i vrijeme tišine. Podsjetnici za obične termine još nisu povezani.",
-      "Settings are saved on this device. Sound previews work while the page is open. Holiday reminders use the selected sound and respect vibration and quiet hours. Reminders for regular events are not connected yet."
+    "Einstellungen werden auf diesem Gerät gespeichert. Die Klangvorschau funktioniert bei geöffneter Seite. Erinnerungen für Ferien und Feiertage verwenden den ausgewählten Ton und berücksichtigen Vibration sowie Ruhezeiten. Termin-Erinnerungen erscheinen, solange die App geöffnet ist. Push-Mitteilungen bei geschlossener App benötigen später einen Serverdienst.": [
+      "Postavke se spremaju na ovom uređaju. Pregled zvuka radi dok je stranica otvorena. Podsjetnici za praznike i blagdane koriste odabrani zvuk te poštuju vibraciju i vrijeme tišine. Podsjetnici za termine prikazuju se dok je aplikacija otvorena. Push obavijesti kada je aplikacija zatvorena zahtijevaju poslužiteljsku uslugu.",
+      "Settings are saved on this device. Sound previews work while the page is open. Holiday reminders use the selected sound and respect vibration and quiet hours. Appointment reminders appear while the app is open. Push notifications when it is closed will require a server service."
     ],
     "Erinnern:": ["Podsjeti:", "Remind:"],
-    "Erinnerungen erscheinen, solange die App geöffnet ist. Push-Mitteilungen bei geschlossener App benötigen später einen Serverdienst.": [
-      "Podsjetnici se prikazuju dok je aplikacija otvorena. Push obavijesti kada je aplikacija zatvorena zahtijevaju poslužiteljsku uslugu.",
-      "Reminders appear while the app is open. Push notifications when it is closed will require a server service."
-    ],
+    "Erinnerung": ["Podsjetnik", "Reminder"],
+    "Erinnerung schließen": ["Zatvori podsjetnik", "Dismiss reminder"],
+    "Erinnerungen": ["Podsjetnici", "Reminders"],
     "Erinnerungen für Ferien und Feiertage aktivieren": [
       "Uključi podsjetnike za praznike i blagdane",
       "Enable holiday reminders"
+    ],
+    "Termin-Erinnerungen erscheinen, solange die App geöffnet ist. Push-Mitteilungen bei geschlossener App benötigen später einen Serverdienst.": [
+      "Podsjetnici za termine prikazuju se dok je aplikacija otvorena. Push obavijesti kada je aplikacija zatvorena zahtijevaju poslužiteljsku uslugu.",
+      "Appointment reminders appear while the app is open. Push notifications when it is closed will require a server service."
     ],
     "Familie": ["Obitelj", "Family"],
     "Familie erstellen": ["Izradi obitelj", "Create family"],
@@ -239,6 +247,7 @@
     "Name": ["Ime", "Name"],
     "Neuer Termin": ["Novi termin", "New event"],
     "Neuer Terminname:": ["Novi naziv termina:", "New event name:"],
+    "Normal": ["Uobičajeno", "Normal"],
     "Niedersachsen": ["Donja Saska", "Lower Saxony"],
     "Nordrhein-Westfalen": ["Sjeverna Rajna-Vestfalija", "North Rhine-Westphalia"],
     "Normale Termine": ["Obični termini", "Regular events"],
@@ -255,6 +264,41 @@
     "Persönliche Einstellungen für jedes Familienmitglied.": [
       "Osobne postavke za svakog člana obitelji.",
       "Personal settings for each family member."
+    ],
+    "Priorität": ["Važnost", "Priority"],
+    "Dringend": ["Hitno", "Urgent"],
+    "Wichtig": ["Važno", "Important"],
+    "Zusätzliche Notizen": ["Dodatne bilješke", "Additional notes"],
+    "Notizen oder Details (optional)": [
+      "Bilješke ili pojedinosti (nije obavezno)",
+      "Notes or details (optional)"
+    ],
+    "Uhrzeit": ["Vrijeme", "Time"],
+    "Termin bearbeiten": ["Uredi termin", "Edit event"],
+    "Termin nicht gefunden.": ["Termin nije pronađen.", "Event not found."],
+    "Termine konnten nicht geladen werden.": [
+      "Termine nije moguće učitati.",
+      "Events could not be loaded."
+    ],
+    "Termine konnten nicht gespeichert werden.": [
+      "Termine nije moguće spremiti.",
+      "Events could not be saved."
+    ],
+    "Keine geplanten Termine.": [
+      "Nema planiranih termina.",
+      "No planned events."
+    ],
+    "Noch keine erledigten Termine.": [
+      "Još nema dovršenih termina.",
+      "No completed events yet."
+    ],
+    "Unsere geplanten Termine": [
+      "Naši planirani termini",
+      "Our planned events"
+    ],
+    "Vergangene und erledigte Termine": [
+      "Prošli i dovršeni termini",
+      "Past and completed events"
     ],
     "Bitte alle Felder ausfüllen!": ["Ispuni sva polja!", "Please fill in all fields!"],
     "Bitte füge zuerst unter „Unsere Familie“ ein Familienmitglied hinzu.": [
@@ -333,6 +377,7 @@
     "Unsere Termine": ["Naši termini", "Our events"],
     "✅ Verlauf": ["✅ Povijest", "✅ History"],
     "Verbindung speichern & prüfen": ["Spremi i provjeri povezivanje", "Save and check connection"],
+    "Verlauf": ["Povijest", "History"],
     "Verwende nur den öffentlichen Publishable/anon-Key, niemals einen Secret- oder service_role-Key.": [
       "Koristi samo javni publishable/anon ključ, nikada tajni ni service_role ključ.",
       "Use only the public publishable/anon key, never a secret or service_role key."
